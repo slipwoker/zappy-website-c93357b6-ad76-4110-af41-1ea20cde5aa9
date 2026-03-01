@@ -5103,6 +5103,12 @@ body.accessibility-widget-visible ._access-menu {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -8242,6 +8248,22 @@ nav.navbar .menu-item-has-children::after,
   .cart-count {
     background: var(--accent, #FF2DAA) !important;
     color: #fff !important;
+  }
+
+  /* Mobile sub-menu: displayed inline inside dark nav panel, NOT as a floating dropdown.
+     Override the desktop rules that force bg-light + text-dark on sub-menus. */
+  .navbar .sub-menu,
+  .navbar ul.sub-menu,
+  nav.navbar .sub-menu,
+  .zappy-products-dropdown .sub-menu {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  .navbar .sub-menu li a,
+  nav.navbar .sub-menu li a,
+  .zappy-products-dropdown .sub-menu a {
+    color: var(--nav-text, --text-light) !important;
   }
 }
 
