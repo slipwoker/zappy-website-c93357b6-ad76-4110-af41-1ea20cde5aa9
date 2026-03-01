@@ -5073,6 +5073,12 @@ body.accessibility-widget-visible ._access-menu {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -7462,7 +7468,9 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
     position: relative !important;
   }
   
-  /* Mobile nav icon buttons - compact sizing for iframe compatibility */
+  /* Mobile nav icon buttons - compact sizing for iframe compatibility.
+     ALWAYS use solid bg-light background so icons are visible over any hero (dark or light).
+     Paired with text-dark color below for guaranteed contrast. */
   .cart-link,
   .nav-cart,
   .nav-search-toggle,
@@ -7478,11 +7486,11 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
     position: relative !important;
     overflow: visible !important;
     border-radius: 9999px !important;
-    border: 1px solid var(--border-dark) !important;
-    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(128,128,128,0.2) !important;
+    background: var(--bg-light, #ffffff) !important;
   }
 
-  /* Icon color: use text-dark since mobile icons have solid bg-light circle backgrounds.
+  /* Icon color: always use text-dark on mobile since circles are always bg-light.
      --nav-text may be white (for transparent navbars) which is invisible on light circles. */
   .cart-link.nav-cart,
   .login-link.nav-login,
@@ -7499,7 +7507,7 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
   .cart-link.nav-cart:hover,
   .login-link.nav-login:hover,
   .nav-search-toggle:hover {
-    background: rgba(128,128,128,0.12) !important;
+    background: rgba(128,128,128,0.15) !important;
     color: var(--text-dark, #1a1a1a) !important;
   }
   
@@ -8152,12 +8160,11 @@ nav.navbar .menu-item-has-children::after,
     position: relative !important;
     overflow: visible !important;
     border-radius: 9999px !important;
-    border: 1px solid var(--border-dark) !important;
-    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(128,128,128,0.2) !important;
+    background: var(--bg-light, #ffffff) !important;
   }
 
-  /* Icon color: use text-dark since mobile icons have solid bg-light circle backgrounds.
-     --nav-text may be white (for transparent navbars) which is invisible on light circles. */
+  /* Icon color: always use text-dark on mobile since circles are always bg-light. */
   .cart-link.nav-cart,
   .login-link.nav-login,
   .nav-search-toggle {
