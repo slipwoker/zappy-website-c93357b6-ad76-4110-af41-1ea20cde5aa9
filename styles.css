@@ -5109,6 +5109,12 @@ body.accessibility-widget-visible ._access-menu {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -7362,6 +7368,16 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
 
 /* Mobile-specific nav styles */
 @media (max-width: 768px) {
+  /* Mobile nav panel must have an opaque background; the refresh script doesn't
+     re-run navbarCssHelper/colorPaletteService which normally sets this. */
+  .nav-menu,
+  .nav-menu.active,
+  .nav-menu.nav-menu-active,
+  #navMenu,
+  #navMenu.active {
+    background-color: var(--nav-bg, var(--bg-light, #ffffff)) !important;
+  }
+
   /* Ensure hamburger is visible on mobile e-commerce pages.
      Some generated navbars accidentally ship ".mobile-toggle { display:none; }" without a media query.
      Color is NOT set here — navbarLayoutFixService determines the correct color
@@ -7512,7 +7528,7 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
     position: relative !important;
   }
   
-  /* Mobile nav icon buttons - compact sizing for iframe compatibility.
+  /* Mobile nav icon buttons - sized to match desktop e-commerce standard (36px).
      ALWAYS use solid bg-light background so icons are visible over any hero (dark or light).
      Paired with text-dark color below for guaranteed contrast. */
   .cart-link,
@@ -7523,9 +7539,9 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 28px !important;
-    height: 28px !important;
-    min-width: 28px !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
     padding: 0 !important;
     position: relative !important;
     overflow: visible !important;
@@ -7655,7 +7671,6 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
   }
   
   /* Desktop icon buttons: keep circular + centered (fix square icons regression) */
-  /* CRITICAL: For dark themes, use transparent background so light icons are visible */
   .navbar .nav-ecommerce-icons.nav-icons-left a.login-link.nav-login,
   .navbar .nav-ecommerce-icons.nav-icons-left a.cart-link.nav-cart {
     width: 36px !important;
@@ -7667,8 +7682,8 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
     justify-content: center !important;
     border-radius: 9999px !important;
     border: 1px solid rgba(128,128,128,0.2) !important;
-    background: rgba(128,128,128,0.06) !important;
-    color: var(--nav-text, var(--text-light)) !important;
+    background: var(--bg-light, #ffffff) !important;
+    color: var(--text-dark, #1a1a1a) !important;
     padding: 0 !important;
     position: relative !important; /* anchor cart badge */
     box-sizing: border-box !important;
@@ -7898,52 +7913,54 @@ body.zappy-focused-page .zappy-announcement-bar {
   direction: rtl !important;
 }
 
-/* Dropdown in catalog menu */
+/* Dropdown in catalog menu - desktop only */
 .zappy-products-dropdown { position: relative; }
-.zappy-products-dropdown .sub-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  min-width: 200px;
-  background: var(--bg-light, #ffffff) !important;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  padding: 8px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-  z-index: 100001;
-  list-style: none;
-  margin: 0;
-  padding-top: 12px;
-}
-/* Bridge element to prevent submenu from disappearing on hover */
-.zappy-products-dropdown::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  right: 0;
-  height: 10px;
-}
-.zappy-products-dropdown:hover .sub-menu,
-.zappy-products-dropdown:focus-within .sub-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-.zappy-products-dropdown .sub-menu a {
-  display: block;
-  padding: 10px 16px;
-  color: var(--text-dark, #1a1a1a);
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
-}
-.zappy-products-dropdown .sub-menu a:hover {
-  background: rgba(128,128,128,0.1) !important;
-  color: var(--nav-text-hover, var(--primary)) !important;
+@media (min-width: 769px) {
+  .zappy-products-dropdown .sub-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    background: var(--bg-light, #ffffff) !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 100001;
+    list-style: none;
+    margin: 0;
+    padding-top: 12px;
+  }
+  /* Bridge element to prevent submenu from disappearing on hover */
+  .zappy-products-dropdown::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+  }
+  .zappy-products-dropdown:hover .sub-menu,
+  .zappy-products-dropdown:focus-within .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .zappy-products-dropdown .sub-menu a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text-dark, #1a1a1a);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  .zappy-products-dropdown .sub-menu a:hover {
+    background: rgba(128,128,128,0.1) !important;
+    color: var(--nav-text-hover, var(--primary)) !important;
+  }
 }
 
 /* V2 Navbar positioning for e-commerce - DO NOT include generic 'header' as it matches content headers */
@@ -8103,61 +8120,62 @@ main,
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   SUBMENU VISIBILITY FIXES
+   SUBMENU VISIBILITY FIXES (desktop only)
    ───────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 769px) {
+  /* Navbar submenu - always uses solid bg-light background (not nav-bg which may be transparent) */
+  .navbar .sub-menu,
+  .navbar ul.sub-menu,
+  nav.navbar .sub-menu {
+    background: var(--bg-light, #ffffff) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+    margin: 0 !important;
+    padding-top: 12px !important;
+    z-index: 100001 !important;
+    overflow: visible !important;
+  }
+  .navbar .sub-menu li a,
+  nav.navbar .sub-menu li a {
+    color: var(--text-dark, #1a1a1a) !important;
+  }
+  .navbar .sub-menu li a:hover,
+  nav.navbar .sub-menu li a:hover {
+    background: rgba(128,128,128,0.1) !important;
+    color: var(--nav-text-hover, var(--accent, var(--primary))) !important;
+  }
 
-/* Navbar submenu - always uses solid bg-light background (not nav-bg which may be transparent) */
-.navbar .sub-menu,
-.navbar ul.sub-menu,
-nav.navbar .sub-menu {
-  background: var(--bg-light, #ffffff) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
-  margin: 0 !important;
-  padding-top: 12px !important;
-  z-index: 100001 !important;
-  overflow: visible !important;
-}
-.navbar .sub-menu li a,
-nav.navbar .sub-menu li a {
-  color: var(--text-dark, #1a1a1a) !important;
-}
-.navbar .sub-menu li a:hover,
-nav.navbar .sub-menu li a:hover {
-  background: rgba(128,128,128,0.1) !important;
-  color: var(--nav-text-hover, var(--accent, var(--primary))) !important;
-}
+  /* Bridge element to prevent submenu from disappearing on hover */
+  .navbar .menu-item-has-children,
+  nav.navbar .menu-item-has-children,
+  .zappy-products-dropdown {
+    position: relative !important;
+    overflow: visible !important;
+  }
+  .navbar .menu-item-has-children::after,
+  nav.navbar .menu-item-has-children::after,
+  .zappy-products-dropdown::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -10px !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 10px !important;
+  }
 
-/* Bridge element to prevent submenu from disappearing on hover */
-.navbar .menu-item-has-children,
-nav.navbar .menu-item-has-children,
-.zappy-products-dropdown {
-  position: relative !important;
-  overflow: visible !important;
-}
-.navbar .menu-item-has-children::after,
-nav.navbar .menu-item-has-children::after,
-.zappy-products-dropdown::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: -10px !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 10px !important;
-}
-
-/* Catalog dropdown submenu */
-.zappy-products-dropdown .sub-menu {
-  background: var(--bg-light, #ffffff) !important;
-  margin: 0 !important;
-  padding-top: 12px !important;
-}
-.zappy-products-dropdown .sub-menu a {
-  color: var(--text-dark, #1a1a1a) !important;
-}
-.zappy-products-dropdown .sub-menu a:hover {
-  background: rgba(128,128,128,0.1) !important;
-  color: var(--nav-text-hover, var(--accent, var(--primary))) !important;
+  /* Catalog dropdown submenu */
+  .zappy-products-dropdown .sub-menu {
+    background: var(--bg-light, #ffffff) !important;
+    margin: 0 !important;
+    padding-top: 12px !important;
+  }
+  .zappy-products-dropdown .sub-menu a {
+    color: var(--text-dark, #1a1a1a) !important;
+  }
+  .zappy-products-dropdown .sub-menu a:hover {
+    background: rgba(128,128,128,0.1) !important;
+    color: var(--nav-text-hover, var(--accent, var(--primary))) !important;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -8197,9 +8215,9 @@ nav.navbar .menu-item-has-children::after,
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 28px !important;
-    height: 28px !important;
-    min-width: 28px !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
     padding: 0 !important;
     position: relative !important;
     overflow: visible !important;
@@ -8250,20 +8268,99 @@ nav.navbar .menu-item-has-children::after,
     color: #fff !important;
   }
 
+  /* Disable hover-triggered sub-menus on mobile — only toggle via click */
+  .navbar .zappy-products-dropdown:hover > .sub-menu,
+  .navbar .zappy-products-dropdown:focus-within > .sub-menu,
+  .navbar .menu-item-has-children:hover > .sub-menu,
+  .zappy-products-dropdown:hover > .sub-menu,
+  .zappy-products-dropdown:focus-within > .sub-menu {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    max-height: 0 !important;
+  }
+  /* Re-enable when explicitly expanded via toggle click */
+  .navbar .zappy-products-dropdown .sub-menu.mobile-expanded,
+  .navbar .zappy-products-dropdown > .sub-menu.mobile-expanded,
+  .zappy-products-dropdown .sub-menu.mobile-expanded,
+  .navbar .menu-item-has-children > .sub-menu.mobile-expanded {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    max-height: 500px !important;
+  }
+
   /* Mobile sub-menu: displayed inline inside dark nav panel, NOT as a floating dropdown.
      Override the desktop rules that force bg-light + text-dark on sub-menus. */
   .navbar .sub-menu,
   .navbar ul.sub-menu,
   nav.navbar .sub-menu,
   .zappy-products-dropdown .sub-menu {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
     background: transparent !important;
     box-shadow: none !important;
     border-radius: 0 !important;
+    transform: none !important;
+    transition: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    z-index: auto !important;
   }
   .navbar .sub-menu li a,
   nav.navbar .sub-menu li a,
   .zappy-products-dropdown .sub-menu a {
-    color: var(--nav-text, --text-light) !important;
+    color: var(--nav-text, var(--text-light)) !important;
+    padding: 10px 16px !important;
+    border-radius: 0 !important;
+  }
+  .navbar .sub-menu li a:hover,
+  nav.navbar .sub-menu li a:hover,
+  .zappy-products-dropdown .sub-menu a:hover {
+    background: transparent !important;
+    color: var(--nav-text, var(--text-light)) !important;
+  }
+
+  /* Mobile submenu toggle arrow: flex child that stretches to match the nav-link height
+     via align-self:stretch, so the arrow centers automatically via align-items:center. */
+  .navbar .nav-menu .mobile-submenu-toggle,
+  .navbar .mobile-submenu-toggle,
+  .mobile-submenu-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: auto !important;
+    position: static !important;
+    flex-shrink: 0 !important;
+    align-self: stretch !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 2 !important;
+    color: var(--nav-text, var(--text-light)) !important;
+  }
+  .mobile-submenu-toggle::after {
+    content: '' !important;
+    display: block !important;
+    width: 0 !important;
+    height: 0 !important;
+    border-left: 6px solid transparent !important;
+    border-right: 6px solid transparent !important;
+    border-top: 7px solid currentColor !important;
+    transition: transform 0.3s ease !important;
+  }
+  .mobile-submenu-toggle.expanded::after {
+    transform: rotate(180deg) !important;
   }
 }
 
