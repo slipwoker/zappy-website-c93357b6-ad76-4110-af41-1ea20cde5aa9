@@ -5085,6 +5085,12 @@ body.accessibility-widget-visible ._access-menu {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -7434,11 +7440,11 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
   /* Hide catalog menu on mobile */
   .zappy-catalog-menu { display: none !important; }
   
-  /* Left icons group (Login, Cart) - 10px from edge for more logo room */
+  /* Left icons group (Login, Cart) - positioned relative to .nav-container (has 1rem/16px padding) */
   .nav-icons-left {
     order: 2 !important;
     position: absolute !important;
-    left: 10px !important;
+    left: 0px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     z-index: 100 !important;
@@ -7456,13 +7462,14 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
     gap: 10px !important;
   }
   
-  /* Right icons group (Search) - positioned with proper gap from hamburger */
-  /* Hamburger is 36px wide at 12px from edge → ends at 48px; add 4px gap = 52px */
+  /* Right icons group (Search) - positioned relative to .nav-container (has 1rem/16px padding).
+     Hamburger is 36px at 12px from .navbar edge → ends at 48px from .navbar edge.
+     Since .nav-container has 16px padding, 48-16 = 32px from .nav-container edge + 4px gap = 36px */
   .nav-icons-right,
   .nav-ecommerce-icons.nav-icons-right {
     order: 3 !important;
     position: absolute !important;
-    right: 52px !important;
+    right: 36px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     z-index: 100 !important;
