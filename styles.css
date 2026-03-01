@@ -5079,6 +5079,12 @@ body.accessibility-widget-visible ._access-menu {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -7451,16 +7457,23 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
   }
   
   /* Right icons group (Search) - positioned with proper gap from hamburger */
-  /* Hamburger is 36px wide at 12px from edge → ends at 48px; add 10px gap = 58px */
+  /* Hamburger is 36px wide at 12px from edge → ends at 48px; add 4px gap = 52px */
   .nav-icons-right,
   .nav-ecommerce-icons.nav-icons-right {
     order: 3 !important;
     position: absolute !important;
-    right: 58px !important;
+    right: 52px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     z-index: 100 !important;
     gap: 2px !important;
+  }
+
+  /* Logo: constrain width so it doesn't get squeezed by icon groups */
+  .logo,
+  .nav-brand img,
+  .nav-brand svg {
+    max-width: 110px !important;
   }
   
   /* Make header relative for absolute children */
@@ -8153,9 +8166,9 @@ nav.navbar .menu-item-has-children::after,
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 40px !important;
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
     padding: 0 !important;
     position: relative !important;
     overflow: visible !important;
