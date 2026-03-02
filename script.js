@@ -7101,8 +7101,12 @@ async function loadRelatedProducts(currentProduct, t) {
       var form = e.target;
       if (!form || form.tagName !== 'FORM' || !isContactForm(form)) return;
       e.preventDefault();
+      e.stopPropagation();
 
-      // Skip if the fallback handler (with full UX) already ran
+      // Block form.submit() calls from other handlers (AI handler calls this.submit())
+      var origSubmit = form.submit;
+      form.submit = function(){ };
+
       if (form.__zappySubmitting) return;
       form.__zappySubmitting = true;
 
@@ -7121,10 +7125,8 @@ async function loadRelatedProducts(currentProduct, t) {
       var currentPath = window.location.pathname;
       try { var pg=new URLSearchParams(window.location.search).get('page'); if(pg) currentPath=pg; } catch(x){}
 
-      var wid = '';
-      if (window.ZAPPY_CONFIG && window.ZAPPY_CONFIG.websiteId) wid = window.ZAPPY_CONFIG.websiteId;
+      var wid = 'c93357b6-ad76-4110-af41-1ea20cde5aa9';
 
-      // Use ZAPPY_API_BASE (set per-deployment in HTML) for the correct server URL
       var apiBase = (window.ZAPPY_API_BASE || window.location.origin).replace(/\/$/,'');
       apiBase = apiBase + '/api/email/contact-form';
 
@@ -7155,6 +7157,7 @@ async function loadRelatedProducts(currentProduct, t) {
         zNotify('Unable to send message right now. Please try again later.', 'error');
       }).finally(function(){
         form.__zappySubmitting = false;
+        form.submit = origSubmit;
         if (btn) {
           if (btn.tagName === 'INPUT') btn.value = origText;
           else btn.textContent = origText;
