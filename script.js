@@ -7068,32 +7068,99 @@ async function loadRelatedProducts(currentProduct, t) {
 /* ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
 (function(){
   try {
+    function zNotify(msg, type) {
+      var old = document.querySelectorAll('.zappy-notification');
+      old.forEach(function(el){ el.remove(); });
+      var el = document.createElement('div');
+      el.className = 'zappy-notification';
+      var bg = type==='success'?'#d4edda':type==='error'?'#f8d7da':'#d1ecf1';
+      var fg = type==='success'?'#155724':type==='error'?'#721c24':'#0c5460';
+      var bd = type==='success'?'#c3e6cb':type==='error'?'#f5c6cb':'#bee5eb';
+      var ic = type==='success'?'✅':type==='error'?'❌':'ℹ️';
+      el.style.cssText='position:fixed;top:20px;right:20px;max-width:400px;padding:16px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:10000;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;font-size:14px;line-height:1.4;background:'+bg+';color:'+fg+';border:1px solid '+bd;
+      el.innerHTML='<span style="margin-right:8px">'+ic+'</span>'+msg+'<button onclick="this.parentElement.remove()" style="background:none;border:none;font-size:18px;cursor:pointer;float:right;opacity:.7;padding:0 0 0 12px">&times;</button>';
+      document.body.appendChild(el);
+      setTimeout(function(){ if(el.parentElement) el.remove(); }, type==='error'?8000:5000);
+    }
+
+    function isContactForm(form) {
+      var cls=(form.className||'').toLowerCase();
+      var id=(form.id||'').toLowerCase();
+      var act=(form.getAttribute('action')||'').toLowerCase();
+      if(cls.indexOf('contact')!==-1||id.indexOf('contact')!==-1||act.indexOf('contact')!==-1) return true;
+      var sec=form.closest&&form.closest('section');
+      if(sec){
+        var sc=(sec.className||'').toLowerCase();
+        var si=(sec.id||'').toLowerCase();
+        if(sc.indexOf('contact')!==-1||si.indexOf('contact')!==-1) return true;
+      }
+      return false;
+    }
+
     document.addEventListener('submit', function(e) {
       var form = e.target;
-      if (!form || form.tagName !== 'FORM') return;
+      if (!form || form.tagName !== 'FORM' || !isContactForm(form)) return;
+      e.preventDefault();
 
-      var cls = (form.className || '').toLowerCase();
-      var id  = (form.id || '').toLowerCase();
-      var act = (form.getAttribute('action') || '').toLowerCase();
+      // Skip if the fallback handler (with full UX) already ran
+      if (form.__zappySubmitting) return;
+      form.__zappySubmitting = true;
 
-      var isContact = cls.indexOf('contact') !== -1 ||
-                      id.indexOf('contact') !== -1 ||
-                      act.indexOf('contact') !== -1;
+      var btn = form.querySelector('button[type="submit"],input[type="submit"]');
+      var origText = btn ? (btn.value || btn.textContent) : '';
+      if (btn) {
+        if (btn.tagName === 'INPUT') btn.value = 'Sending...';
+        else btn.textContent = 'Sending...';
+        btn.disabled = true;
+      }
 
-      if (!isContact) {
-        var section = form.closest && form.closest('section');
-        if (section) {
-          var sCls = (section.className || '').toLowerCase();
-          var sId  = (section.id || '').toLowerCase();
-          if (sCls.indexOf('contact') !== -1 || sId.indexOf('contact') !== -1) {
-            isContact = true;
+      var fd = new FormData(form);
+      var data = {};
+      fd.forEach(function(v,k){ data[k]=v; });
+
+      var currentPath = window.location.pathname;
+      try { var pg=new URLSearchParams(window.location.search).get('page'); if(pg) currentPath=pg; } catch(x){}
+
+      var wid = '';
+      if (window.ZAPPY_CONFIG && window.ZAPPY_CONFIG.websiteId) wid = window.ZAPPY_CONFIG.websiteId;
+
+      // Use ZAPPY_API_BASE (set per-deployment in HTML) for the correct server URL
+      var apiBase = (window.ZAPPY_API_BASE || window.location.origin).replace(/\/$/,'');
+      apiBase = apiBase + '/api/email/contact-form';
+
+      fetch(apiBase, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          websiteId: wid,
+          name: data.name || '',
+          email: data.email || '',
+          subject: data.subject || 'Contact Form Submission',
+          message: data.message || '',
+          phone: data.phone || null,
+          currentPagePath: currentPath
+        })
+      }).then(function(r){ return r.json(); }).then(function(result){
+        if (result.success) {
+          if (result.thankYouPagePath && result.ticketNumber) {
+            window.location.href = result.thankYouPagePath + '?ticket=' + encodeURIComponent(result.ticketNumber);
+            return;
           }
+          zNotify(result.message || 'Thank you! We will get back to you soon.', 'success');
+          form.reset();
+        } else {
+          zNotify(result.error || 'Failed to send. Please try again.', 'error');
         }
-      }
-
-      if (isContact) {
-        e.preventDefault();
-      }
+      }).catch(function(){
+        zNotify('Unable to send message right now. Please try again later.', 'error');
+      }).finally(function(){
+        form.__zappySubmitting = false;
+        if (btn) {
+          if (btn.tagName === 'INPUT') btn.value = origText;
+          else btn.textContent = origText;
+          btn.disabled = false;
+        }
+      });
     }, true);
   } catch (e) {}
 })();
