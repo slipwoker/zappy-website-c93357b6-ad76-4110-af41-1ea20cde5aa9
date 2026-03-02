@@ -52,6 +52,10 @@ https://fun-toys.zappy5.app/product/:slug
 https://fun-toys.zappy5.app/category/:slug
 מוצרים - Fun Toys
 
+### Thank You | Fun Toys
+https://fun-toys.zappy5.app/thank-you
+Fun Toys - Thank You | Fun Toys
+
 ## Legal & Policy
 
 ### Privacy Policy
