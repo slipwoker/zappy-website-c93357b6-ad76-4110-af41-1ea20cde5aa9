@@ -5115,6 +5115,24 @@ body.accessibility-widget-visible ._access-menu {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -7369,13 +7387,14 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
 /* Mobile-specific nav styles */
 @media (max-width: 768px) {
   /* Mobile nav panel must have an opaque background; the refresh script doesn't
-     re-run navbarCssHelper/colorPaletteService which normally sets this. */
+     re-run navbarCssHelper/colorPaletteService which normally sets this.
+     When --nav-bg is transparent, we use the solid palette bg instead. */
   .nav-menu,
   .nav-menu.active,
   .nav-menu.nav-menu-active,
   #navMenu,
   #navMenu.active {
-    background-color: var(--nav-bg, var(--bg-light, #ffffff)) !important;
+    background-color: var(--bg-dark) !important;
   }
 
   /* Ensure hamburger is visible on mobile e-commerce pages.
@@ -8367,7 +8386,7 @@ main,
 /* ─────────────────────────────────────────────────────────────────────────────
    HOMEPAGE: FEATURED SECTIONS (PRODUCTS + CATEGORIES)
    These used to be styled by V1 base CSS; must live in V2 generateCss()
-   Background uses hero-divider-aware theme: --bg-light (LIGHT)
+   Background uses hero-divider-aware theme: var(--bg-light) (LIGHT)
    ───────────────────────────────────────────────────────────────────────────── */
 
 /* Featured Products Section (Home Page) */
