@@ -8810,6 +8810,114 @@ main,
 }
 
 /* ==END ZAPPY V2 E-COMMERCE THEME CSS== */
+/* === NAVBAR STYLE OVERRIDES START === */
+.navbar { background-color: transparent !important; transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, box-shadow 0.3s ease !important; }
+.zappy-catalog-menu, #zappy-catalog-menu { transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease !important;}
+.navbar .nav-menu > li > a,
+.navbar .nav-menu > .nav-item > a,
+.navbar .nav-link,
+.navbar .navbar-nav .nav-link,
+.navbar a { color: #F8FAFC !important; }
+.navbar .nav-menu > li > a:hover,
+.navbar .nav-menu > .nav-item > a:hover,
+.navbar .nav-link:hover,
+.navbar a:hover { color: #22D3EE !important; }
+.navbar .navbar-brand, .navbar .navbar-brand a { color: #F8FAFC !important; }
+.navbar .dropdown-toggle { color: #F8FAFC !important; }
+.navbar .dropdown-toggle:hover { color: #22D3EE !important; }
+.navbar .mobile-hamburger-btn, .navbar .mobile-close-btn { color: #F8FAFC !important; }
+.navbar-toggler { color: #F8FAFC !important; border-color: #F8FAFC44 !important; }
+.navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23F8FAFC' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; }
+.navbar .dropdown-menu { background-color: #0B1020 !important; }
+.navbar .dropdown-menu li a,
+.navbar .dropdown-menu .dropdown-item { color: #F8FAFC !important; }
+.navbar .dropdown-menu li a:hover,
+.navbar .dropdown-menu .dropdown-item:hover { color: #22D3EE !important; background-color: rgba(128,128,128,0.1) !important; }
+.navbar .sub-menu,
+.navbar ul.sub-menu,
+nav.navbar .sub-menu { background-color: #0B1020 !important; }
+.navbar .sub-menu a,
+.navbar .sub-menu li a,
+.navbar .nav-menu .sub-menu a,
+.navbar .nav-menu .sub-menu li a,
+.navbar .zappy-products-dropdown .sub-menu a,
+nav.navbar .sub-menu li a { color: #F8FAFC !important; }
+.navbar .sub-menu a:hover,
+.navbar .sub-menu li a:hover,
+nav.navbar .sub-menu li a:hover { color: #22D3EE !important; background-color: rgba(128,128,128,0.1) !important; }
+.navbar .mobile-submenu-toggle { color: #F8FAFC !important; }
+.navbar .cart-icon, .navbar .login-icon, .navbar .search-toggle { color: #F8FAFC !important; }
+.navbar .cart-icon:hover, .navbar .login-icon:hover, .navbar .search-toggle:hover { color: #22D3EE !important; }
+.navbar .cart-link.nav-cart,
+.navbar .login-link.nav-login,
+.navbar .nav-search-toggle { color: #F8FAFC !important; background: transparent !important; }
+.navbar .cart-link.nav-cart:hover,
+.navbar .login-link.nav-login:hover,
+.navbar .nav-search-toggle:hover { color: #22D3EE !important; background: rgba(128,128,128,0.12) !important; }
+.navbar .cart-link svg, .navbar .login-link svg, .navbar .nav-search-toggle svg { color: inherit !important; fill: none !important; stroke: currentColor !important; }
+.navbar .phone-header-btn { color: #F8FAFC !important; }
+.navbar .nav-search-input,
+.navbar .nav-search-box .nav-search-input { color: #E0E0E0 !important; }
+.navbar .nav-search-input::placeholder { color: var(--text-muted, rgba(128,128,128,0.6)) !important; }
+.navbar .nav-search-result-name { color: #E0E0E0 !important; }
+.navbar .nav-search-result-item a { color: #E0E0E0 !important; }
+.navbar .nav-search-result-price { color: var(--primary) !important; }
+.navbar .nav-search-no-results,
+.navbar .search-no-results { color: var(--text-muted, rgba(128,128,128,0.6)) !important; }
+.zappy-catalog-menu, #zappy-catalog-menu { background: transparent !important; }
+.zappy-catalog-menu .catalog-menu-item,
+.zappy-catalog-menu .catalog-menu-all { color: #F8FAFC !important; }
+.zappy-catalog-menu .catalog-menu-item:hover,
+.zappy-catalog-menu .catalog-menu-all:hover { color: #22D3EE !important; background: rgba(128,128,128,0.1) !important; }
+@media (max-width: 768px) {
+  .navbar { background-color: #0B1020 !important; }
+  .nav-menu, .nav-menu.active { background-color: #0B1020 !important; }
+  .nav-menu a, .nav-menu > li > a { color: #F8FAFC !important; }
+  .nav-menu a:hover, .nav-menu > li > a:hover { color: #22D3EE !important; }
+  .nav-menu .dropdown-menu { background: rgba(128,128,128,0.06) !important; }
+  .nav-menu .dropdown-menu a, .nav-menu .dropdown-menu li a { color: #F8FAFC !important; }
+  .nav-menu .dropdown-menu a:hover { color: #22D3EE !important; }
+  .nav-menu .sub-menu a { color: #F8FAFC !important; }
+  .nav-menu .sub-menu a:hover { color: #22D3EE !important; }
+  .nav-menu > li { position: relative !important; }
+  .navbar .nav-menu .mobile-submenu-toggle { color: #F8FAFC !important; position: static !important; height: auto !important; flex-shrink: 0 !important; align-self: stretch !important; }
+  .mobile-toggle { color: #F8FAFC !important; }
+  .mobile-toggle svg { color: inherit !important; }
+  .mobile-toggle svg path { stroke: currentColor !important; }
+  .mobile-search-panel input { color: #E0E0E0 !important; background: rgba(255,255,255,0.12) !important; }
+  .mobile-search-panel .close-search { color: #E0E0E0 !important; background: rgba(255,255,255,0.15) !important; }
+  .mobile-search-panel .close-search svg { stroke: #E0E0E0 !important; color: #E0E0E0 !important; }
+  .mobile-search-panel .close-search:hover { color: #E0E0E0 !important; background: rgba(255,255,255,0.25) !important; }
+  .mobile-search-panel .close-search:hover svg { stroke: #E0E0E0 !important; color: #E0E0E0 !important; }
+  .navbar .zappy-products-dropdown .sub-menu,
+  .navbar .zappy-products-dropdown > .sub-menu {
+    display: none !important; position: static !important; max-height: 0 !important;
+    overflow: hidden !important; opacity: 0 !important; visibility: hidden !important;
+    pointer-events: none !important; box-shadow: none !important; border: none !important;
+    padding: 0 !important; transform: none !important;
+  }
+  .navbar .zappy-products-dropdown:hover .sub-menu,
+  .navbar .zappy-products-dropdown:hover > .sub-menu,
+  .navbar .zappy-products-dropdown:focus-within .sub-menu,
+  .navbar .zappy-products-dropdown:focus-within > .sub-menu,
+  .navbar .menu-item-has-children:hover > .sub-menu,
+  .navbar .nav-dropdown:hover > .dropdown-menu {
+    display: none !important; opacity: 0 !important; visibility: hidden !important;
+    max-height: 0 !important; pointer-events: none !important;
+  }
+  .navbar .zappy-products-dropdown.open .sub-menu,
+  .navbar .zappy-products-dropdown.open > .sub-menu,
+  .navbar .zappy-products-dropdown .sub-menu.mobile-expanded,
+  .navbar .zappy-products-dropdown > .sub-menu.mobile-expanded,
+  .navbar .menu-item-has-children.open > .sub-menu,
+  .navbar .menu-item-has-children > .sub-menu.mobile-expanded,
+  .navbar .nav-dropdown.open > .dropdown-menu {
+    display: block !important; opacity: 1 !important; visibility: visible !important;
+    max-height: 500px !important; pointer-events: auto !important; position: static !important;
+    overflow: visible !important; padding: 0.5rem 0 !important;
+  }
+}
+/* === NAVBAR STYLE OVERRIDES END === */
 
 /* ========== RTL MOBILE NAVBAR FIX (zappy-rtl-mobile-fix) ========== */
 /* High-specificity rules to ensure RTL positioning wins over any [lang="en"] conflicts */
