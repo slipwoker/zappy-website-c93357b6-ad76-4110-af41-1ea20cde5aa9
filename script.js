@@ -7068,20 +7068,26 @@ async function loadRelatedProducts(currentProduct, t) {
 /* ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
 (function(){
   try {
-    function zNotify(msg, type) {
-      var old = document.querySelectorAll('.zappy-notification');
-      old.forEach(function(el){ el.remove(); });
-      var el = document.createElement('div');
-      el.className = 'zappy-notification';
-      var bg = type==='success'?'#d4edda':type==='error'?'#f8d7da':'#d1ecf1';
-      var fg = type==='success'?'#155724':type==='error'?'#721c24':'#0c5460';
-      var bd = type==='success'?'#c3e6cb':type==='error'?'#f5c6cb':'#bee5eb';
-      var ic = type==='success'?'✅':type==='error'?'❌':'ℹ️';
-      el.style.cssText='position:fixed;top:20px;right:20px;max-width:400px;padding:16px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:10000;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;font-size:14px;line-height:1.4;background:'+bg+';color:'+fg+';border:1px solid '+bd;
-      el.innerHTML='<span style="margin-right:8px">'+ic+'</span>'+msg+'<button onclick="this.parentElement.remove()" style="background:none;border:none;font-size:18px;cursor:pointer;float:right;opacity:.7;padding:0 0 0 12px">&times;</button>';
-      document.body.appendChild(el);
-      setTimeout(function(){ if(el.parentElement) el.remove(); }, type==='error'?8000:5000);
-    }
+    // Attach to window to avoid minification scoping issues with local function names
+    window.__zappyContactNotify = function(msg, type) {
+      try {
+        var old = document.querySelectorAll('.zappy-notification');
+        old.forEach(function(el){ el.remove(); });
+        var el = document.createElement('div');
+        el.className = 'zappy-notification';
+        var bg = type==='success'?'#d4edda':type==='error'?'#f8d7da':'#d1ecf1';
+        var fg = type==='success'?'#155724':type==='error'?'#721c24':'#0c5460';
+        var bd = type==='success'?'#c3e6cb':type==='error'?'#f5c6cb':'#bee5eb';
+        var ic = type==='success'?'\u2705':type==='error'?'\u274C':'\u2139\uFE0F';
+        el.style.cssText='position:fixed;top:20px;right:20px;max-width:400px;padding:16px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:10000;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;font-size:14px;line-height:1.4;background:'+bg+';color:'+fg+';border:1px solid '+bd+';transition:opacity .3s';
+        el.innerHTML='<span style="margin-right:8px">'+ic+'</span>'+msg+'<button onclick="this.parentElement.remove()" style="background:none;border:none;font-size:18px;cursor:pointer;float:right;opacity:.7;padding:0 0 0 12px">&times;</button>';
+        document.body.appendChild(el);
+        console.log('[ZAPPY_GUARD] Notification shown:', type, msg);
+        setTimeout(function(){ if(el.parentElement) el.remove(); }, type==='error'?8000:5000);
+      } catch(notifyErr) {
+        console.error('[ZAPPY_GUARD] Notification error:', notifyErr);
+      }
+    };
 
     function isContactForm(form) {
       var cls=(form.className||'').toLowerCase();
@@ -7102,8 +7108,8 @@ async function loadRelatedProducts(currentProduct, t) {
       if (!form || form.tagName !== 'FORM' || !isContactForm(form)) return;
       e.preventDefault();
       e.stopPropagation();
+      console.log('[ZAPPY_GUARD] Contact form submit intercepted');
 
-      // Block form.submit() calls from other handlers (AI handler calls this.submit())
       var origSubmit = form.submit;
       form.submit = function(){ };
 
@@ -7129,6 +7135,7 @@ async function loadRelatedProducts(currentProduct, t) {
 
       var apiBase = (window.ZAPPY_API_BASE || window.location.origin).replace(/\/$/,'');
       apiBase = apiBase + '/api/email/contact-form';
+      console.log('[ZAPPY_GUARD] Sending to:', apiBase, 'wid:', wid);
 
       fetch(apiBase, {
         method: 'POST',
@@ -7142,19 +7149,24 @@ async function loadRelatedProducts(currentProduct, t) {
           phone: data.phone || null,
           currentPagePath: currentPath
         })
-      }).then(function(r){ return r.json(); }).then(function(result){
+      }).then(function(r){
+        console.log('[ZAPPY_GUARD] Response status:', r.status);
+        return r.json();
+      }).then(function(result){
+        console.log('[ZAPPY_GUARD] Result:', JSON.stringify(result));
         if (result.success) {
           if (result.thankYouPagePath && result.ticketNumber) {
             window.location.href = result.thankYouPagePath + '?ticket=' + encodeURIComponent(result.ticketNumber);
             return;
           }
-          zNotify(result.message || 'Thank you! We will get back to you soon.', 'success');
+          window.__zappyContactNotify(result.message || 'Thank you! We will get back to you soon.', 'success');
           form.reset();
         } else {
-          zNotify(result.error || 'Failed to send. Please try again.', 'error');
+          window.__zappyContactNotify(result.error || 'Failed to send. Please try again.', 'error');
         }
-      }).catch(function(){
-        zNotify('Unable to send message right now. Please try again later.', 'error');
+      }).catch(function(err){
+        console.error('[ZAPPY_GUARD] Fetch error:', err);
+        window.__zappyContactNotify('Unable to send message right now. Please try again later.', 'error');
       }).finally(function(){
         form.__zappySubmitting = false;
         form.submit = origSubmit;
@@ -7165,7 +7177,7 @@ async function loadRelatedProducts(currentProduct, t) {
         }
       });
     }, true);
-  } catch (e) {}
+  } catch (e) { console.error('[ZAPPY_GUARD] Init error:', e); }
 })();
 /* END ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
 
