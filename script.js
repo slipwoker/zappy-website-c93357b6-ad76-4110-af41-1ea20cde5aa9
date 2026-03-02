@@ -7065,6 +7065,41 @@ async function loadRelatedProducts(currentProduct, t) {
 /* END ZAPPY_FAQ_ACCORDION_TOGGLE */
 
 
+/* ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
+(function(){
+  try {
+    document.addEventListener('submit', function(e) {
+      var form = e.target;
+      if (!form || form.tagName !== 'FORM') return;
+
+      var cls = (form.className || '').toLowerCase();
+      var id  = (form.id || '').toLowerCase();
+      var act = (form.getAttribute('action') || '').toLowerCase();
+
+      var isContact = cls.indexOf('contact') !== -1 ||
+                      id.indexOf('contact') !== -1 ||
+                      act.indexOf('contact') !== -1;
+
+      if (!isContact) {
+        var section = form.closest && form.closest('section');
+        if (section) {
+          var sCls = (section.className || '').toLowerCase();
+          var sId  = (section.id || '').toLowerCase();
+          if (sCls.indexOf('contact') !== -1 || sId.indexOf('contact') !== -1) {
+            isContact = true;
+          }
+        }
+      }
+
+      if (isContact) {
+        e.preventDefault();
+      }
+    }, true);
+  } catch (e) {}
+})();
+/* END ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
+
+
 /* ZAPPY_PUBLISHED_GRID_CENTERING */
 (function(){
   try {

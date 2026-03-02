@@ -1,6 +1,4 @@
-# Fun Toys — Generative Engine Optimization Map
-
-> Fun Toys is a toy store offering a diverse range of special toys, puzzles, and car tracks. The brand caters to a wide age range from toddlers to teenagers, suggesting a versatile collection that grows with children and appeals to various developmental stages and interests.
+# Business — Generative Engine Optimization Map
 
 ---
 
@@ -72,15 +70,7 @@ Information about WCAG compliance and accessibility features.
 
 # Business Context (for LLM understanding)
 
-## About Fun Toys
-Fun Toys is a toy store offering a diverse range of special toys, puzzles, and car tracks. The brand caters to a wide age range from toddlers to teenagers, suggesting a versatile collection that grows with children and appeals to various developmental stages and interests.
-
-## Target Audience
-גילאי 3 עד 18
-
-## Industry
-קמעונאות צעצועים
-
+## About Business
 ---
 
 # Additional Resources
