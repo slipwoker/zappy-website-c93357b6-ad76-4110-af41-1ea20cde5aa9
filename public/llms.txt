@@ -1,79 +1,89 @@
-# Business — Generative Engine Optimization Map
+# Fun Toys — Generative Engine Optimization Map
+
+> Fun Toys is a toy store offering a diverse range of special toys, puzzles, and car tracks. The brand caters to a wide age range from toddlers to teenagers, suggesting a versatile collection that grows with children and appeals to various developmental stages and interests.
 
 ---
 
 ## Pages
 
 ### בית
-https://example.com
+https://fun-toys.zappy5.app
 גלו צעצועים מרתקים, פאזלים ומסלולי מכוניות לכל הגילאים. Fun Toys מציעה מגוון עצום של צעצועים איכוtiים שילדים אוהבים. היכנסו עכשיו למבחר המושלם!
 
 ### אודות
-https://example.com/about
+https://fun-toys.zappy5.app/about
 Fun Toys מתמחה בצעצועים מיוחדים לגילאי 3-18. למדו על הערכים שלנו, המומחיות בבחירת צעצועים איכותיים והמסירות שלנו לשמח כל ילד ונער.
 
 ### אוספים
-https://example.com/collections
+https://fun-toys.zappy5.app/collections
 אוספי צעצועים מדהימים: פאזלים מאתגרים, מסלולי מכוניות מותקים וצעצועים מיוחדים לכל גיל. גלו את הקולקציה המושלמת לילדיכם בהתאם לגיל ותחומי עניין.
 
 ### צור קשר
-https://example.com/contact
+https://fun-toys.zappy5.app/contact
 יש לכם שאלות על הצעצועים שלנו? צריכים עזרה בבחירת המתנה המושלמת? צוות Fun Toys כאן בשבילכם. צרו קשר עכשיו ונמצא יחד את הצעצוע שיביא חיוך!
 
 ### Products
-https://example.com/products
+https://fun-toys.zappy5.app/products
 המוצרים שלנו - Fun Toys
 
 ### Cart
-https://example.com/cart
+https://fun-toys.zappy5.app/cart
 עגלת הקניות שלך
 
 ### Checkout
-https://example.com/checkout
+https://fun-toys.zappy5.app/checkout
 תשלום
 
 ### Login
-https://example.com/login
+https://fun-toys.zappy5.app/login
 התחברות לקוחות
 
 ### Account
-https://example.com/account
+https://fun-toys.zappy5.app/account
 החשבון שלי
 
 ### Order Success
-https://example.com/order-success
+https://fun-toys.zappy5.app/order-success
 תודה על ההזמנה
 
 ### Product Detail
-https://example.com/product/:slug
+https://fun-toys.zappy5.app/product/:slug
 פרטי המוצר - Fun Toys
 
 ### Category
-https://example.com/category/:slug
+https://fun-toys.zappy5.app/category/:slug
 מוצרים - Fun Toys
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://example.com/privacy
+https://fun-toys.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://example.com/terms
+https://fun-toys.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://example.com/accessibility
+https://fun-toys.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
 
 # Business Context (for LLM understanding)
 
-## About Business
+## About Fun Toys
+Fun Toys is a toy store offering a diverse range of special toys, puzzles, and car tracks. The brand caters to a wide age range from toddlers to teenagers, suggesting a versatile collection that grows with children and appeals to various developmental stages and interests.
+
+## Target Audience
+גילאי 3 עד 18
+
+## Industry
+קמעונאות צעצועים
+
 ---
 
 # Additional Resources
 
-- **Sitemap**: https://example.com/sitemap.xml
-- **Robots.txt**: https://example.com/robots.txt
+- **Sitemap**: https://fun-toys.zappy5.app/sitemap.xml
+- **Robots.txt**: https://fun-toys.zappy5.app/robots.txt
