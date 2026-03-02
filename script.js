@@ -7068,27 +7068,6 @@ async function loadRelatedProducts(currentProduct, t) {
 /* ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
 (function(){
   try {
-    // Attach to window to avoid minification scoping issues with local function names
-    window.__zappyContactNotify = function(msg, type) {
-      try {
-        var old = document.querySelectorAll('.zappy-notification');
-        old.forEach(function(el){ el.remove(); });
-        var el = document.createElement('div');
-        el.className = 'zappy-notification';
-        var bg = type==='success'?'#d4edda':type==='error'?'#f8d7da':'#d1ecf1';
-        var fg = type==='success'?'#155724':type==='error'?'#721c24':'#0c5460';
-        var bd = type==='success'?'#c3e6cb':type==='error'?'#f5c6cb':'#bee5eb';
-        var ic = type==='success'?'\u2705':type==='error'?'\u274C':'\u2139\uFE0F';
-        el.style.cssText='position:fixed;top:20px;right:20px;max-width:400px;padding:16px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:10000;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;font-size:14px;line-height:1.4;background:'+bg+';color:'+fg+';border:1px solid '+bd+';transition:opacity .3s';
-        el.innerHTML='<span style="margin-right:8px">'+ic+'</span>'+msg+'<button onclick="this.parentElement.remove()" style="background:none;border:none;font-size:18px;cursor:pointer;float:right;opacity:.7;padding:0 0 0 12px">&times;</button>';
-        document.body.appendChild(el);
-        console.log('[ZAPPY_GUARD] Notification shown:', type, msg);
-        setTimeout(function(){ if(el.parentElement) el.remove(); }, type==='error'?8000:5000);
-      } catch(notifyErr) {
-        console.error('[ZAPPY_GUARD] Notification error:', notifyErr);
-      }
-    };
-
     function isContactForm(form) {
       var cls=(form.className||'').toLowerCase();
       var id=(form.id||'').toLowerCase();
@@ -7103,18 +7082,51 @@ async function loadRelatedProducts(currentProduct, t) {
       return false;
     }
 
+    function showFormFeedback(form, msg, type) {
+      var old = form.querySelector('.zappy-form-feedback');
+      if (old) old.remove();
+
+      var bg = type==='success'?'#d4edda':type==='error'?'#f8d7da':'#d1ecf1';
+      var fg = type==='success'?'#155724':type==='error'?'#721c24':'#0c5460';
+      var bd = type==='success'?'#c3e6cb':type==='error'?'#f5c6cb':'#bee5eb';
+      var ic = type==='success'?'\u2705':type==='error'?'\u274C':'\u2139\uFE0F';
+
+      var el = document.createElement('div');
+      el.className = 'zappy-form-feedback';
+      el.setAttribute('role', 'alert');
+      el.style.cssText = 'padding:14px 18px;border-radius:8px;margin:12px 0 0;font-size:14px;line-height:1.5;background:'+bg+';color:'+fg+';border:1px solid '+bd+';text-align:center;font-family:inherit;';
+      el.innerHTML = '<span style="margin-inline-end:6px">'+ic+'</span>'+msg;
+
+      if (type === 'success') {
+        form.reset();
+        var formChildren = form.children;
+        for (var i = 0; i < formChildren.length; i++) {
+          if (formChildren[i] !== el) formChildren[i].style.display = 'none';
+        }
+        form.appendChild(el);
+        el.style.cssText += 'padding:32px 24px;font-size:16px;';
+      } else {
+        var btn = form.querySelector('button[type="submit"],input[type="submit"]');
+        if (btn) btn.parentNode.insertBefore(el, btn.nextSibling);
+        else form.appendChild(el);
+        setTimeout(function(){ if(el.parentElement) el.remove(); }, 8000);
+      }
+    }
+
     document.addEventListener('submit', function(e) {
       var form = e.target;
       if (!form || form.tagName !== 'FORM' || !isContactForm(form)) return;
       e.preventDefault();
       e.stopPropagation();
-      console.log('[ZAPPY_GUARD] Contact form submit intercepted');
 
       var origSubmit = form.submit;
       form.submit = function(){ };
 
       if (form.__zappySubmitting) return;
       form.__zappySubmitting = true;
+
+      var oldFeedback = form.querySelector('.zappy-form-feedback');
+      if (oldFeedback) oldFeedback.remove();
 
       var btn = form.querySelector('button[type="submit"],input[type="submit"]');
       var origText = btn ? (btn.value || btn.textContent) : '';
@@ -7135,7 +7147,6 @@ async function loadRelatedProducts(currentProduct, t) {
 
       var apiBase = (window.ZAPPY_API_BASE || window.location.origin).replace(/\/$/,'');
       apiBase = apiBase + '/api/email/contact-form';
-      console.log('[ZAPPY_GUARD] Sending to:', apiBase, 'wid:', wid);
 
       fetch(apiBase, {
         method: 'POST',
@@ -7149,24 +7160,18 @@ async function loadRelatedProducts(currentProduct, t) {
           phone: data.phone || null,
           currentPagePath: currentPath
         })
-      }).then(function(r){
-        console.log('[ZAPPY_GUARD] Response status:', r.status);
-        return r.json();
-      }).then(function(result){
-        console.log('[ZAPPY_GUARD] Result:', JSON.stringify(result));
+      }).then(function(r){ return r.json(); }).then(function(result){
         if (result.success) {
           if (result.thankYouPagePath && result.ticketNumber) {
             window.location.href = result.thankYouPagePath + '?ticket=' + encodeURIComponent(result.ticketNumber);
             return;
           }
-          window.__zappyContactNotify(result.message || 'Thank you! We will get back to you soon.', 'success');
-          form.reset();
+          showFormFeedback(form, result.message || 'Thank you! We will get back to you soon.', 'success');
         } else {
-          window.__zappyContactNotify(result.error || 'Failed to send. Please try again.', 'error');
+          showFormFeedback(form, result.error || 'Failed to send. Please try again.', 'error');
         }
-      }).catch(function(err){
-        console.error('[ZAPPY_GUARD] Fetch error:', err);
-        window.__zappyContactNotify('Unable to send message right now. Please try again later.', 'error');
+      }).catch(function(){
+        showFormFeedback(form, 'Unable to send message right now. Please try again later.', 'error');
       }).finally(function(){
         form.__zappySubmitting = false;
         form.submit = origSubmit;
@@ -7177,7 +7182,7 @@ async function loadRelatedProducts(currentProduct, t) {
         }
       });
     }, true);
-  } catch (e) { console.error('[ZAPPY_GUARD] Init error:', e); }
+  } catch (e) {}
 })();
 /* END ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
 
