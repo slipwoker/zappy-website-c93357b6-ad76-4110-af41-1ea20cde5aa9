@@ -514,6 +514,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -1553,7 +1555,12 @@ function stripHtmlToText(html) {
             var label = attrLabels[key.toLowerCase()] || key;
             var isColor = key.toLowerCase() === 'color';
             if (isColor) {
-              var bgColor = /^#[0-9A-Fa-f]{3,6}$/.test(value) ? value : value.toLowerCase();
+              var bgColor = value;
+              if (!/^#[0-9A-Fa-f]{3,6}$/.test(value)) {
+                var lc = value.toLowerCase();
+                var _clr = {'dark grey':'#555','dark gray':'#555','light grey':'#d3d3d3','light gray':'#d3d3d3','light blue':'lightblue','dark blue':'darkblue','light green':'lightgreen','dark green':'darkgreen','dark red':'darkred','light pink':'lightpink','dark orange':'darkorange','sky blue':'skyblue','royal blue':'royalblue','navy blue':'navy','forest green':'forestgreen','olive green':'olivedrab','hot pink':'hotpink','deep pink':'deeppink','dark violet':'darkviolet','slate grey':'slategrey','slate gray':'slategray','dim grey':'dimgrey','dim gray':'dimgray','off white':'#f5f5f0','burgundy':'#800020','charcoal':'#36454f','champagne':'#f7e7ce','sand':'#c2b280','taupe':'#483c32','wine':'#722f37','rust':'#b7410e','sage':'#bcb88a','mint':'#98ff98','peach':'#ffcba4','cream':'#fffdd0','mauve':'#e0b0ff'};
+                bgColor = _clr[lc] || lc;
+              }
               parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> <span class="cart-item-color-swatch" title="' + value + '" style="display:inline-block;width:14px;height:14px;border-radius:50%;background-color:' + bgColor + ';border:1px solid rgba(0,0,0,0.15);vertical-align:middle;margin-' + (document.documentElement.dir === 'rtl' ? 'right' : 'left') + ':4px;"></span></span>');
             } else {
               parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> ' + value + '</span>');
@@ -1758,6 +1765,7 @@ function stripHtmlToText(html) {
         selectedShipping = shippingMethods[0];
         positionAddressSection(shippingMethods[0]);
         updateOrderTotals();
+        updatePlaceOrderState();
       }
     } catch (e) {
       console.error('Failed to load shipping methods', e);
@@ -1812,6 +1820,7 @@ function stripHtmlToText(html) {
       // Auto-select first option
       if (paymentMethods.length > 0) {
         selectedPaymentMethod = paymentMethods[0];
+        updatePlaceOrderState();
       }
     } catch (e) {
       console.error('Failed to load payment methods', e);
@@ -1825,6 +1834,7 @@ function stripHtmlToText(html) {
     document.querySelectorAll('.payment-option').forEach(el => {
       el.classList.toggle('selected', el.dataset.methodId === methodId);
     });
+    updatePlaceOrderState();
   };
   
   // Inline validation helper functions
@@ -1874,26 +1884,39 @@ function stripHtmlToText(html) {
     const placeOrderBtn = document.getElementById('place-order-btn');
     if (!placeOrderBtn) return;
     
-    // Add real-time validation - clear errors when user types
+    // Add real-time validation - clear errors when user types and update Place Order state
     var fieldsToWatch = ['customer-name', 'customer-email', 'customer-phone', 'shipping-street', 'shipping-city'];
     fieldsToWatch.forEach(function(fieldId) {
       var field = document.getElementById(fieldId);
       if (field) {
         field.addEventListener('input', function() {
           clearFieldError(fieldId, fieldId + '-error');
+          updatePlaceOrderState();
         });
       }
     });
     
-    // Clear terms error when checkbox changes
+    // shipping-state is a <select>, so use 'change' instead of 'input'
+    var stateSelect = document.getElementById('shipping-state');
+    if (stateSelect) {
+      stateSelect.addEventListener('change', function() {
+        clearFieldError('shipping-state', 'shipping-state-error');
+        updatePlaceOrderState();
+      });
+    }
+    
+    // Clear terms error when checkbox changes and update Place Order state
     var termsCheckbox = document.getElementById('terms-checkbox');
     if (termsCheckbox) {
       termsCheckbox.addEventListener('change', function() {
         var wrapper = document.querySelector('.terms-checkbox-wrapper');
         if (wrapper) wrapper.classList.remove('has-error');
         clearFieldError('', 'terms-checkbox-error');
+        updatePlaceOrderState();
       });
     }
+    
+    updatePlaceOrderState();
     
     placeOrderBtn.addEventListener('click', async function(e) {
       e.preventDefault();
@@ -2303,6 +2326,7 @@ function stripHtmlToText(html) {
             zipInput.value = defaultAddress.zip;
           }
         }
+        updatePlaceOrderState();
       })
       .catch(function() {
         localStorage.removeItem(tokenKey);
@@ -2456,8 +2480,30 @@ function stripHtmlToText(html) {
   function updatePlaceOrderState() {
     var btn = document.getElementById('place-order-btn');
     if (!btn) return;
-    var allDone = checkoutStepsCompleted.contact && checkoutStepsCompleted.shipping && checkoutStepsCompleted.payment;
-    btn.disabled = !allDone;
+
+    var nameVal = (document.getElementById('customer-name') || {}).value || '';
+    var emailVal = (document.getElementById('customer-email') || {}).value || '';
+    var phoneVal = (document.getElementById('customer-phone') || {}).value || '';
+    var contactOk = nameVal.trim() && emailVal.trim() && isValidEmail(emailVal.trim()) && phoneVal.trim();
+
+    var shippingOk = !!selectedShipping;
+    if (selectedShipping && !selectedShipping.is_pickup) {
+      var streetVal = (document.getElementById('shipping-street') || {}).value || '';
+      var cityVal = (document.getElementById('shipping-city') || {}).value || '';
+      shippingOk = shippingOk && !!streetVal.trim() && !!cityVal.trim();
+      var stateWrapper = document.getElementById('state-wrapper');
+      var stateVal = (document.getElementById('shipping-state') || {}).value || '';
+      if (stateWrapper && stateWrapper.style.display !== 'none') {
+        shippingOk = shippingOk && !!stateVal.trim();
+      }
+    }
+
+    var paymentOk = isPaymentConfigured && !!selectedPaymentMethod;
+
+    var termsBox = document.getElementById('terms-checkbox');
+    var termsOk = termsBox && termsBox.checked;
+
+    btn.disabled = !(contactOk && shippingOk && paymentOk && termsOk);
   }
 
   function updateCheckoutItemsCount() {
@@ -2733,6 +2779,7 @@ function stripHtmlToText(html) {
     }
     positionAddressSection(selectedShipping);
     updateOrderTotals();
+    updatePlaceOrderState();
   };
   
   window.zappyAddToCart = addToCart;
@@ -5269,17 +5316,42 @@ function initTransparentNavbarScrollEffect() {
 
   // On pages without a dark hero, the transparent navbar shows light text on
   // a light background — invisible. Detect this and lock the frosted state.
-  var heroEl = document.querySelector('section[class*="hero"], [data-hero-type]');
+  function srgbLuminance(rv, gv, bv) {
+    rv /= 255; gv /= 255; bv /= 255;
+    rv = rv <= 0.03928 ? rv / 12.92 : Math.pow((rv + 0.055) / 1.055, 2.4);
+    gv = gv <= 0.03928 ? gv / 12.92 : Math.pow((gv + 0.055) / 1.055, 2.4);
+    bv = bv <= 0.03928 ? bv / 12.92 : Math.pow((bv + 0.055) / 1.055, 2.4);
+    return 0.2126 * rv + 0.7152 * gv + 0.0722 * bv;
+  }
+  var heroEl = document.querySelector('section[class*="hero"], [data-hero-type], main > section:first-child');
   var pageHasDarkHero = false;
   if (heroEl) {
     var hCs = getComputedStyle(heroEl);
-    if (hCs.backgroundImage !== 'none' || heroEl.querySelector('[class*="scrim"], [class*="overlay"]')) {
-      pageHasDarkHero = true;
+    var heroBgImg = hCs.backgroundImage;
+    if (heroBgImg && heroBgImg !== 'none') {
+      if (heroBgImg.indexOf('url(') !== -1) {
+        // Photo background — assume dark (typically has dark overlay)
+        pageHasDarkHero = true;
+      } else if (heroBgImg.indexOf('gradient') !== -1) {
+        // CSS gradient — parse RGB stops and calculate average luminance
+        var colorMatches = heroBgImg.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/g);
+        if (colorMatches && colorMatches.length > 0) {
+          var totalLum = 0;
+          for (var ci = 0; ci < colorMatches.length; ci++) {
+            var parts = colorMatches[ci].match(/\d+/g);
+            totalLum += srgbLuminance(parseInt(parts[0]), parseInt(parts[1]), parseInt(parts[2]));
+          }
+          pageHasDarkHero = (totalLum / colorMatches.length) < 0.4;
+        } else {
+          pageHasDarkHero = true;
+        }
+      } else {
+        pageHasDarkHero = true;
+      }
     } else {
       var hBgM = hCs.backgroundColor.match(/\d+/g);
-      if (hBgM) {
-        var hLum = 0.2126 * parseInt(hBgM[0]) / 255 + 0.7152 * parseInt(hBgM[1]) / 255 + 0.0722 * parseInt(hBgM[2]) / 255;
-        if (hLum < 0.4) pageHasDarkHero = true;
+      if (hBgM && hBgM.length >= 3) {
+        pageHasDarkHero = srgbLuminance(parseInt(hBgM[0]), parseInt(hBgM[1]), parseInt(hBgM[2])) < 0.4;
       }
     }
   }
@@ -5956,9 +6028,16 @@ function renderProductDetail(container, product, t) {
     const groupsHtml = hasAttributeGroups
       ? Object.entries(attributeGroups).map(([attrKey, values]) => {
         const label = attrLabels[attrKey.toLowerCase()] || attrKey.charAt(0).toUpperCase() + attrKey.slice(1);
+        const sizeOrder = {'xxxs':0,'xxs':1,'xs':2,'s':3,'m':4,'l':5,'xl':6,'xxl':7,'2xl':7,'xxxl':8,'3xl':8,'4xl':9,'5xl':10};
         const valuesArray = Array.from(values).sort((a, b) => {
-          const numA = parseFloat(a), numB = parseFloat(b);
+          const sa = sizeOrder[String(a).toLowerCase()], sb = sizeOrder[String(b).toLowerCase()];
+          const numA = sa === undefined ? parseFloat(a) : NaN;
+          const numB = sb === undefined ? parseFloat(b) : NaN;
           if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+          if (sa !== undefined && sb !== undefined) return sa - sb;
+          const ca = !isNaN(numA) ? 0 : sa !== undefined ? 1 : 2;
+          const cb = !isNaN(numB) ? 0 : sb !== undefined ? 1 : 2;
+          if (ca !== cb) return ca - cb;
           return String(a).localeCompare(String(b));
         });
         const isColorAttr = attrKey.toLowerCase() === 'color';
@@ -5966,13 +6045,11 @@ function renderProductDetail(container, product, t) {
         const optionsHtml = valuesArray.map(value => {
           // For color attribute, try to use color as background
           if (isColorAttr) {
-            // Use CSS color names directly - they work for common colors like red, blue, green, etc.
-            // For hex values or custom colors, pass through directly
             var bgColor = value;
-            // Check if it looks like a hex color
             if (!/^#[0-9A-Fa-f]{3,6}$/.test(value)) {
-              // Not a hex, use as CSS color name (works for red, blue, green, black, white, etc.)
-              bgColor = value.toLowerCase();
+              var lc = value.toLowerCase();
+              var _clr = {'dark grey':'#555','dark gray':'#555','light grey':'#d3d3d3','light gray':'#d3d3d3','light blue':'lightblue','dark blue':'darkblue','light green':'lightgreen','dark green':'darkgreen','dark red':'darkred','light pink':'lightpink','dark orange':'darkorange','sky blue':'skyblue','royal blue':'royalblue','navy blue':'navy','forest green':'forestgreen','olive green':'olivedrab','sea green':'seagreen','hot pink':'hotpink','deep pink':'deeppink','dark violet':'darkviolet','slate grey':'slategrey','slate gray':'slategray','dim grey':'dimgrey','dim gray':'dimgray','steel blue':'steelblue','pale green':'palegreen','off white':'#f5f5f0','burgundy':'#800020','charcoal':'#36454f','champagne':'#f7e7ce','sand':'#c2b280','taupe':'#483c32','wine':'#722f37','rust':'#b7410e','sage':'#bcb88a','mint':'#98ff98','peach':'#ffcba4','cream':'#fffdd0','mauve':'#e0b0ff'};
+              bgColor = _clr[lc] || lc;
             }
             return '<button type="button" class="variant-option color-swatch" data-attr="' + attrKey + '" data-value="' + value + '" style="background-color: ' + bgColor + ';" title="' + value + '"></button>';
           }
@@ -7250,10 +7327,27 @@ async function loadRelatedProducts(currentProduct, t) {
       });
     }
 
+    function initPhoneButton() {
+      var phoneBtn = document.querySelector('.phone-header-btn');
+      if (!phoneBtn || phoneBtn.__zappyPhoneBound) return;
+      phoneBtn.__zappyPhoneBound = true;
+
+      phoneBtn.addEventListener('click', function() {
+        var telLinks = document.querySelectorAll('a[href^="tel:"]');
+        var phoneNumber = telLinks.length > 0
+          ? telLinks[0].getAttribute('href').replace('tel:', '')
+          : null;
+        if (phoneNumber && phoneNumber.indexOf('[') === -1) {
+          window.location.href = 'tel:' + phoneNumber;
+        }
+      });
+    }
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initMobileToggle, { once: true });
+      document.addEventListener('DOMContentLoaded', function() { initMobileToggle(); initPhoneButton(); }, { once: true });
     } else {
       initMobileToggle();
+      initPhoneButton();
     }
   } catch (e) {}
 })();
@@ -7392,7 +7486,7 @@ async function loadRelatedProducts(currentProduct, t) {
 
       var wid = 'c93357b6-ad76-4110-af41-1ea20cde5aa9';
 
-      var apiBase = (window.ZAPPY_API_BASE || 'http://localhost:5001').replace(/\/$/,'');
+      var apiBase = (window.ZAPPY_API_BASE || 'https://qaapi.zappy5.com').replace(/\/$/,'');
       apiBase = apiBase + '/api/email/contact-form';
 
       fetch(apiBase, {
@@ -7618,7 +7712,8 @@ async function loadRelatedProducts(currentProduct, t) {
       _vProduct=product;if(!t.pleaseSelect){var isRTL=document.documentElement.getAttribute('dir')==='rtl'||document.body.getAttribute('dir')==='rtl';t.pleaseSelect=isRTL?'נא לבחור':'Please select'}_vT=t;
       var old=document.getElementById('zappy-variant-state-css');if(old)old.remove();
       document.querySelectorAll('.variant-option').forEach(function(b){b.style.display='';b.disabled=false});
-      document.querySelectorAll('.variant-options').forEach(function(c){var b=Array.from(c.querySelectorAll('.variant-option'));if(b.length<2)return;b.sort(function(a,b){var va=a.getAttribute('data-value')||'',vb=b.getAttribute('data-value')||'';var na=parseFloat(va),nb=parseFloat(vb);if(!isNaN(na)&&!isNaN(nb))return na-nb;return va.localeCompare(vb)});b.forEach(function(x){c.appendChild(x)})});
+      var _so={'xxxs':0,'xxs':1,'xs':2,'s':3,'m':4,'l':5,'xl':6,'xxl':7,'2xl':7,'xxxl':8,'3xl':8,'4xl':9,'5xl':10};
+      document.querySelectorAll('.variant-options').forEach(function(c){var b=Array.from(c.querySelectorAll('.variant-option'));if(b.length<2)return;b.sort(function(a,b){var va=a.getAttribute('data-value')||'',vb=b.getAttribute('data-value')||'';var sa=_so[va.toLowerCase()],sb=_so[vb.toLowerCase()];var na=sa===undefined?parseFloat(va):NaN,nb=sb===undefined?parseFloat(vb):NaN;if(!isNaN(na)&&!isNaN(nb))return na-nb;if(sa!==undefined&&sb!==undefined)return sa-sb;var ca=!isNaN(na)?0:sa!==undefined?1:2,cb=!isNaN(nb)?0:sb!==undefined?1:2;if(ca!==cb)return ca-cb;return va.localeCompare(vb)});b.forEach(function(x){c.appendChild(x)})});
       var origATC=window.addProductToCart;
       window.addProductToCart=function(){
         var keys=_gak();for(var i=0;i<keys.length;i++){if(!selectedAttributes.hasOwnProperty(keys[i])){
@@ -7660,7 +7755,12 @@ async function loadRelatedProducts(currentProduct, t) {
       var fullText = span.textContent || '';
       var colorValue = fullText.replace(labelEl.textContent || '', '').trim();
       if (!colorValue) return;
-      var bgColor = /^#[0-9A-Fa-f]{3,6}$/.test(colorValue) ? colorValue : colorValue.toLowerCase();
+      var bgColor = colorValue;
+      if (!/^#[0-9A-Fa-f]{3,6}$/.test(colorValue)) {
+        var lc = colorValue.toLowerCase();
+        var _clr = {'dark grey':'#555','dark gray':'#555','light grey':'#d3d3d3','light gray':'#d3d3d3','light blue':'lightblue','dark blue':'darkblue','light green':'lightgreen','dark green':'darkgreen','dark red':'darkred','light pink':'lightpink','dark orange':'darkorange','sky blue':'skyblue','royal blue':'royalblue','navy blue':'navy','forest green':'forestgreen','olive green':'olivedrab','hot pink':'hotpink','deep pink':'deeppink','dark violet':'darkviolet','slate grey':'slategrey','slate gray':'slategray','dim grey':'dimgrey','dim gray':'dimgray','off white':'#f5f5f0','burgundy':'#800020','charcoal':'#36454f','champagne':'#f7e7ce','sand':'#c2b280','taupe':'#483c32','wine':'#722f37','rust':'#b7410e','sage':'#bcb88a','mint':'#98ff98','peach':'#ffcba4','cream':'#fffdd0','mauve':'#e0b0ff'};
+        bgColor = _clr[lc] || lc;
+      }
       var swatch = document.createElement('span');
       swatch.className = 'cart-item-color-swatch';
       swatch.title = colorValue;
