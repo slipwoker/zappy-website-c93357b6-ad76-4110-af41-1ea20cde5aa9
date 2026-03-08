@@ -4,57 +4,57 @@
 
 ## Pages
 
-### בית
+### צעצועים מיוחדים לגילאי 3-18 — Fun Toys
 https://fun-toys.zappy5.app
 גלו צעצועים מרתקים, פאזלים ומסלולי מכוניות לכל הגילאים. Fun Toys מציעה מגוון עצום של צעצועים איכוtiים שילדים אוהבים. היכנסו עכשיו למבחר המושלם!
 
-### אודות
-https://fun-toys.zappy5.app/about
-Fun Toys מתמחה בצעצועים מיוחדים לגילאי 3-18. למדו על הערכים שלנו, המומחיות בבחירת צעצועים איכותיים והמסירות שלנו לשמח כל ילד ונער.
-
-### אוספים
+### עיינו באוספי הצעצועים המרהיבים שלנו — Fun Toys
 https://fun-toys.zappy5.app/collections
 אוספי צעצועים מדהימים: פאזלים מאתגרים, מסלולי מכוניות מותקים וצעצועים מיוחדים לכל גיל. גלו את הקולקציה המושלמת לילדיכם בהתאם לגיל ותחומי עניין.
 
-### צור קשר
-https://fun-toys.zappy5.app/contact
-יש לכם שאלות על הצעצועים שלנו? צריכים עזרה בבחירת המתנה המושלמת? צוות Fun Toys כאן בשבילכם. צרו קשר עכשיו ונמצא יחד את הצעצוע שיביא חיוך!
+### הסיפור שלנו והמחויבות לילדים — Fun Toys
+https://fun-toys.zappy5.app/about
+Fun Toys מתמחה בצעצועים מיוחדים לגילאי 3-18. למדו על הערכים שלנו, המומחיות בבחירת צעצועים איכותיים והמסירות שלנו לשמח כל ילד ונער.
 
-### Products
+### מוצרים
 https://fun-toys.zappy5.app/products
 המוצרים שלנו - Fun Toys
 
-### Cart
+### עגלת קניות
 https://fun-toys.zappy5.app/cart
 עגלת הקניות שלך
 
-### Checkout
+### תשלום
 https://fun-toys.zappy5.app/checkout
 תשלום
 
-### Login
+### התחברות
 https://fun-toys.zappy5.app/login
 התחברות לקוחות
 
-### Account
+### החשבון שלי
 https://fun-toys.zappy5.app/account
 החשבון שלי
 
-### Order Success
+### ההזמנה התקבלה!
 https://fun-toys.zappy5.app/order-success
 תודה על ההזמנה
 
-### Product Detail
+### פרטי המוצר
 https://fun-toys.zappy5.app/product/:slug
 פרטי המוצר - Fun Toys
 
-### Category
+### מוצרים
 https://fun-toys.zappy5.app/category/:slug
 מוצרים - Fun Toys
 
 ### Thank You | Fun Toys
 https://fun-toys.zappy5.app/thank-you
 Fun Toys - Thank You | Fun Toys
+
+### נשמח לעזור לכם למצוא את הצעצוע המושלם — Fun Toys
+https://fun-toys.zappy5.app/contact
+יש לכם שאלות על הצעצועים שלנו? צריכים עזרה בבחירת המתנה המושלמת? צוות Fun Toys כאן בשבילכם. צרו קשר עכשיו ונמצא יחד את הצעצוע שיביא חיוך!
 
 ## Legal & Policy
 

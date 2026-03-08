@@ -7,21 +7,15 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/about</loc>
-    <lastmod>2026-03-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://fun-toys.zappy5.app/collections</loc>
     <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/contact</loc>
+    <loc>https://fun-toys.zappy5.app/about</loc>
     <lastmod>2026-03-08</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
@@ -76,6 +70,12 @@
     <loc>https://fun-toys.zappy5.app/thank-you</loc>
     <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fun-toys.zappy5.app/contact</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
