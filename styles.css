@@ -140,6 +140,7 @@
 --primary: #FFA500;
   --secondary: #00B300;
   --accent: #FFF899;
+  --accent-rgb: 255, 248, 153;
   --bg-light: #FFFFFF;
   --bg-dark: #0B1020;
   --text-dark: #4A4A4A;
@@ -5536,7 +5537,7 @@ main.page-container.ecommerce-page,
 /* Sort dropdown */
 .sort-control select { padding: 7px 28px 7px 12px; border: 1px solid var(--border-dark); border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--text-light); font-size: 13px; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
 [dir="rtl"] .sort-control select { padding: 7px 12px 7px 28px; background-position: left 10px center; }
-.sort-control select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 255,0,131), 0.1); }
+.sort-control select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(var(--accent-rgb, 255,0,131), 0.1); }
 
 /* View toggle */
 .view-toggle { display: flex; border: 1px solid var(--border-dark); border-radius: 8px; overflow: hidden; }
@@ -5882,7 +5883,7 @@ main.page-container.ecommerce-page,
   gap: 12px !important;
   margin-bottom: 16px !important;
   padding: 12px 16px !important;
-  background: rgba(var(--primary-rgb, 255, 0, 131), 0.1) !important;
+  background: rgba(var(--accent-rgb, 255, 0, 131), 0.1) !important;
   border-radius: 8px !important;
   font-size: 14px !important;
   color: rgba(255,255,255,0.6) !important;
@@ -8778,7 +8779,7 @@ main,
 .checkout-select:focus {
   outline: none !important;
   border-color: var(--primary) !important;
-  box-shadow: 0 0 0 2px rgba(var(--primary-rgb, 255, 0, 131), 0.2) !important;
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb, 255, 0, 131), 0.2) !important;
 }
 .checkout-select-chevron {
   position: absolute !important;
