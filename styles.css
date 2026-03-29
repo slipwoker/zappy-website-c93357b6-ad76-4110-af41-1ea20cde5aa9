@@ -458,8 +458,9 @@ select {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(11, 16, 32, 0.95) 0%, rgba(11, 16, 32, 0.85) 100%);
+  background: transparent;
   z-index: -1;
+  display: none;
 }
 
 .nav-container {
