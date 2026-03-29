@@ -9174,6 +9174,22 @@ main,
   text-align: center !important;
 }
 
+.navbar:not(.scrolled) .nav-menu > li > a,
+.navbar:not(.scrolled) .nav-menu > .nav-item > a,
+.navbar:not(.scrolled) .nav-link,
+.navbar:not(.scrolled) .navbar-brand,
+.navbar:not(.scrolled) .navbar-brand a,
+.navbar:not(.scrolled) .dropdown-toggle,
+.navbar:not(.scrolled) .mobile-toggle,
+.navbar:not(.scrolled) .phone-header-btn {
+  color: #F8FAFC !important;
+}
+
+.navbar:not(.scrolled) .nav-menu > li > a:hover,
+.navbar:not(.scrolled) .nav-menu > .nav-item > a:hover {
+  color: var(--primary-color) !important;
+}
+
 /* ========== RTL MOBILE NAVBAR FIX (zappy-rtl-mobile-fix) ========== */
 /* High-specificity rules to ensure RTL positioning wins over any [lang="en"] conflicts */
 /* For RTL sites: hamburger on RIGHT, phone on LEFT (mirror of LTR layout) */
