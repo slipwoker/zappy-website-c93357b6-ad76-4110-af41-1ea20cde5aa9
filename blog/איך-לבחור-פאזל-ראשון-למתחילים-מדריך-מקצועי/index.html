@@ -685,332 +685,365 @@
     <meta name="twitter:description" content="Fun Toys - איך לבחור פאזל ראשון למתחילים — מדריך מקצועי">
     <meta name="twitter:image" content="https://fun-toys.zappy5.app/assets/fun-toys-section-blog-article-hero-blog-blog-article-hero-image-1-og.jpg">
     <meta name="twitter:image:alt" content="איך לבחור פאזל ראשון למתחילים — מדריך מקצועי"><style id="zappy-ai-page-styles">.blog-blog-article-hero-section {
-  background-color: #F7F4FF;
+  direction: rtl;
+  background-color: #F6F3EE;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='rgba(106,59,212,0.07)' stroke-width='1.5'%3E%3Cpath d='M20 18c10 0 10 14 0 14S10 18 20 18Z'/%3E%3Cpath d='M70 30c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3Cpath d='M40 70c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3Cpath d='M90 78c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='rgba(106,59,212,0.08)' stroke-width='2'%3E%3Cpath d='M20 18c10 0 10 14 0 14S10 18 20 18Z'/%3E%3Cpath d='M70 30c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3Cpath d='M40 70c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3Cpath d='M90 78c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3C/g%3E%3C/svg%3E"),
     linear-gradient(180deg, #F6F3EE 0%, #EAF6F7 55%, #F6F3EE 100%);
-  background-size: 240px 240px, cover;
+  background-size: 240px 240px, 100% 100%;
   background-repeat: repeat, no-repeat;
   color: var(--text-dark);
-  direction: rtl;
+  padding-top: 120px;
+  padding-bottom: 0;
   position: relative;
   overflow: visible;
-  padding-bottom: 60px;
 }
 
-.blog-blog-article-hero-section .blog-article-container {
-  max-width: 800px;
+/* ── TOP BAR ── */
+.blog-blog-article-hero-section .bbah-top-bar {
+  max-width: 900px;
   margin: 0 auto;
-  padding: 140px 24px 40px;
+  padding: 0 24px 16px;
 }
 
-/* Back to blog link */
-.blog-blog-article-hero-section .back-to-blog {
+.blog-blog-article-hero-section .bbah-back-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   color: var(--primary);
   text-decoration: none;
   font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1.5px solid var(--border-light);
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
-  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+  transition: color 220ms ease, gap 220ms ease;
 }
 
-.blog-blog-article-hero-section .back-to-blog:hover {
-  background: rgba(124, 58, 237, 0.08);
-  border-color: var(--primary);
-  transform: translateX(3px);
+.blog-blog-article-hero-section .bbah-back-link svg {
+  transform: rotate(180deg);
+  flex-shrink: 0;
+  transition: transform 220ms ease;
 }
 
-.blog-blog-article-hero-section .back-to-blog-bottom {
-  margin-top: 12px;
-  margin-bottom: 0;
+.blog-blog-article-hero-section .bbah-back-link:hover {
+  color: var(--accent);
+  gap: 10px;
 }
 
-/* Social Share Bar */
-.blog-blog-article-hero-section .social-share-bar {
+/* ── SHARE BAR ── */
+.blog-blog-article-hero-section .bbah-share-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 20px;
+}
+
+.blog-blog-article-hero-section .social-share-bar.bbah-share-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
   flex-wrap: wrap;
-  padding: 12px 16px;
-  background: rgba(255,255,255,0.80);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 12px;
-  border: 1.5px solid var(--border-light);
-  box-shadow: 0 4px 14px rgba(22,18,48,0.07);
 }
 
-.blog-blog-article-hero-section .share-label {
+.blog-blog-article-hero-section .bbah-share-label {
   font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-inline-end: 4px;
 }
 
-.blog-blog-article-hero-section .share-btn {
+.blog-blog-article-hero-section .bbah-share-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(124,58,237,0.07);
-  border: 1.5px solid var(--border-light);
+  background: rgba(124, 58, 237, 0.08);
+  border: 1.5px solid rgba(124, 58, 237, 0.18);
   color: var(--primary);
   text-decoration: none;
   cursor: pointer;
-  transition: background 220ms ease, color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  transition: background 220ms ease, color 220ms ease, transform 220ms ease, border-color 220ms ease;
   flex-shrink: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 1;
 }
 
-.blog-blog-article-hero-section .share-btn:hover {
+.blog-blog-article-hero-section .bbah-share-btn:hover {
   background: var(--primary);
-  color: #ffffff;
+  color: #fff;
   border-color: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(124,58,237,0.30);
 }
 
-.blog-blog-article-hero-section .share-whatsapp:hover {
+.blog-blog-article-hero-section .bbah-share-btn.share-whatsapp:hover {
   background: #25D366;
   border-color: #25D366;
 }
 
-.blog-blog-article-hero-section .share-facebook:hover {
+.blog-blog-article-hero-section .bbah-share-btn.share-facebook:hover {
   background: #1877F2;
   border-color: #1877F2;
 }
 
-.blog-blog-article-hero-section .share-twitter:hover {
-  background: #000000;
-  border-color: #000000;
+.blog-blog-article-hero-section .bbah-share-btn.share-twitter:hover {
+  background: #0F1419;
+  border-color: #0F1419;
 }
 
-.blog-blog-article-hero-section .share-linkedin:hover {
+.blog-blog-article-hero-section .bbah-share-btn.share-linkedin:hover {
   background: #0A66C2;
   border-color: #0A66C2;
 }
 
-/* Hero Figure */
-.blog-blog-article-hero-section .article-hero-figure {
+/* ── HERO IMAGE ── */
+.blog-blog-article-hero-section .bbah-hero-image-wrap {
+  max-width: 900px;
+  margin: 0 auto 0;
+  padding: 0 24px;
   position: relative;
-  margin: 24px 0 32px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(22,18,48,0.16);
-  border: 1.5px solid var(--border-light);
 }
 
-.blog-blog-article-hero-section .article-hero-img {
-  width: 100%;
-  height: auto;
+.blog-blog-article-hero-section .bbah-hero-img {
   display: block;
-  aspect-ratio: 1200 / 540;
+  width: 100%;
+  height: 420px;
   object-fit: cover;
+  object-position: center;
   border-radius: 16px;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  box-shadow: 0 16px 26px rgba(22, 18, 48, 0.18);
 }
 
-.blog-blog-article-hero-section .article-hero-category-badge {
+.blog-blog-article-hero-section .bbah-hero-scrim {
   position: absolute;
-  top: 18px;
-  inset-inline-end: 18px;
-  background: var(--primary);
-  color: #ffffff;
+  inset: 0;
+  inset-inline-start: 24px;
+  inset-inline-end: 24px;
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(246, 243, 238, 0.0) 0%,
+    rgba(246, 243, 238, 0.45) 80%,
+    rgba(246, 243, 238, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.blog-blog-article-hero-section .bbah-hero-texture {
+  position: absolute;
+  inset: 0;
+  inset-inline-start: 24px;
+  inset-inline-end: 24px;
+  border-radius: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='rgba(124,58,237,0.06)' stroke-width='1'%3E%3Crect x='0' y='0' width='30' height='30'/%3E%3Crect x='30' y='0' width='30' height='30'/%3E%3Crect x='0' y='30' width='30' height='30'/%3E%3Crect x='30' y='30' width='30' height='30'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── ARTICLE HEADER ── */
+.blog-blog-article-hero-section .bbah-article-header-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+  position: relative;
+}
+
+.blog-blog-article-hero-section .bbah-article-header {
+  padding-top: 32px;
+}
+
+.blog-blog-article-hero-section .bbah-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, rgba(124,58,237,0.12) 0%, rgba(34,211,238,0.10) 100%);
+  border: 1.5px solid rgba(124, 58, 237, 0.22);
+  color: var(--primary);
   font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 0.75rem;
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   padding: 6px 14px;
   border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(124,58,237,0.35);
+  margin-bottom: 20px;
 }
 
-/* Article Header */
-.blog-blog-article-hero-section .article-header {
-  margin-bottom: 36px;
-  padding-bottom: 28px;
-  border-bottom: 2px solid var(--border-light);
+.blog-blog-article-hero-section .bbah-article-title {
+  font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+  margin: 0 0 18px;
+  text-align: right;
 }
 
-.blog-blog-article-hero-section .article-meta {
+.blog-blog-article-hero-section .bbah-article-summary {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin: 0 0 24px;
+  text-align: right;
+  max-width: 680px;
+}
+
+/* ── META ROW ── */
+.blog-blog-article-hero-section .bbah-meta-row {
   display: flex;
   align-items: center;
+  gap: 10px;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-  direction: rtl;
 }
 
-.blog-blog-article-hero-section .article-meta span {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--text-muted);
+.blog-blog-article-hero-section .bbah-meta-item {
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
 }
 
-.blog-blog-article-hero-section .article-meta svg {
+.blog-blog-article-hero-section .bbah-meta-item svg {
   color: var(--primary);
   flex-shrink: 0;
 }
 
-.blog-blog-article-hero-section .meta-divider {
-  color: var(--border-light) !important;
-  font-weight: 400 !important;
+.blog-blog-article-hero-section .bbah-meta-divider {
+  color: var(--border-light);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
 }
 
-.blog-blog-article-hero-section .article-title {
-  font-family: 'Fraunces', 'Playfair Display', serif;
-  font-size: 2.5rem;
-  font-weight: 900;
-  line-height: 1.2;
-  color: var(--text-dark);
-  letter-spacing: -0.02em;
-  margin: 0 0 18px;
-  text-align: right;
-}
-
-.blog-blog-article-hero-section .article-intro {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.7;
-  color: var(--text-muted);
-  text-align: right;
-  margin: 0;
-  padding: 16px 18px;
-  border-inline-start: 4px solid var(--primary);
-  background: rgba(124,58,237,0.05);
-  border-radius: 0 10px 10px 0;
-}
-
-/* Article Body */
-.blog-blog-article-hero-section .article-body {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
-  color: var(--text-dark);
-}
-
-.blog-blog-article-hero-section .article-body h2 {
-  font-family: 'Fraunces', 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 900;
-  line-height: 1.3;
+.blog-blog-article-hero-section .bbah-author {
+  font-weight: 700;
   color: var(--primary);
-  margin: 40px 0 14px;
-  text-align: right;
-  position: relative;
-  padding-inline-end: 18px;
 }
 
-.blog-blog-article-hero-section .article-body h2::before {
-  content: '';
-  position: absolute;
-  inset-inline-end: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 5px;
-  height: 70%;
-  background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
-  border-radius: 3px;
-}
-
-.blog-blog-article-hero-section .article-body p {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--text-dark);
-  margin: 0 0 18px;
-  text-align: right;
-}
-
-/* Bottom Divider */
-.blog-blog-article-hero-section .blog-article-divider-wrapper {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+/* ── TRACK LINE DECORATION ── */
+.blog-blog-article-hero-section .bbah-track-line {
+  margin-top: 28px;
   width: 100%;
-  height: 60px;
+  overflow: hidden;
   pointer-events: none;
-  z-index: 5;
 }
 
-.blog-blog-article-hero-section .blog-article-divider-wrapper svg {
+.blog-blog-article-hero-section .bbah-track-line svg {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 24px;
 }
 
-/* Mobile Styles */
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .blog-blog-article-hero-section .blog-article-container {
-    padding: 100px 16px 32px;
+  .blog-blog-article-hero-section {
+    padding-top: 100px;
   }
 
-  .blog-blog-article-hero-section .article-title {
-    font-size: 1.75rem;
+  .blog-blog-article-hero-section .bbah-top-bar,
+  .blog-blog-article-hero-section .bbah-share-wrapper,
+  .blog-blog-article-hero-section .bbah-hero-image-wrap,
+  .blog-blog-article-hero-section .bbah-article-header-wrap {
+    padding-inline-start: 16px;
+    padding-inline-end: 16px;
   }
 
-  .blog-blog-article-hero-section .article-hero-figure {
-    border-radius: 10px;
-    margin: 16px 0 24px;
+  .blog-blog-article-hero-section .bbah-hero-img {
+    height: 220px;
+    border-radius: 12px;
   }
 
-  .blog-blog-article-hero-section .article-hero-img {
-    border-radius: 10px;
+  .blog-blog-article-hero-section .bbah-hero-scrim,
+  .blog-blog-article-hero-section .bbah-hero-texture {
+    inset-inline-start: 16px;
+    inset-inline-end: 16px;
+    border-radius: 12px;
   }
 
-  .blog-blog-article-hero-section .article-body h2 {
-    font-size: 1.25rem;
-    margin: 28px 0 10px;
+  .blog-blog-article-hero-section .bbah-article-title {
+    font-size: 28px;
+    line-height: 1.2;
   }
 
-  .blog-blog-article-hero-section .social-share-bar {
+  .blog-blog-article-hero-section .bbah-article-summary {
+    font-size: 15px;
+  }
+
+  .blog-blog-article-hero-section .bbah-meta-row {
     gap: 8px;
-    padding: 10px 12px;
   }
 
-  .blog-blog-article-hero-section .share-btn {
+  .blog-blog-article-hero-section .bbah-meta-item {
+    font-size: 13px;
+  }
+
+  .blog-blog-article-hero-section .bbah-share-btn {
     width: 34px;
     height: 34px;
   }
 
-  .blog-blog-article-hero-section .article-meta {
-    gap: 6px;
+  .blog-blog-article-hero-section .bbah-article-header {
+    padding-top: 20px;
   }
 
-  .blog-blog-article-hero-section .article-intro {
-    font-size: 0.9375rem;
-    padding: 12px 14px;
+  .blog-blog-article-hero-section .bbah-article-header-wrap {
+    padding-bottom: 32px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .blog-blog-article-hero-section .bbah-article-title {
+    font-size: 38px;
+  }
+
+  .blog-blog-article-hero-section .bbah-hero-img {
+    height: 340px;
   }
 }
 
 .blog-blog-article-body-section {
-  background: linear-gradient(180deg, #F6F3EE 0%, #EAF6F7 55%, #F6F3EE 100%);
-  background-color: #F6F3EE;
-  color: var(--text-dark);
-  direction: rtl;
-  padding: 120px 20px 80px;
   position: relative;
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  background-color: #F6F3EE;
+  background-image: linear-gradient(180deg, #F6F3EE 0%, #EAF6F7 55%, #F6F3EE 100%);
+  color: var(--text-dark);
+  padding: 120px 16px 80px;
+  direction: rtl;
+  font-family: 'Space Grotesk', Inter, sans-serif;
+  overflow: hidden;
 }
 
-.blog-article-container {
+.article-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='rgba(106,59,212,0.07)' stroke-width='2'%3E%3Cpath d='M20 18c10 0 10 14 0 14S10 18 20 18Z'/%3E%3Cpath d='M70 30c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3Cpath d='M40 70c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3Cpath d='M90 78c10 0 10 14 0 14s-10-14 0-14Z'/%3E%3C/g%3E%3C/svg%3E\");
+  background-size: 240px 240px;
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.article-container {
+  position: relative;
+  z-index: 1;
   max-width: 800px;
   margin: 0 auto;
-  width: 100%;
 }
 
 .back-to-blog {
@@ -1018,36 +1051,38 @@
   align-items: center;
   gap: 6px;
   color: var(--primary);
-  text-decoration: none;
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', Inter, sans-serif;
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 8px 0;
-  margin-bottom: 8px;
-  transition: color 0.2s ease, gap 0.2s ease;
-  text-align: start;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  transition: background 0.2s, box-shadow 0.2s;
+  margin-bottom: 4px;
 }
 
-.back-to-blog--bottom {
-  margin-top: 12px;
+.back-to-blog-bottom {
+  margin-top: 8px;
   margin-bottom: 0;
 }
 
 .social-share-bar {
-  border-top: 2px solid var(--border-light);
-  border-bottom: 2px solid var(--border-light);
-  padding: 14px 0;
   flex-wrap: wrap;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(43, 37, 83, 0.14);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .share-label {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-family: 'Space Grotesk', Inter, sans-serif;
   font-size: 14px;
-  font-weight: 800;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-dark);
   margin-inline-end: 4px;
 }
 
@@ -1059,21 +1094,45 @@
   height: 38px;
   border-radius: 50%;
   background: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.18);
   color: var(--primary);
-  border: 1.5px solid var(--border-light);
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   flex-shrink: 0;
 }
 
+.share-whatsapp {
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.2);
+}
+
+.share-facebook {
+  color: #1877F2;
+  background: rgba(24, 119, 242, 0.08);
+  border-color: rgba(24, 119, 242, 0.2);
+}
+
+.share-twitter {
+  color: #0f1419;
+  background: rgba(15, 20, 25, 0.07);
+  border-color: rgba(15, 20, 25, 0.15);
+}
+
+.share-linkedin {
+  color: #0A66C2;
+  background: rgba(10, 102, 194, 0.08);
+  border-color: rgba(10, 102, 194, 0.2);
+}
+
 .article-hero-figure {
-  margin: 28px 0 36px;
+  margin: 28px 0 32px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 16px 26px rgba(22, 18, 48, 0.20);
+  border: 1px solid rgba(43, 37, 83, 0.10);
   position: relative;
-  border: 1.5px solid var(--border-light);
 }
 
 .article-hero-img {
@@ -1081,108 +1140,106 @@
   height: auto;
   display: block;
   object-fit: cover;
-  max-height: 480px;
-  border-radius: 14px 14px 0 0;
+  aspect-ratio: 900 / 480;
 }
 
 .article-hero-caption {
-  background: linear-gradient(90deg, rgba(214,171,180,0.45) 0%, rgba(101,214,226,0.55) 60%, rgba(214,171,180,0.35) 100%);
-  color: var(--text-dark);
-  font-size: 13px;
-  font-weight: 600;
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  display: block;
   text-align: center;
-  padding: 10px 20px;
-  letter-spacing: 0.02em;
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 10px 16px 12px;
+  background: rgba(246, 243, 238, 0.9);
+  font-family: 'Space Grotesk', Inter, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .article-header {
-  margin-bottom: 36px;
-}
-
-.article-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-  direction: rtl;
-}
-
-.meta-tag {
-  background: linear-gradient(135deg, var(--primary) 0%, #9B59E8 100%);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
-  padding: 4px 14px;
-  border-radius: 999px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.meta-divider {
-  color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.meta-read-time {
-  color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 600;
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid rgba(124, 58, 237, 0.12);
 }
 
 .article-title {
   font-family: 'Fraunces', 'Playfair Display', Georgia, serif;
-  font-size: clamp(28px, 5vw, 48px);
+  font-size: 42px;
   font-weight: 900;
   line-height: 1.2;
   color: var(--text-dark);
   margin: 0 0 16px;
-  text-align: start;
-  letter-spacing: -0.01em;
+  text-align: right;
+  letter-spacing: 0.01em;
 }
 
-.article-subtitle {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-size: 18px;
+.article-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.6;
   color: var(--text-muted);
-  margin: 0;
-  text-align: start;
-  border-inline-start: 4px solid var(--accent);
-  padding-inline-start: 16px;
+  font-family: 'Space Grotesk', Inter, sans-serif;
+}
+
+.meta-divider {
+  color: var(--border-light);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.meta-tag {
+  display: inline-block;
+  background: rgba(124, 58, 237, 0.10);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  font-family: 'Space Grotesk', Inter, sans-serif;
+  letter-spacing: 0.03em;
 }
 
 .article-body {
+  font-family: 'Space Grotesk', Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.8;
   color: var(--text-dark);
+  text-align: right;
+}
+
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .blog-blog-article-body-section {
-    padding: 100px 16px 60px;
-  }
-
-.blog-article-container {
-    max-width: 100%;
-  }
-
-.article-hero-img {
-    max-height: 240px;
+    padding: 100px 12px 60px;
   }
 
 .article-title {
-    font-size: 26px;
-  }
-
-.article-subtitle {
-    font-size: 15px;
+    font-size: 28px;
+    line-height: 1.25;
   }
 
 .social-share-bar {
     gap: 8px;
+    padding: 10px 12px;
   }
 
 .share-btn {
@@ -1190,8 +1247,13 @@
     height: 34px;
   }
 
-.article-hero-img {
-    max-height: 480px;
+.article-hero-figure {
+    margin: 20px 0 24px;
+    border-radius: 12px;
+  }
+
+.article-meta {
+    gap: 6px;
   }</style><style>
       /* Dropdown sub-menu styles */
       .nav-menu li:has(.sub-menu),
@@ -1336,216 +1398,203 @@
     </nav>
   
   
-  <main class="blog-page ai-generated-page"><section class="blog-blog-article-hero-section" data-layout-spec="undefined-blog-article-hero" dir="rtl" data-hero-type="fullscreen-scrim">
-  <div class="blog-article-container">
+  <main class="blog-page ai-generated-page"><section class="blog-blog-article-hero-section" data-layout-spec="איך-לבחור-פאזל-ראשון-למתחילים-מדריך-מקצועי-blog-article-hero" dir="rtl" data-hero-type="fullscreen-scrim">
+  <!-- Back to Blog -->
+  <div class="bbah-top-bar">
+    <a href="/blog" class="back-to-blog bbah-back-link">
+      <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      חזרה לבלוג
+    </a>
+  </div>
 
-    <!-- Back Link -->
-    <a href="/blog" class="back-to-blog">← חזרה לבלוג</a>
-
-    <!-- Social Share Bar (Top) -->
-    <div class="social-share-bar" style="display:flex;align-items:center;gap:12px;margin:20px 0;">
-      <span class="share-label">שתף:</span>
-      <button class="share-btn share-copy" title="העתק קישור" onclick="navigator.clipboard.writeText(window.location.href)" aria-label="העתק קישור">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+  <!-- Social Share Bar (Top) -->
+  <div class="bbah-share-wrapper">
+    <div class="social-share-bar bbah-share-bar">
+      <span class="bbah-share-label">שתף:</span>
+      <button class="bbah-share-btn share-copy" title="העתק קישור" aria-label="העתק קישור">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
       </button>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener" class="share-btn share-linkedin" aria-label="שתף בלינקדאין">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener noreferrer" class="bbah-share-btn share-linkedin" title="שתף בלינקדאין" aria-label="שתף בלינקדאין">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
-      <a href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noopener" class="share-btn share-twitter" aria-label="שתף בטוויטר">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <a href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noopener noreferrer" class="bbah-share-btn share-twitter" title="שתף בטוויטר" aria-label="שתף בטוויטר">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
       </a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener" class="share-btn share-facebook" aria-label="שתף בפייסבוק">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener noreferrer" class="bbah-share-btn share-facebook" title="שתף בפייסבוק" aria-label="שתף בפייסבוק">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       </a>
-      <a href="https://wa.me/?text=" target="_blank" rel="noopener" class="share-btn share-whatsapp" aria-label="שתף בוואטסאפ">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      <a href="https://wa.me/?text=" target="_blank" rel="noopener noreferrer" class="bbah-share-btn share-whatsapp" title="שתף בוואטסאפ" aria-label="שתף בוואטסאפ">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
       </a>
     </div>
+  </div>
 
-    <!-- Hero Image -->
-    <figure class="article-hero-figure">
-      <img data-hero-bg="true" data-context="Colorful and energetic flat-lay of children toys including puzzles, toy car tracks, building blocks and board games arranged on a bright white surface with purple and cyan accents, photographed from above, playful and vibrant, suitable for a toy store blog article hero" width="1200" height="540" src="/assets/fun-toys-section-blog-article-hero-blog-blog-article-hero-image-1.webp" alt="צעצועים צבעוניים לילדים – פאזלים, מסלולי מכוניות ומשחקי חשיבה" class="article-hero-img">
-      <div class="article-hero-category-badge">מדריכי הורים</div>
-    </figure>
+  <!-- Hero Image -->
+  <div class="bbah-hero-image-wrap">
+    <img data-hero-bg="true" data-context="A colorful and inviting flat-lay photograph of various jigsaw puzzles spread on a wooden table: puzzle boxes for different age groups, completed puzzle sections with vibrant illustrations of animals and nature scenes, a magnifying glass, and small toy figurines. Warm, bright lighting with a playful yet educational atmosphere fitting a premium Israeli toy store blog article about choosing the first puzzle for beginners." width="1200" height="520" src="/assets/fun-toys-section-blog-article-hero-blog-blog-article-hero-image-1.webp" alt="פאזלים צבעוניים על שולחן עץ — מדריך לבחירת פאזל ראשון" class="bbah-hero-img">
+    <div class="bbah-hero-scrim" aria-hidden="true"></div>
+    <!-- Puzzle grid texture overlay -->
+    <div class="bbah-hero-texture" aria-hidden="true"></div>
+  </div>
 
-    <!-- Article Header -->
-    <header class="article-header">
-      <div class="article-meta">
-        <span class="meta-date">
+  <!-- Article Header -->
+  <div class="bbah-article-header-wrap">
+    <div class="bbah-article-header">
+      <div class="bbah-category-tag">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 2h9l11 11-9 9L2 11V2zm5 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+        מדריכי צעצועים
+      </div>
+      <h1 class="bbah-article-title">איך לבחור פאזל ראשון למתחילים — מדריך מקצועי</h1>
+      <p class="bbah-article-summary">כל מה שצריך לדעת כדי לבחור את הפאזל המושלם לפי גיל, רמת קושי ותחומי עניין. טיפים מעשיים שיעזרו לכם.</p>
+      <div class="bbah-meta-row">
+        <span class="bbah-meta-item">
           <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           15 ביוני 2025
         </span>
-        <span class="meta-divider">·</span>
-        <span class="meta-read">
+        <span class="bbah-meta-divider" aria-hidden="true">·</span>
+        <span class="bbah-meta-item">
           <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           5 דקות קריאה
         </span>
-        <span class="meta-divider">·</span>
-        <span class="meta-author">מאת צוות Fun Toys</span>
+        <span class="bbah-meta-divider" aria-hidden="true">·</span>
+        <span class="bbah-meta-item bbah-author">
+          <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          צוות Fun Toys
+        </span>
       </div>
-      <h1 class="article-title">איך לבחור את הצעצוע המושלם לפי גיל הילד?</h1>
-      <p class="article-intro">מדריך מקיף להורים: מה חשוב לדעת לפני שרוכשים צעצוע, איך מתאימים את הבחירה לשלב ההתפתחותי, ומה ההבדל בין משחק שמשעשע לבין משחק שמפתח.</p>
-    </header>
-
-    <!-- Article Body -->
-    <article class="article-body">
-
-      <h2>למה גיל הילד כל כך חשוב בבחירת צעצוע?</h2>
-      <p>כל הורה יודע את הרגע הזה – עומדים מול מדף ענק של צעצועים, הילד מתרגש, והשאלה הגדולה מתנקרת: מה באמת מתאים לו עכשיו? הבחירה הנכונה אינה רק עניין של גיל מינימלי המודפס על הקופסה. מדובר בהתאמה עמוקה יותר לשלב ההתפתחותי, לתחומי העניין ולצרכים הקוגניטיביים של הילד בדיוק בנקודת הזמן הזו.</p>
-      <p>צעצוע שמאתגר יתר על המידה עלול לייאש ולגרום לתסכול. לעומת זאת, צעצוע שפשוט מדי ישעמם מהר ויצבור אבק על המדף. הנקודה המתוקה – ה-Zone of Proximal Development כפי שמכנה אותה פסיכולוג הילדים ויגוצקי – היא שם שהקסם קורה.</p>
-
-      <h2>גילאי 3–5: עולם של דמיון ותנועה</h2>
-      <p>בגיל הגן, ילדים לומדים דרך משחק חופשי ודמיוני. בלוקים צבעוניים, ערכות בנייה פשוטות, ובובות שמאפשרות סיפור חופשי – אלו הם הכלים שמפתחים את היצירתיות ואת השפה. מסלולי מכוניות בסיסיים עם לולאות פשוטות מושלמים לגיל הזה: הם מפתחים קואורדינציה עין-יד ומספקים סיפוק מיידי כשהמכונית עוברת בהצלחה.</p>
-      <p>פאזלים של 12–24 חלקים הם אתגר מצוין לגיל הזה – מפתחים חשיבה מרחבית ומסייעים לפיתוח הסבלנות. חפשו פאזלים עם ידיות גדולות ותמונות ברורות.</p>
-
-      <h2>גילאי 6–9: חשיבה לוגית ועבודת צוות</h2>
-      <p>בגיל בית הספר הראשוני, ילדים מתחילים לאהוב כללים, תחרות ושיתוף פעולה. משחקי לוח עם אסטרטגיה פשוטה, ערכות בנייה מורכבות יותר, ופאזלים של 100–500 חלקים – כולם מצוינים. מסלולי מכוניות עם מערכות מסלול מורכבות, חיבורים שונים ואפשרויות בנייה חופשית מאפשרים לילדים לתכנן, לנסות ולשפר.</p>
-      <p>בגיל הזה, הילד כבר מסוגל להבין הוראות ולהרכיב מוצרים בעצמו – מה שמוסיף ערך עצמאי ותחושת הישג.</p>
-
-      <h2>גילאי 10–14: אתגר אמיתי ועולמות עמוקים</h2>
-      <p>המתבגרים הצעירים רוצים להרגיש מוכשרים ומאותגרים. פאזלים של 1,000 חלקים ומעלה, משחקי אסטרטגיה מורכבים, ערכות רובוטיקה ותכנות – כל אלו מספקים את הצורך בעומק ובמסוגלות. מסלולי מכוניות חשמליים עם שלט רחוק ומערכות רב-שכבתיות מתאימים מאוד לגיל הזה.</p>
-      <p>חשוב לשים לב גם לממד החברתי: משחקים שמאפשרים לשחק עם חברים או בני משפחה מייצרים חוויות שנזכרות לאורך שנים.</p>
-
-      <h2>גילאי 15–18: יצירתיות, עצמאות ותחביבים</h2>
-      <p>בגיל הזה, הגבול בין צעצוע לתחביב מיטשטש. ערכות אמנות מתקדמות, פאזלים תלת-ממדיים, ומשחקי לוח אסטרטגיים מורכבים (כמו Catan, Ticket to Ride) הם מתנות מצוינות. הנוער בגיל הזה מעריך איכות ועיצוב – אל תחסכו על חומרים ואל תתפשרו על מוצרים זולים שיתפרקו אחרי שבוע.</p>
-      <p>בסופו של דבר, הצעצוע הטוב ביותר הוא זה שגורם לילד לכבות את המסך ולרצות לשחק. בFun Toys אנחנו כאן בדיוק בשביל זה – לעזור לכם למצוא את הרגע הזה.</p>
-
-    </article>
-
-    <!-- Social Share Bar (Bottom) -->
-    <div class="social-share-bar" style="display:flex;align-items:center;gap:12px;margin:20px 0;">
-      <span class="share-label">שתף:</span>
-      <button class="share-btn share-copy" title="העתק קישור" onclick="navigator.clipboard.writeText(window.location.href)" aria-label="העתק קישור">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-      </button>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener" class="share-btn share-linkedin" aria-label="שתף בלינקדאין">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noopener" class="share-btn share-twitter" aria-label="שתף בטוויטר">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener" class="share-btn share-facebook" aria-label="שתף בפייסבוק">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </a>
-      <a href="https://wa.me/?text=" target="_blank" rel="noopener" class="share-btn share-whatsapp" aria-label="שתף בוואטסאפ">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-      </a>
     </div>
-
-    <!-- Back Link Bottom -->
-    <a href="/blog" class="back-to-blog back-to-blog-bottom">← חזרה לבלוג</a>
-
+    <!-- Track line decoration -->
+    <div class="bbah-track-line" aria-hidden="true">
+      <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 800 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="24">
+        <path d="M0,12 Q100,4 200,12 T400,12 T600,12 T800,12" fill="none" stroke="rgba(124,58,237,0.18)" stroke-width="2.5" stroke-dasharray="8 6"/>
+        <circle cx="0" cy="12" r="5" fill="rgba(124,58,237,0.25)"/>
+        <circle cx="800" cy="12" r="5" fill="rgba(34,211,238,0.35)"/>
+      </svg>
+    </div>
   </div>
-
-  <!-- Bottom Divider -->
-  <div class="blog-article-divider-wrapper">
-    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 L0,30 Q100,18 200,28 T400,22 Q500,28 600,18 T800,25 Q900,18 1000,26 T1200,20 L1200,60 Z" fill="var(--bg-light)"/>
-    </svg>
-  </div>
-
 </section>
 
-<section class="blog-blog-article-body-section" data-layout-spec="undefined-blog-article-body" dir="rtl">
-  <div class="blog-article-container">
+<section class="blog-blog-article-body-section" data-layout-spec="איך-לבחור-פאזל-ראשון-למתחילים-מדריך-מקצועי-blog-article-body" dir="rtl">
+  <div class="article-bg-pattern"></div>
+  <div class="article-container">
 
     <!-- Back Link -->
     <a href="/blog" class="back-to-blog">← חזרה לבלוג</a>
 
-    <!-- Social Share Bar (Top) -->
+    <!-- Top Social Share Bar -->
     <div class="social-share-bar" style="display:flex;align-items:center;gap:12px;margin:20px 0;">
       <span class="share-label">שתף:</span>
-      <button class="share-btn share-copy" title="העתק קישור" onclick="navigator.clipboard&amp;&amp;navigator.clipboard.writeText(window.location.href)">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <button class="share-btn share-copy" title="העתק קישור" onclick="navigator.clipboard.writeText(window.location.href)">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
       </button>
-      <a href="https://www.linkedin.com/shareArticle?url=" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" title="שתף בלינקדאין">
+      <a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener" title="שתף בלינקדאין">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
-      <a href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noopener noreferrer" class="share-btn share-twitter" title="שתף בטוויטר">
+      <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noopener" title="שתף בטוויטר">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener noreferrer" class="share-btn share-facebook" title="שתף בפייסבוק">
+      <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener" title="שתף בפייסבוק">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       </a>
-      <a href="https://wa.me/?text=" target="_blank" rel="noopener noreferrer" class="share-btn share-whatsapp" title="שתף בוואטסאפ">
+      <a class="share-btn share-whatsapp" href="https://wa.me/?text=" target="_blank" rel="noopener" title="שתף בוואטסאפ">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
       </a>
     </div>
 
     <!-- Hero Image -->
     <figure class="article-hero-figure">
-      <img data-context="Colorful collection of toys for children ages 3-18 in a toy store: puzzles, car tracks, building blocks, and educational games arranged on a bright display table. Vibrant colors, playful atmosphere, Fun Toys store branding." width="1200" height="500" src="/assets/fun-toys-section-blog-article-body-blog-blog-article-body-image-1.webp" alt="מגוון צעצועים לילדים בחנות Fun Toys - פאזלים, מסלולי מכוניות ומשחקים חינוכיים" class="article-hero-img">
-      <figcaption class="article-hero-caption">צעצועים לכל גיל — מגיל 3 ועד 18 בחנות Fun Toys</figcaption>
+      <img data-context="A colorful flat-lay photo of various jigsaw puzzles arranged on a bright surface — a 12-piece puzzle for toddlers, a 100-piece puzzle with animals, and a 500-piece landscape puzzle. Includes puzzle boxes with age labels. Warm, playful toy store aesthetic with purple and teal accents." width="900" height="480" src="/assets/fun-toys-section-blog-article-body-blog-blog-article-body-image-1.webp" alt="מגוון פאזלים לגילאים שונים — מדריך לבחירת פאזל ראשון" class="article-hero-img">
+      <figcaption class="article-hero-caption">בחירת הפאזל הנכון יכולה להפוך את החוויה הראשונה לכיפית ומוצלחת</figcaption>
     </figure>
 
     <!-- Article Header -->
     <header class="article-header">
+      <h1 class="article-title">איך לבחור פאזל ראשון למתחילים — מדריך מקצועי</h1>
       <div class="article-meta">
-        <span class="meta-tag">מדריכי קנייה</span>
+        <span class="meta-item">
+          <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          15 ביוני 2025
+        </span>
         <span class="meta-divider">·</span>
-        <time class="meta-date" datetime="2024-06-01">1 ביוני 2024</time>
+        <span class="meta-item">
+          <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          6 דקות קריאה
+        </span>
         <span class="meta-divider">·</span>
-        <span class="meta-read-time">6 דקות קריאה</span>
+        <span class="meta-tag">פאזלים וחשיבה</span>
       </div>
-      <h1 class="article-title">איך בוחרים את הצעצוע המושלם לכל גיל? המדריך המלא של Fun Toys</h1>
-      <p class="article-subtitle">בחירת צעצוע מתאים היא אמנות — הנה כל מה שצריך לדעת כדי לשמח כל ילד, בכל גיל ובכל עונה</p>
     </header>
 
     <!-- Article Body -->
     <article class="article-body">
 
-      <p>כל הורה מכיר את הרגע הזה: עומדים מול מדפי הצעצועים, מוצפים בצבעים ובאפשרויות, ולא בטוחים מה יגרום לילד שלהם לזנק מאושר. הבשורה הטובה? עם קצת מידע וכמה כללי אצבע פשוטים, הבחירה הופכת להרבה יותר קלה — ואפילו מהנה.</p>
+      <p>פאזל הוא אחד הצעצועים הקלאסיים והמועילים ביותר שניתן לתת לילד — אך כשמגיעים לחנות ורואים מאות אפשרויות על המדפים, קל מאוד להרגיש אבודים. כמה חלקים? איזה נושא? באיזה גיל מתאים להתחיל? במדריך זה נסביר בדיוק איך לבחור את הפאזל הראשון שיהפוך את החוויה למהנה, מוצלחת ומעוררת תשוקה לעוד.</p>
 
-      <h2>שלב ראשון: להכיר את שלבי ההתפתחות</h2>
+      <h2>מדוע פאזל הוא כלי חינוכי מצוין?</h2>
+      <p>לפני שצוללים לטיפים הפרקטיים, חשוב להבין מה הופך את הפאזל לכלי כה עוצמתי. פתרון פאזל מפתח מיומנויות קוגניטיביות כמו חשיבה לוגית, זיכרון חזותי ויכולת פתרון בעיות. בנוסף, הוא מחזק את הסבלנות, הריכוז ותחושת ההישג — במיוחד כשמשלימים אותו לבד בפעם הראשונה. עבור ילדים בגיל הרך, פאזלים גם מפתחים מוטוריקה עדינה ותיאום עין-יד.</p>
 
-      <p>צעצועים טובים הם כאלו שפוגשים את הילד בדיוק איפה שהוא נמצא מבחינה התפתחותית. ילד בגיל 3–5 נמצא בשיא ההתפתחות המוטורית והדמיונית — בלוקים לבנייה, פאזלים פשוטים עם חלקים גדולים, ומשחקי תפקידים הם חבריו הטובים ביותר. הם מחזקים את אחיזת האצבעות, מפתחים את יכולת הריכוז ומזינים את הדמיון הפורה.</p>
+      <h2>שלב ראשון: התאמה לגיל</h2>
+      <p>הכלל הזהב בבחירת פאזל ראשון הוא פשוט: <strong>עדיף קל מדי מאשר קשה מדי</strong>. פאזל שמתסכל ומביא לוויתור מוקדם עלול לגרום לילד להתרחק מהנושא לזמן רב. הנה מדריך גיל מהיר:</p>
+      <ul class="article-list">
+        <li><strong>גיל 2–3:</strong> פאזלים מעץ עם 3–6 חלקים גדולים, עם ידיות לאחיזה. נושאים פשוטים כמו חיות, פירות או כלי רכב.</li>
+        <li><strong>גיל 3–5:</strong> פאזלים עם 12–24 חלקים, רצוי עם תמונה גדולה וצבעונית. אפשר להתחיל עם פאזלי רצפה גדולים.</li>
+        <li><strong>גיל 5–7:</strong> 48–100 חלקים. בגיל זה ילדים מתחילים להבין אסטרטגיה — מסגרת קודם, אחר כך פנים.</li>
+        <li><strong>גיל 7–10:</strong> 100–300 חלקים. ניתן להציג נושאים מורכבים יותר כמו מפות, חיות בר, או דמויות אהובות.</li>
+        <li><strong>גיל 10 ומעלה:</strong> 500–1000 חלקים ויותר. כאן מתחיל הפאזל ה"רציני" עם פרטים עדינים ואתגר אמיתי.</li>
+      </ul>
 
-      <p>ילדים בגילאי 6–9 מתחילים לאהוב אתגרים אמיתיים. פאזלים עם יותר חלקים, משחקי לוח, ערכות בנייה כמו לגו, ומסלולי מכוניות עם פניות ומוקשים — כל אלו מפתחים חשיבה לוגית, תכנון אסטרטגי ועבודת צוות. בגיל הזה, הצעצוע הוא גם כלי חברתי — משהו לשחק עם חברים.</p>
+      <h2>איך לבחור נושא שיעניין?</h2>
+      <p>הנושא הוא אחד הגורמים הקריטיים להצלחה. ילד שאוהב דינוזאורים יתמיד הרבה יותר עם פאזל של טי-רקס מאשר עם נוף כפרי. שאלו את הילד מה הוא אוהב — דמויות מסרטים, בעלי חיים, כלי רכב, חלל, טבע — ובחרו בהתאם. כלל פשוט: <strong>כשהתמונה מרגשת, הפאזל מסתיים</strong>.</p>
+      <p>לגבי מבוגרים מתחילים, מומלץ לבחור תמונה עם אזורים מגוונים בצבע ובמרקם — כך קל יותר לזהות ולמיין חלקים. תמונות עם שמיים אחידים או קירות חלקים מקשות על מיון ומיועדות לפאזלרים מנוסים.</p>
 
-      <h2>מה עושים עם ילדים בגיל 10 ומעלה?</h2>
+      <h2>איכות החומרים — לא להתפשר</h2>
+      <p>פאזל ראשון צריך להיות עמיד ומדויק. חלקים שלא מתחברים היטב, שנקרעים בקלות או שהתמונה מתקלפת — הורסים את החוויה. בחרו פאזלים עם:</p>
+      <ul class="article-list">
+        <li>חלקים עבים מקרטון איכותי (לפחות 2 מ"מ לפאזלי ילדים)</li>
+        <li>חיתוך מדויק שמאפשר חיבור ברור ומספק</li>
+        <li>הדפסה עמידה שלא מתקלפת לאחר שימוש חוזר</li>
+        <li>קופסה עם תמונה ברורה של התוצאה הסופית לעיון בזמן העבודה</li>
+      </ul>
 
-      <p>ילדים גדולים יותר, בגילאי 10–14, מחפשים צעצועים שמציבים להם אתגר אמיתי. ערכות רובוטיקה, משחקי אסטרטגיה מורכבים, מסלולי מכוניות חשמליות בניהול עצמי — אלו מספקים שעות של עיסוק ממוקד ותחושת הישג. בגיל הזה חשוב לשים לב לתחומי העניין הספציפיים של הילד: יש כאלו שנמשכים לבנייה, אחרים לאמנות, ויש שמשתגעים על ניסויים מדעיים.</p>
+      <h2>טיפים להצלחה בפאזל הראשון</h2>
+      <p>אפילו עם הפאזל הנכון, כמה טיפים קטנים יכולים להפוך את הפגישה הראשונה לחוויה מנצחת:</p>
+      <ul class="article-list">
+        <li><strong>התחילו ביחד:</strong> שבו עם הילד לפחות בהתחלה. הדגימו את שיטת המסגרת ועודדו.</li>
+        <li><strong>הפכו את החלקים כולם כלפי מעלה</strong> לפני שמתחילים — זה חוסך תסכול רב.</li>
+        <li><strong>מיינו לפי צבע:</strong> ערמות קטנות לפי גוון עוזרות לארגן את החשיבה.</li>
+        <li><strong>אל תמהרו:</strong> פאזל הוא פעילות של זמן איכות, לא תחרות מהירות.</li>
+        <li><strong>שמרו את הפאזל המוגמר:</strong> צלמו אותו לפני פירוק — זה מחזק את תחושת ההישג.</li>
+      </ul>
 
-      <p>בני נוער בגילאי 15–18 לרוב מעדיפים חוויות — ערכות DIY מתקדמות, משחקי קלפים אסטרטגיים, ציוד לצילום או ליצירה. הצעצוע בגיל הזה הוא לרוב כלי לביטוי עצמי ולפיתוח תחביב אמיתי.</p>
+      <h2>מתי לעלות רמה?</h2>
+      <p>הסימן הטוב ביותר לכך שהגיע הזמן לפאזל מאתגר יותר הוא כשהילד מסיים את הפאזל הנוכחי בקלות ובלי עזרה, ומבקש עוד. אל תמתינו עד שהוא ישתעמם — עברו לשלב הבא בזמן שהמוטיבציה גבוהה. העלאה הדרגתית של 30–50% במספר החלקים היא קצב טוב ובריא.</p>
 
-      <h2>שלושת הכללים הזהובים לבחירת צעצוע</h2>
-
-      <p><strong>בטיחות תמיד קודמת.</strong> ודאו שהצעצוע מתאים לגיל המצוין על האריזה, שאין חלקים קטנים לילדים מתחת לגיל 3, ושהוא עומד בתקני הבטיחות הישראליים והאירופאיים. ב-Fun Toys כל מוצר עובר בדיקה קפדנית לפני שמגיע למדף.</p>
-
-      <p><strong>ערך חינוכי לצד כיף.</strong> הצעצועים הטובים ביותר הם אלו שהילד לא מרגיש שהוא "לומד" — אבל בפועל מפתח כישורים חשובים. פאזל שמחזק את הסבלנות, מסלול מכוניות שמלמד על כוחות פיזיקה, ערכת בנייה שמפתחת חשיבה מרחבית.</p>
-
-      <p><strong>התאמה לאישיות הילד.</strong> ילד ביישן עשוי לפרוח עם משחק יצירתי שמאפשר לו לבנות לבד, בעוד ילד חברותי יעדיף משחק קבוצתי. הכרת הילד היא הפרמטר החשוב ביותר בכל בחירה.</p>
-
-      <h2>מתנה לאירוע מיוחד? הנה הטיפ שלנו</h2>
-
-      <p>כשאתם קונים מתנה לאירוע — יום הולדת, חג, או סתם כי בא לכם לשמח — שאלו את ההורים מה הילד אוהב ומה כבר יש לו. אין טעם לקנות ערכת לגו נוספת אם כבר יש בבית שלוש. ב-Fun Toys אנחנו תמיד שמחים לייעץ ולעזור לכם למצוא את המתנה המושלמת — בין אם אתם יודעים בדיוק מה אתם מחפשים ובין אם אתם זקוקים לקצת השראה.</p>
-
-      <p>בסופו של דבר, הצעצוע הטוב ביותר הוא זה שגורם לעיניים להאיר — ואנחנו כאן כדי לעזור לכם למצוא אותו.</p>
+      <p>בחנות Fun Toys תמצאו מגוון רחב של פאזלים לכל גיל ורמה — מפאזלי עץ לפעוטות ועד פאזלי 1000 חלקים לבני נוער ולמבוגרים. הצוות שלנו ישמח לעזור לכם לבחור את הפאזל המושלם שיפתח עולם שלם של חשיבה ויצירה.</p>
 
     </article>
 
-    <!-- Social Share Bar (Bottom) -->
+    <!-- Bottom Social Share Bar -->
     <div class="social-share-bar" style="display:flex;align-items:center;gap:12px;margin:20px 0;">
       <span class="share-label">שתף:</span>
-      <button class="share-btn share-copy" title="העתק קישור" onclick="navigator.clipboard&amp;&amp;navigator.clipboard.writeText(window.location.href)">
-        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <button class="share-btn share-copy" title="העתק קישור" onclick="navigator.clipboard.writeText(window.location.href)">
+        <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
       </button>
-      <a href="https://www.linkedin.com/shareArticle?url=" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" title="שתף בלינקדאין">
+      <a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener" title="שתף בלינקדאין">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
-      <a href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noopener noreferrer" class="share-btn share-twitter" title="שתף בטוויטר">
+      <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet?url=" target="_blank" rel="noopener" title="שתף בטוויטר">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       </a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener noreferrer" class="share-btn share-facebook" title="שתף בפייסבוק">
+      <a class="share-btn share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener" title="שתף בפייסבוק">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
       </a>
-      <a href="https://wa.me/?text=" target="_blank" rel="noopener noreferrer" class="share-btn share-whatsapp" title="שתף בוואטסאפ">
+      <a class="share-btn share-whatsapp" href="https://wa.me/?text=" target="_blank" rel="noopener" title="שתף בוואטסאפ">
         <svg data-element-type="icon" data-icon-type="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
       </a>
     </div>
 
-    <!-- Back Link Bottom -->
-    <a href="/blog" class="back-to-blog back-to-blog--bottom">← חזרה לבלוג</a>
+    <!-- Bottom Back Link -->
+    <a href="/blog" class="back-to-blog back-to-blog-bottom">← חזרה לבלוג</a>
 
   </div>
 </section></main>
