@@ -1,5 +1,5 @@
 # Clean URL redirects for Render static hosting
-# Generated: 2026-03-29T18:39:23.240Z
+# Generated: 2026-03-30T09:18:16.890Z
 # NOTE: Render uses render.yaml for routing, not _redirects (that is Netlify)
 # This file is kept for reference only
 
@@ -17,6 +17,11 @@
 /terms  /terms.html  200!
 /thank-you  /thank-you.html  200!
 /contact  /contact.html  200!
+/blog  /blog.html  200!
+/blog%2F%D7%90%D7%99%D7%9A-%D7%9C%D7%91%D7%97%D7%95%D7%A8-%D7%A4%D7%90%D7%96%D7%9C-%D7%A8%D7%90%D7%A9%D7%95%D7%9F-%D7%9C%D7%9E%D7%AA%D7%97%D7%99%D7%9C%D7%99%D7%9D-%D7%9E%D7%93%D7%A8%D7%99%D7%9A-%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99  /blog/איך-לבחור-פאזל-ראשון-למתחילים-מדריך-מקצועי/index.html  200!
+/blog%2F5-%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9C%D7%91%D7%A0%D7%99%D7%99%D7%AA-%D7%9E%D7%A1%D7%9C%D7%95%D7%9C-%D7%9E%D7%9B%D7%95%D7%A0%D7%99%D7%95%D7%AA-%D7%9E%D7%95%D7%A9%D7%9C%D7%9D-%D7%91%D7%91%D7%99%D7%AA  /blog/5-טיפים-לבניית-מסלול-מכוניות-מושלם-בבית/index.html  200!
+/blog%2F%D7%A6%D7%A2%D7%A6%D7%95%D7%A2%D7%99-stem-%D7%9C%D7%99%D7%9C%D7%93%D7%99%D7%9D-%D7%9C%D7%9E%D7%94-%D7%96%D7%94-%D7%97%D7%A9%D7%95%D7%91-%D7%95%D7%9E%D7%94-%D7%9B%D7%93%D7%90%D7%99-%D7%9C%D7%91%D7%97%D7%95%D7%A8  /blog/צעצועי-stem-לילדים-למה-זה-חשוב-ומה-כדאי-לבחור/index.html  200!
+/blog%2F%D7%90%D7%99%D7%9A-%D7%A6%D7%A2%D7%A6%D7%95%D7%A2%D7%99%D7%9D-%D7%99%D7%A6%D7%99%D7%A8%D7%AA%D7%99%D7%99%D7%9D-%D7%9E%D7%A4%D7%AA%D7%97%D7%99%D7%9D-%D7%90%D7%AA-%D7%94%D7%93%D7%9E%D7%99%D7%95%D7%9F-%D7%A9%D7%9C-%D7%99%D7%9C%D7%93%D7%99%D7%9D  /blog/איך-צעצועים-יצירתיים-מפתחים-את-הדמיון-של-ילדים/index.html  200!
 
 # Legal pages - redirect old .html URLs to friendly URLs
 /privacy.html  /privacy  301
