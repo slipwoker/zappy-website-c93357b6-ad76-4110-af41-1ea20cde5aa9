@@ -4,82 +4,53 @@
 
 ## Pages
 
-### צעצועים מיוחדים לגילאי 3-18 — Fun Toys
+### בית
 https://fun-toys.zappy5.app
 גלו צעצועים מרתקים, פאזלים ומסלולי מכוניות לכל הגילאים. Fun Toys מציעה מגוון עצום של צעצועים איכוtiים שילדים אוהבים. היכנסו עכשיו למבחר המושלם!
 
-### עיינו באוספי הצעצועים המרהיבים שלנו — Fun Toys
-https://fun-toys.zappy5.app/collections
-אוספי צעצועים מדהימים: פאזלים מאתגרים, מסלולי מכוניות מותקים וצעצועים מיוחדים לכל גיל. גלו את הקולקציה המושלמת לילדיכם בהתאם לגיל ותחומי עניין.
-
-### הסיפור שלנו והמחויבות לילדים — Fun Toys
+### אודות
 https://fun-toys.zappy5.app/about
 Fun Toys מתמחה בצעצועים מיוחדים לגילאי 3-18. למדו על הערכים שלנו, המומחיות בבחירת צעצועים איכותיים והמסירות שלנו לשמח כל ילד ונער.
 
-### מוצרים
-https://fun-toys.zappy5.app/products
-המוצרים שלנו - Fun Toys
+### אוספים
+https://fun-toys.zappy5.app/collections
+אוספי צעצועים מדהימים: פאזלים מאתגרים, מסלולי מכוניות מותקים וצעצועים מיוחדים לכל גיל. גלו את הקולקציה המושלמת לילדיכם בהתאם לגיל ותחומי עניין.
 
-### עגלת קניות
-https://fun-toys.zappy5.app/cart
-עגלת הקניות שלך
-
-### תשלום
-https://fun-toys.zappy5.app/checkout
-תשלום
-
-### התחברות
-https://fun-toys.zappy5.app/login
-התחברות לקוחות
-
-### החשבון שלי
-https://fun-toys.zappy5.app/account
-החשבון שלי
-
-### ההזמנה התקבלה!
-https://fun-toys.zappy5.app/order-success
-תודה על ההזמנה
-
-### פרטי המוצר
-https://fun-toys.zappy5.app/product/:slug
-פרטי המוצר - Fun Toys
-
-### מוצרים
-https://fun-toys.zappy5.app/category/:slug
-מוצרים - Fun Toys
-
-### Thank You | Fun Toys
-https://fun-toys.zappy5.app/thank-you
-Fun Toys - Thank You | Fun Toys
-
-### נשמח לעזור לכם למצוא את הצעצוע המושלם — Fun Toys
+### צור קשר
 https://fun-toys.zappy5.app/contact
 יש לכם שאלות על הצעצועים שלנו? צריכים עזרה בבחירת המתנה המושלמת? צוות Fun Toys כאן בשבילכם. צרו קשר עכשיו ונמצא יחד את הצעצוע שיביא חיוך!
 
-### בלוג
-https://fun-toys.zappy5.app/blog
+### Products
+https://fun-toys.zappy5.app/products
+המוצרים שלנו - Fun Toys
 
-### איך לבחור פאזל ראשון למתחילים — מדריך מקצועי
-https://fun-toys.zappy5.app/blog/איך-לבחור-פאזל-ראשון-למתחילים-מדריך-מקצועי
+### Cart
+https://fun-toys.zappy5.app/cart
+עגלת הקניות שלך
 
-### 5 טיפים לבניית מסלול מכוניות מושלם בבית
-https://fun-toys.zappy5.app/blog/5-טיפים-לבניית-מסלול-מכוניות-מושלם-בבית
+### Checkout
+https://fun-toys.zappy5.app/checkout
+תשלום
 
-### צעצועי STEM לילדים — למה זה חשוב ומה כדאי לבחור
-https://fun-toys.zappy5.app/blog/צעצועי-stem-לילדים-למה-זה-חשוב-ומה-כדאי-לבחור
+### Login
+https://fun-toys.zappy5.app/login
+התחברות לקוחות
 
-### איך צעצועים יצירתיים מפתחים את הדמיון של ילדים
-https://fun-toys.zappy5.app/blog/איך-צעצועים-יצירתיים-מפתחים-את-הדמיון-של-ילדים
+### Account
+https://fun-toys.zappy5.app/account
+החשבון שלי
 
-### מדריך מתנות ליום הולדת — לפי גיל ותקציב
-https://fun-toys.zappy5.app/blog/מדריך-מתנות-ליום-הולדת-לפי-גיל-ותקציב
+### Order Success
+https://fun-toys.zappy5.app/order-success
+תודה על ההזמנה
 
-### המדריך המלא לבחירת צעצועים בטוחים לגיל הרך
-https://fun-toys.zappy5.app/blog/המדריך-המלא-לבחירת-צעצועים-בטוחים-לגיל-הרך
+### Product Detail
+https://fun-toys.zappy5.app/product/:slug
+פרטי המוצר - Fun Toys
 
-### פינת משחק
-https://fun-toys.zappy5.app/blog/איך-לסדר-פינת-משחק-שמקדמת-עצמאות-וסדר
-Fun Toys - איך לסדר פינת משחק שמקדמת עצמאות וסדר
+### Category
+https://fun-toys.zappy5.app/category/:slug
+מוצרים - Fun Toys
 
 ## Legal & Policy
 

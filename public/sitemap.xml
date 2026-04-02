@@ -2,145 +2,91 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fun-toys.zappy5.app</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/collections</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://fun-toys.zappy5.app/about</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/products</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/cart</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/checkout</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/login</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/account</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/order-success</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/product/:slug</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/category/:slug</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fun-toys.zappy5.app/thank-you</loc>
-    <lastmod>2026-03-31</lastmod>
+    <loc>https://fun-toys.zappy5.app/collections</loc>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://fun-toys.zappy5.app/contact</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/products</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog/איך-לבחור-פאזל-ראשון-למתחילים-מדריך-מקצועי</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/cart</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog/5-טיפים-לבניית-מסלול-מכוניות-מושלם-בבית</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/checkout</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog/צעצועי-stem-לילדים-למה-זה-חשוב-ומה-כדאי-לבחור</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/login</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog/איך-צעצועים-יצירתיים-מפתחים-את-הדמיון-של-ילדים</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/account</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog/מדריך-מתנות-ליום-הולדת-לפי-גיל-ותקציב</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/order-success</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog/המדריך-המלא-לבחירת-צעצועים-בטוחים-לגיל-הרך</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/product/:slug</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fun-toys.zappy5.app/blog/איך-לסדר-פינת-משחק-שמקדמת-עצמאות-וסדר</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://fun-toys.zappy5.app/category/:slug</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://fun-toys.zappy5.app/privacy</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://fun-toys.zappy5.app/terms</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://fun-toys.zappy5.app/accessibility</loc>
-    <lastmod>2026-03-31</lastmod>
+    <lastmod>2026-04-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -242,502 +242,50 @@
     <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
     <!-- Mickidum Accessibility Toolbar -->
     <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
-
-          <style id="zappy-cta-mobile-style">
-            /* Hide CTA list item on desktop (tablets and up) */
-            @media (min-width: 769px) {
-              .nav-cta-item-mobile {
-                display: none !important;
-              }
-            }
-            /* Show CTA list item on mobile */
-            @media (max-width: 768px) {
-              .nav-cta-item-mobile {
-                display: list-item !important;
-              }
-            }
-          </style>
-        
-          <style id="zappy-nested-menu-style">
-            /* Desktop only: vertically center nav items */
-            @media (min-width: 769px) {
-              .nav-menu,
-              #navMenu {
-                align-items: center !important;
-              }
-            }
-            
-            /* Menu Group styling (non-clickable parent) - TOP LEVEL ONLY with ultra-specific selector */
-            .nav-menu > li > .menu-group-title,
-            #navMenu > li > .menu-group-title {
-              display: inline-block !important;
-              padding: 0.5rem 1rem !important;
-              color: var(--nav-color) !important;
-              font-weight: 500 !important;
-              line-height: 1.7 !important;
-              cursor: default !important;
-              user-select: none !important;
-              vertical-align: middle !important;
-              text-decoration: none !important;
-              margin: 0 !important;
-              transition: color 0.3s ease !important;
-            }
-            
-            .nav-menu > li > .menu-group-title:hover,
-            #navMenu > li > .menu-group-title:hover {
-              color: var(--nav-hover-color) !important;
-            }
-            
-            /* Desktop: show submenu on Menu Group hover */
-            li:has(.menu-group-title):hover > .sub-menu {
-              opacity: 1 !important;
-              visibility: visible !important;
-              transform: translateY(0) !important;
-              pointer-events: auto !important; /* Enable interaction when hovering */
-            }
-            
-            /* Hide menu items marked as hidden (overrides hover states) */
-            .zappy-hidden-menu-item,
-            li:has(.menu-group-title):hover > .sub-menu .zappy-hidden-menu-item {
-              display: none !important;
-              opacity: 0 !important;
-              visibility: hidden !important;
-              pointer-events: none !important;
-            }
-            
-            /* Keep submenu visible when hovering over the submenu itself */
-            .sub-menu:hover {
-              opacity: 1 !important;
-              visibility: visible !important;
-              pointer-events: auto !important;
-            }
-            
-            /* Nested dropdown menu styles - using more specific selectors */
-            .nav-menu .sub-menu,
-            nav .sub-menu,
-            .navbar .sub-menu {
-              display: block !important; /* Ensure submenu is in the DOM */
-              position: absolute !important;
-              top: 100%;
-              left: 0;
-              right: auto;
-              min-width: 200px;
-              background: white;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-              border-radius: 8px;
-              padding: 8px 0;
-              margin-top: 0px; /* Remove gap to prevent hover loss */
-              opacity: 0 !important;
-              visibility: hidden !important;
-              transform: translateY(-10px);
-              transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-              z-index: 1000;
-              list-style: none;
-              pointer-events: none; /* Prevent interaction when hidden */
-            }
-            
-            /* RTL (Hebrew/Arabic) submenu positioning - align to right instead of left */
-            [dir="rtl"] .nav-menu .sub-menu,
-            [dir="rtl"] nav .sub-menu,
-            [dir="rtl"] .navbar .sub-menu,
-            html[lang="he"] .nav-menu .sub-menu,
-            html[lang="he"] nav .sub-menu,
-            html[lang="he"] .navbar .sub-menu,
-            html[lang="ar"] .nav-menu .sub-menu,
-            html[lang="ar"] nav .sub-menu,
-            html[lang="ar"] .navbar .sub-menu {
-              left: auto;
-              right: 0;
-            }
-            
-            /* Show submenu on parent hover - more specific selectors */
-            .nav-menu li:hover > .sub-menu,
-            nav li:hover > .sub-menu,
-            .navbar li:hover > .sub-menu {
-              opacity: 1 !important;
-              visibility: visible !important;
-              transform: translateY(0) !important;
-              pointer-events: auto !important; /* Enable interaction when visible */
-            }
-            
-            /* Parent item must be relatively positioned */
-            .nav-menu li:has(.sub-menu),
-            nav li:has(.sub-menu),
-            .navbar li:has(.sub-menu) {
-              position: relative;
-            }
-            
-            /* Style for submenu items */
-            .sub-menu li {
-              list-style: none;
-              margin: 0;
-              padding: 0;
-            }
-            
-            .sub-menu a,
-            .sub-menu .menu-group-title {
-              display: block !important;
-              padding: 10px 12px !important;
-              color: #333 !important;
-              font-weight: 600 !important;
-              text-decoration: none;
-              transition: background-color 0.2s;
-              white-space: nowrap;
-              cursor: default;
-            }
-            
-            .sub-menu a:hover {
-              background-color: #f5f5f5;
-            }
-            
-            /* CRITICAL: Override submenu styles for TOP-LEVEL Menu Groups only - must come AFTER submenu styles */
-            .nav-menu > li > .menu-group-title,
-            #navMenu > li > .menu-group-title {
-              display: inline-block !important;
-              padding: 0.5rem 1rem !important;
-              color: var(--nav-color) !important;
-              font-weight: 500 !important;
-              line-height: 1.7 !important;
-              cursor: default !important;
-              user-select: none !important;
-              vertical-align: middle !important;
-              text-decoration: none !important;
-              margin: 0 !important;
-              transition: color 0.3s ease !important;
-            }
-            
-            .nav-menu > li > .menu-group-title:hover,
-            #navMenu > li > .menu-group-title:hover {
-              color: var(--nav-hover-color) !important;
-              background-color: transparent !important;
-            }
-            
-            /* On mobile, show nested menus as expandable accordion */
-            @media (max-width: 768px) {
-              /* Mobile submenu styling */
-              .nav-menu .sub-menu,
-              nav .sub-menu,
-              .navbar .sub-menu {
-                position: static !important;
-                transform: none !important;
-                box-shadow: none !important;
-                background: transparent !important;
-                margin-top: 0 !important;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
-                visibility: hidden;
-                transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease;
-                padding: 0 !important;
-                border-radius: 0 !important;
-              }
-              
-              /* Expanded state */
-              .sub-menu.mobile-expanded {
-                max-height: 500px !important;
-                opacity: 1 !important;
-                visibility: visible !important;
-                padding: 8px 0 8px 16px !important;
-              }
-              
-              /* RTL padding adjustment */
-              [dir="rtl"] .sub-menu.mobile-expanded,
-              html[lang="he"] .sub-menu.mobile-expanded,
-              html[lang="ar"] .sub-menu.mobile-expanded {
-                padding: 8px 16px 8px 0 !important;
-              }
-              
-              /* Disable hover behavior on mobile */
-              .nav-menu li:hover > .sub-menu,
-              nav li:hover > .sub-menu,
-              .navbar li:hover > .sub-menu {
-                opacity: 0;
-                visibility: hidden;
-                pointer-events: none;
-              }
-              
-              /* Enable visibility for expanded submenus */
-              .nav-menu li > .sub-menu.mobile-expanded,
-              nav li > .sub-menu.mobile-expanded,
-              .navbar li > .sub-menu.mobile-expanded {
-                opacity: 1 !important;
-                visibility: visible !important;
-                pointer-events: auto !important;
-              }
-              
-              .sub-menu a {
-                padding: 10px 0 !important;
-                display: block !important;
-                font-size: 14px !important;
-              }
-              
-              .sub-menu a:hover {
-                background-color: transparent !important;
-              }
-              
-              /* Parent item wrapper - flex layout with relative positioning for absolute toggle */
-              .nav-menu li:has(.sub-menu),
-              nav li:has(.sub-menu),
-              .navbar li:has(.sub-menu) {
-                display: flex !important;
-                flex-wrap: wrap !important;
-                align-items: center !important;
-                position: relative !important;
-                min-height: 44px !important;
-              }
-              
-              /* Parent link - takes full width since toggle is absolute (not a flex child) */
-              .nav-menu li:has(.sub-menu) > a,
-              nav li:has(.sub-menu) > a,
-              .navbar li:has(.sub-menu) > a,
-              .nav-menu > li > .menu-group-title,
-              #navMenu > li > .menu-group-title {
-                flex: 1 !important;
-                min-width: 0 !important;
-              }
-              
-              /* Normalize menu-group-title in mobile nav to match link alignment */
-              .nav-menu > li > .menu-group-title,
-              #navMenu > li > .menu-group-title {
-                padding: 0 !important;
-                line-height: inherit !important;
-              }
-              
-              /* Submenu takes full width below parent */
-              .nav-menu li:has(.sub-menu) > .sub-menu,
-              nav li:has(.sub-menu) > .sub-menu,
-              .navbar li:has(.sub-menu) > .sub-menu {
-                flex-basis: 100% !important;
-                width: 100% !important;
-              }
-              
-              /* HIDE EXISTING CHEVRONS/ARROWS from cloned sites to prevent duplicates */
-              .nav-menu li:has(.sub-menu) > a .fa-chevron-down,
-              .nav-menu li:has(.sub-menu) > a .fa-angle-down,
-              .nav-menu li:has(.sub-menu) > a [class*="chevron"],
-              .nav-menu li:has(.sub-menu) > a [class*="arrow"],
-              nav li:has(.sub-menu) > a [class*="chevron"],
-              nav li:has(.sub-menu) > a [class*="arrow"],
-              #navMenu li:has(.sub-menu) > a [class*="chevron"],
-              #navMenu li:has(.sub-menu) > a [class*="arrow"] {
-                display: none !important;
-                visibility: hidden !important;
-              }
-              
-              /* Toggle arrow button - flex child that stretches to match nav-link height */
-              .mobile-submenu-toggle {
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                width: 44px !important;
-                height: auto !important;
-                background: transparent !important;
-                border: none !important;
-                cursor: pointer !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                position: static !important;
-                flex-shrink: 0 !important;
-                align-self: stretch !important;
-                z-index: 2 !important;
-                -webkit-tap-highlight-color: transparent;
-              }
-              
-              .mobile-submenu-toggle::after {
-                content: '' !important;
-                display: block !important;
-                width: 0 !important;
-                height: 0 !important;
-                border-left: 6px solid transparent !important;
-                border-right: 6px solid transparent !important;
-                border-top: 7px solid currentColor !important;
-                transition: transform 0.3s ease !important;
-              }
-              
-              /* Rotate arrow when expanded */
-              .mobile-submenu-toggle.expanded::after {
-                transform: rotate(180deg) !important;
-              }
-            }
-            
-            /* Hide toggle button on desktop */
-            @media (min-width: 769px) {
-              .mobile-submenu-toggle {
-                display: none !important;
-              }
-            }
-          </style>
-          
-          <script id="zappy-mobile-menu-script">
-            // Mobile menu toggle for nested submenus (including Menu Groups)
-            // Uses separate toggle button - link navigates, arrow toggles submenu
-            (function() {
-              function initMobileMenuToggles() {
-                // Only run on mobile
-                if (window.innerWidth > 768) {
-                  // Remove any toggle buttons on desktop
-                  document.querySelectorAll('.mobile-submenu-toggle').forEach(btn => btn.remove());
-                  document.querySelectorAll('.sub-menu.mobile-expanded').forEach(menu => {
-                    menu.classList.remove('mobile-expanded');
-                  });
-                  console.log('[MOBILE MENU] Desktop mode - cleanup done');
-                  return;
-                }
-                
-                console.log('[MOBILE MENU] Initializing mobile menu toggles...');
-                
-                // Find all parent menu items (items with .sub-menu)
-                const menuItemsWithSubmenus = document.querySelectorAll(
-                  '.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)'
-                );
-                
-                console.log('[MOBILE MENU] Found', menuItemsWithSubmenus.length, 'items with submenus');
-                
-                menuItemsWithSubmenus.forEach(function(li) {
-                  // Skip if already has toggle button
-                  if (li.querySelector('.mobile-submenu-toggle')) {
-                    return;
-                  }
-                  
-                  const submenu = li.querySelector('.sub-menu');
-                  const parentLink = li.querySelector(':scope > a') || li.querySelector(':scope > .menu-group-title');
-                  
-                  if (!submenu || !parentLink) return;
-                  
-                  // Create toggle button
-                  const toggleBtn = document.createElement('button');
-                  toggleBtn.className = 'mobile-submenu-toggle';
-                  toggleBtn.setAttribute('aria-label', 'Toggle submenu');
-                  toggleBtn.setAttribute('type', 'button');
-
-                  // Insert toggle button after the link
-                  parentLink.insertAdjacentElement('afterend', toggleBtn);
-                  
-                  console.log('[MOBILE MENU] Created toggle button for:', parentLink.textContent?.trim());
-                  
-                  // Handle toggle button click - only toggles submenu
-                  toggleBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const isExpanded = submenu.classList.contains('mobile-expanded');
-                    
-                    // Close all other submenus first
-                    document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
-                      if (menu !== submenu) {
-                        menu.classList.remove('mobile-expanded');
-                        const otherToggle = menu.parentElement.querySelector('.mobile-submenu-toggle');
-                        if (otherToggle) otherToggle.classList.remove('expanded');
-                      }
-                    });
-                    
-                    // Toggle this submenu
-                    submenu.classList.toggle('mobile-expanded');
-                    toggleBtn.classList.toggle('expanded');
-                    
-                    console.log('[MOBILE MENU] Toggled submenu:', !isExpanded ? 'expanded' : 'collapsed');
-                  });
-                  
-                  // Parent link navigates normally - no preventDefault
-                });
-              }
-              
-              // Initialize on DOM load
-              if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initMobileMenuToggles);
-              } else {
-                initMobileMenuToggles();
-              }
-              
-              // Re-initialize on window resize (but use debounce to avoid too many calls)
-              let resizeTimer;
-              window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(initMobileMenuToggles, 250);
-              });
-              
-              // Also initialize when mobile menu becomes visible
-              // This handles cases where the mobile menu is hidden initially
-              const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                  if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                    const target = mutation.target;
-                    if (target.classList.contains('active') || target.style.display !== 'none') {
-                      console.log('[MOBILE MENU] Mobile menu became visible, re-initializing...');
-                      setTimeout(initMobileMenuToggles, 100);
-                    }
-                  }
-                });
-              });
-              
-              // Observe mobile menu containers
-              const mobileMenus = document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu');
-              mobileMenus.forEach(function(menu) {
-                observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
-              });
-            })();
-          </script>
-        <style>
-      /* Dropdown sub-menu styles */
-      .nav-menu li:has(.sub-menu),
-      nav li:has(.sub-menu),
-      .navbar li:has(.sub-menu) {
-        position: relative;
-      }
-      .nav-menu .sub-menu,
-      nav .sub-menu,
-      .navbar .sub-menu {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        min-width: 220px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        padding: 8px 0;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: all 0.3s ease;
-        z-index: 1000;
-        list-style: none;
-        pointer-events: none;
-      }
-      .nav-menu li:hover > .sub-menu,
-      nav li:hover > .sub-menu,
-      .navbar li:hover > .sub-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      .sub-menu li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .sub-menu a {
-        display: block;
-        padding: 10px 16px;
-        color: #333;
-        font-weight: 500;
-        text-decoration: none;
-        white-space: nowrap;
-        transition: background-color 0.2s;
-      }
-      .sub-menu a:hover {
-        background-color: #f5f5f5;
-      }
-      /* RTL dropdown positioning */
-      [dir="rtl"] .sub-menu,
-      html[lang="he"] .sub-menu,
-      html[lang="ar"] .sub-menu {
-        left: auto;
-        right: 0;
-      }
-    </style>
     <link rel="stylesheet" href="/styles.css">
+
+    <style id="zappy-dropdown-submenu-styles">
+      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
+      /* Base styles for dropdown submenus - parent must be positioned */
+      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
+      /* Submenu base - hidden by default */
+      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
+      /* CRITICAL: Desktop hover styles to show dropdown */
+      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Submenu item styling */
+      .sub-menu li { list-style: none; margin: 0; padding: 0; }
+      .sub-menu a { display: block !important; padding: 10px 16px !important; color: var(--text-dark, #333) !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
+      .sub-menu a:hover { background-color: #f5f5f5; }
+      /* RTL (Hebrew/Arabic) dropdown positioning */
+      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
+      /* Hide empty dropdown menus */
+      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      /* Desktop: show submenu on Menu Group hover */
+      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
+      /* Menu Group title styling */
+      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
+      
+      /* ========== MOBILE SUBMENU STYLES ========== */
+      @media (max-width: 768px) {
+        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
+        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
+        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
+        /* Disable hover behavior on mobile */
+        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
+        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; position: relative !important; min-height: 44px !important; }
+        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; min-width: 0 !important; }
+        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; min-width: 0 !important; padding: 0 !important; line-height: inherit !important; }
+        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu, .navbar li:has(.sub-menu) > .sub-menu, #navMenu li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
+        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
+        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: auto !important; background: transparent !important; border: none !important; cursor: pointer !important; color: var(--text-dark) !important; position: static !important; flex-shrink: 0 !important; align-self: stretch !important; z-index: 2 !important; padding: 0 !important; margin: 0 !important; }
+        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
+        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
+        .sub-menu a { padding: 10px 0 !important; display: block !important; color: var(--text-dark) !important; }
+        .navbar .sub-menu li a, nav.navbar .sub-menu li a, .zappy-products-dropdown .sub-menu a { color: var(--text-dark) !important; }
+      }
+      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
+    </style>
 
     <style id="zappy-widget-visibility">
       #mic-access-tool-general-button, .mic-access-tool-general-button,
@@ -765,7 +313,7 @@
     </div>
   
 <script>window.ZAPPY_WEBSITE_ID = "c93357b6-ad76-4110-af41-1ea20cde5aa9";window.ZAPPY_API_BASE = (window.location.pathname.includes('/preview') ? "http://localhost:5001" : "https://qaapi.zappy5.com");</script>
-  <nav class="navbar" dir="rtl" style="background-color: transparent; background: transparent; backdrop-filter: none; box-shadow: none">
+  <nav class="navbar" dir="rtl">
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
     <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -788,7 +336,9 @@
       </a>
     </div>
     
-    <ul class="nav-menu" id="navMenu"><li><a href="/collections">אוספים</a></li><li><a href="/about">אודות</a></li><li class="menu-item-has-children zappy-products-dropdown">
+    <ul class="nav-menu" id="navMenu">
+
+    <li class="menu-item-has-children zappy-products-dropdown">
       <a href="/products">
         מוצרים
         <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -799,7 +349,8 @@
         <li><a href="/products">כל המוצרים</a></li>
         <!-- Categories will be loaded dynamically -->
       </ul>
-    </li><li style="display: none !important;" class="zappy-hidden-menu-item"><a href="/thank-you">Thank You | Fun Toys</a></li><li><a href="/blog" style="color: inherit; text-decoration: none; font-weight: 500;">בלוג</a> <a href="/contact">צור קשר</a><ul class="sub-menu"><li><a href="/blog/איך-לבחור-פאזל-ראשון-למתחילים-מדריך-מקצועי" class="nav-link">איך לבחור פאזל ראשון למתחילים — מדריך מקצועי</a></li><li><a href="/blog/5-טיפים-לבניית-מסלול-מכוניות-מושלם-בבית" class="nav-link">5 טיפים לבניית מסלול מכוניות מושלם בבית</a></li><li><a href="/blog/צעצועי-stem-לילדים-למה-זה-חשוב-ומה-כדאי-לבחור" class="nav-link">צעצועי STEM לילדים — למה זה חשוב ומה כדאי לבחור</a></li><li><a href="/blog/איך-צעצועים-יצירתיים-מפתחים-את-הדמיון-של-ילדים" class="nav-link">איך צעצועים יצירתיים מפתחים את הדמיון של ילדים</a></li><li><a href="/blog/מדריך-מתנות-ליום-הולדת-לפי-גיל-ותקציב" class="nav-link">מדריך מתנות ליום הולדת — לפי גיל ותקציב</a></li><li><a href="/blog/המדריך-המלא-לבחירת-צעצועים-בטוחים-לגיל-הרך" class="nav-link">המדריך המלא לבחירת צעצועים בטוחים לגיל הרך</a></li><li><a href="/blog/איך-לסדר-פינת-משחק-שמקדמת-עצמאות-וסדר" class="nav-link">פינת משחק</a></li></ul></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-count">0</span></a><div class="nav-search-box">
+    </li>
+  <li><a href="/about">אודות</a></li><li><a href="/collections">אוספים</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-count">0</span></a><div class="nav-search-box">
     <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
     <button class="nav-search-btn" id="nav-search-btn" title="חיפוש">
       <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
@@ -822,144 +373,149 @@
   
   
   <main>
-    
-
-    
-  
-
-    
-  
-
-
-
-
-
-
-
-
-  <section class="index-hero-section" data-layout-spec="בית-hero" data-hero-type="fullscreen-scrim" id="zappy-section-1773143626558-3381" style="position: relative; overflow: hidden; --zappy-bg-overlay: rgba(20, 18, 48, 0.44); margin-top: -163px !important; padding-top: 163px !important; background-image: linear-gradient(rgba(20, 18, 48, 0.44), rgba(20, 18, 48, 0.44)), url(&quot;assets/business-general-hero-upload-1774803698872.webp&quot;); background-size: cover; background-position: center; background-repeat: no-repeat; --zappy-bg-image: url(&quot;assets/business-general-hero-upload-1774803698872.webp&quot;)" data-zappy-bg-type="image" data-zappy-bg-color="" data-zappy-bg-image="assets/business-general-hero-upload-1774803698872.webp" data-zappy-bg-overlay-color="#141230" data-zappy-bg-overlay-opacity="44" data-zappy-bg-video-type="" data-zappy-bg-video-url="">
+    <section class="index-hero-section" data-layout-spec="בית-hero" data-hero-type="fullscreen-scrim">
   <!-- Background Image -->
-  <img data-hero-bg="true" data-placeholder="index-hero-bg" data-context="Premium lifestyle photograph inside a modern, colorful toy store featuring vibrant car tracks and puzzle pieces. Shot from a low angle showing wooden shelves with organized toys, colorful race tracks with loops visible in the foreground, scattered puzzle pieces on a clean wooden surface. Warm, inviting lighting with shallow depth of field. Professional retail photography with rich colors (blues, purples, reds, yellows) but controlled composition. Cinematic quality with subtle film grain texture. Background slightly blurred to create depth. Fun Toys branding subtly visible. Lifestyle editorial style for a premium toy retailer." width="1920" height="1080" src="/assets/site-index-hero-bg.webp" alt="חנות צעצועים Fun Toys עם מסלולי מכוניות ופאזלים" class="index-hero-section__bg-image zappy-editable-image" style="display: none" data-zappy-original-bg="hidden">
+  <img data-hero-bg="true" data-placeholder="index-hero-bg" data-context="Premium lifestyle photograph inside a modern, colorful toy store featuring vibrant car tracks and puzzle pieces. Shot from a low angle showing wooden shelves with organized toys, colorful race tracks with loops visible in the foreground, scattered puzzle pieces on a clean wooden surface. Warm, inviting lighting with shallow depth of field. Professional retail photography with rich colors (blues, purples, reds, yellows) but controlled composition. Cinematic quality with subtle film grain texture. Background slightly blurred to create depth. Fun Toys branding subtly visible. Lifestyle editorial style for a premium toy retailer." width="1920" height="1080" src="/assets/site-index-hero-bg.webp" alt="חנות צעצועים Fun Toys עם מסלולי מכוניות ופאזלים" class="index-hero-section__bg-image">
   
   <!-- Gradient Scrim Overlay -->
-  <div class="index-hero-section__scrim" aria-hidden="true" style="display: none" data-zappy-original-bg="hidden"></div>
+  <div class="index-hero-section__scrim" aria-hidden="true"></div>
   
   <!-- Content Overlay Group -->
-  <div class="index-hero-section__content-wrapper" style="position: relative; z-index: 2">
+  <div class="index-hero-section__content-wrapper">
     <div class="index-hero-section__content">
-      <h1 class="index-hero-section__headline">גלו עולם של משחק ותגליות לכל הגילאים</h1>
-      <h3 class="index-hero-section__subtitle">צעצועים מיוחדים, פאזלים מרתקים ומסלולי מכוניות שגדלים עם הילדים שלכם - טסט 2</h3>
+      <h1 class="index-hero-section__headline">גלו עולם של משחק וגילויים לכל גיל</h1>
+      <h3 class="index-hero-section__subtitle">צעצועים מיוחדים, פאזלים מרתקים ומסלולי מכוניות שגדלים עם הילדים שלכם</h3>
       <div class="index-hero-section__cta-group">
-        <a href="/contact" class="index-hero-section__btn index-hero-section__btn--primary" data-element-type="button" data-element-id="btn-1774650899313-y2eaz0j7a" data-native-element="true">דברו עם מומחה צעצועים</a>
-        <a href="/collections" class="index-hero-section__btn index-hero-section__btn--secondary" data-element-type="button" data-element-id="btn-1774650899313-zo8o3bplv" data-native-element="true">גלו את הקולקציות</a>
+        <a href="/contact" class="index-hero-section__btn index-hero-section__btn--primary">דברו עם מומחה צעצועים</a>
+        <a href="/collections" class="index-hero-section__btn index-hero-section__btn--secondary">גלו את הקולקציות</a>
       </div>
     </div>
   </div>
   
   <!-- Bottom Track-Loop Divider -->
-  <div class="index-hero-section__divider-wrapper" style="position: relative; z-index: 2">
-    <svg aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="index-hero-section__divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Main curve fill (fills bottom) -->
       <path d="M0,100 L0,70 Q200,40 400,50 T800,65 Q1000,55 1200,75 L1200,100 Z" fill="var(--bg-light)"></path>
       <!-- Thin route-line stroke following the curve -->
       <path d="M0,70 Q200,40 400,50 T800,65 Q1000,55 1200,75" fill="var(--bg-light)" stroke="rgba(106,59,212,0.35)" stroke-width="2" stroke-linecap="round"></path>
     </svg>
   </div>
-</section><section class="featured-products-section" id="featured-products" data-zappy-dynamic="true">
+</section>
+
+    <section class="featured-products-section" id="featured-products" data-zappy-dynamic="true">
       <div class="container">
         <h2 class="section-title">מוצרים מומלצים</h2>
-        <div class="product-grid featured-grid" id="zappy-featured-products"><div class="no-featured-products">עוד לא נבחרו מוצרים מומלצים. צפו בכל המוצרים שלנו!</div></div>
+        <div class="product-grid featured-grid" id="zappy-featured-products">
+          <div class="loading-products">טוען מוצרים...</div>
+        </div>
         <div class="view-all-products">
-          <a href="/products" class="btn btn-primary" data-element-type="button" data-element-id="btn-1774650899313-0xz0nytsv" data-native-element="true">צפה בכל המוצרים →</a>
+          <a href="/products" class="btn btn-primary">צפה בכל המוצרים →</a>
         </div>
       </div>
-    </section><section class="index-gallery-section" data-layout-spec="בית-gallery" id="zappy-section-1">
+    </section>
+  
+
+    <section class="featured-categories-section" id="featured-categories" data-zappy-dynamic="true">
+      <div class="container">
+        <h2 class="section-title">קנו לפי קטגוריה</h2>
+        <div class="category-blocks" id="zappy-featured-categories">
+          <div class="loading-categories">טוען מוצרים...</div>
+        </div>
+      </div>
+    </section>
+  
+
+<section class="index-gallery-section" data-layout-spec="בית-gallery" id="zappy-section-1">
   <div class="index-gallery-container">
     <div class="index-gallery-content-panel">
       <div class="index-gallery-header">
-        <h2 style="color: var(--text-dark)">אוספים בדיקה שמתאימים <span style="color: red;">לכל סוג</span> של משחק</h2>
-        <p style="text-align: right;">גילינו עבורכם קטגוריות מוקפדות המותאמות לגילאים ולתחומי עניין שונים -&nbsp;<br>מצעצועים לגיל 5 ועד אתגרים מרתקים לבני 18. כל אוסף נבחר בקפידה כדי לעודד יצירתיות, חשיבה וכמובן - המון כיף! טסט<br>שלום שלום וברכה 2</p>
+        <h2>אוספים שמתאימים לכל סוג של משחק</h2>
+        <p>גילינו עבורכם קטגוריות מוקפדות המותאמות לגילאים ולתחומי עניין שונים - מצעצועים לגיל 3 ועד אתגרים מרתקים לבני 18. כל אוסף נבחר בקפידה כדי לעודד יצירתיות, חשיבה וכמובן - המון כיף!</p>
       </div>
 
-      <div class="index-gallery-grid zappy-preserve-css-grid" style="transition: outline 0.15s; display: grid; --zappy-grid-cols: repeat(3, minmax(0px, 1fr)); grid-template-columns: repeat(3, minmax(0px, 1fr));" id="zappy-auto-grid-1772469630273-4s3iuh" data-zappy-auto-grid="true" data-original-item-width="349" data-original-gap="28px" data-zappy-explicit-columns="true"><article class="index-gallery-card" data-grid-item-index="0" style="overflow: hidden !important;">
+      <div class="index-gallery-grid zappy-preserve-css-grid" id="zappy-auto-grid-1775138791657-rchqx3" data-zappy-auto-grid="true" data-original-item-width="349" data-original-gap="28px" style="--zappy-grid-cols: 348.656px 348.672px 348.656px; grid-template-columns: 348.656px 348.672px 348.656px;" data-zappy-explicit-columns="true">
+        <article class="index-gallery-card" data-grid-item-index="0">
           <div class="index-gallery-image-wrapper">
-            <div data-zappy-zoom-wrapper="true" data-element-id="img-1772469630264-bak54lxn0" data-element-type="image" data-zappy-zoom-wrapper-width="347px" data-zappy-zoom-wrapper-height="220px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 347px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 220px !important; display: block !important;"><img data-placeholder="index-gallery-image-2" data-context="Colorful jigsaw puzzles for children, 3D puzzle pieces, brain teaser games, educational puzzles, bright colors, fun toys for 10 year olds, engaging and challenging" width="600" height="400" src="/assets/business-general-service-upload-1774786929930.webp" alt="פאזלים מאתגרים ומעוררי חשיבה" data-element-type="image" data-element-id="img-1772469630264-bak54lxn0" class="zappy-editable-image" style="position: relative; object-position: 50% 50%; width: 346.656px !important; height: 220px !important; object-fit: cover !important; max-width: 100% !important; display: block; margin-top: 0px !important; margin-bottom: 0px !important;" data-original-position="static" data-zappy-original-width="346.65625" data-zappy-original-height="220" data-zappy-zoom="1" data-resize-handler-attached="true"></div>
+            <img data-placeholder="index-gallery-image-1" data-context="Colorful toy car racing track set with loops and ramps, vibrant orange and blue plastic tracks, toy cars mid-race, dynamic action shot, bright playful lighting, fun toys for 8 year olds" width="600" height="400" src="/assets/site-index-gallery-image-1.webp" alt="מסלולי מכוניות ולולאות מרגשים" data-element-type="image" data-element-id="img-1775138791653-fxtqo9fgy" class="zappy-editable-image" data-resize-handler-attached="true" data-original-position="static" style="position: relative;">
+            <div class="index-gallery-overlay"></div>
+          </div>
+          <div class="index-gallery-card-content">
+            <h3>מסלולי מכוניות ולולאות</h3>
+            <p>מסלולים מרגשים עם לולאות, קפיצות ומהירות מטורפת - אתגרים שמרתקים שעות</p>
+            <p class="zappy-editable"><a href="/collections#car-tracks" class="index-gallery-cta">גלו את האוסף</a>
+          </p></div>
+        </article>
+
+        <article class="index-gallery-card" data-grid-item-index="1" style="overflow: hidden !important;">
+          <div class="index-gallery-image-wrapper">
+            <div data-zappy-zoom-wrapper="true" data-element-id="img-1775138791653-26m9808cl" data-element-type="image" data-zappy-zoom-wrapper-width="347px" data-zappy-zoom-wrapper-height="220px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 347px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 220px !important; display: block !important;"><img data-placeholder="index-gallery-image-2" data-context="Colorful jigsaw puzzles for children, 3D puzzle pieces, brain teaser games, educational puzzles, bright colors, fun toys for 10 year olds, engaging and challenging" width="600" height="400" src="/assets/site-index-service-image-2-1775138824622-shqh2b.webp?v=1775138827337" alt="פאזלים מאתגרים ומעוררי חשיבה" data-element-type="image" data-element-id="img-1775138791653-26m9808cl" class="zappy-editable-image" data-resize-handler-attached="true" data-original-position="static" style="position: relative; object-position: 50% 33%; width: 346.672px !important; height: 220px !important; object-fit: cover !important; max-width: 100% !important; display: block; margin: 0px !important;" data-zappy-original-width="346.671875" data-zappy-original-height="220" data-zappy-zoom="1"></div>
             <div class="index-gallery-overlay"></div>
           </div>
           <div class="index-gallery-card-content">
             <h3>פאזלים מאתגרים</h3>
             <p>תשבצים, חידות ופאזלים תלת-מימדיים שמפתחים חשיבה לוגית ויכולת פתרון בעיות</p>
-            <p><a href="/collections#puzzles" class="index-gallery-cta">גלו את האוסף</a>
+            <p class="zappy-editable"><a href="/collections#puzzles" class="index-gallery-cta">גלו את האוסף</a>
           </p></div>
-        </article><article class="index-gallery-card" data-grid-item-index="1">
+        </article>
+
+        <article class="index-gallery-card" data-grid-item-index="2">
           <div class="index-gallery-image-wrapper">
-            <div data-zappy-zoom-wrapper="true" data-element-id="img-1772469630264-94xyj4rc2" data-element-type="image" data-zappy-zoom-wrapper-width="347px" data-zappy-zoom-wrapper-height="220px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 347px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 220px !important; display: block !important;"><img data-placeholder="index-gallery-image-1" data-context="Colorful toy car racing track set with loops and ramps, vibrant orange and blue plastic tracks, toy cars mid-race, dynamic action shot, bright playful lighting, fun toys for 8 year olds" width="600" height="400" src="/assets/site-index-service-image-1-1774808761824-9bdac5.webp?v=1774808763902" alt="מסלולי מכוניות ולולאות מרגשים" data-element-type="image" data-element-id="img-1772469630264-94xyj4rc2" class="zappy-editable-image" style="object-position: 43% 100%; display: block; position: absolute !important; margin-top: 0px !important; margin-bottom: 0px !important; left: 0% !important; top: -17.5927% !important; width: 100% !important; height: 117.593% !important; max-width: none !important; max-height: none !important; object-fit: cover;" data-original-position="static" data-zappy-zoom="1" data-resize-handler-attached="true" data-zappy-original-width="346.671875" data-zappy-original-height="220"></div>
-            <div class="index-gallery-overlay"></div>
-          </div>
-          <div class="index-gallery-card-content">
-            <h3>מסלולי מכוניות ולולאות</h3>
-            <p>תתכוננו לפעלולים! לולאות מסחררות, קפיצות אדירות ומהירות על הקצה - כיף שלא נגמר לשעות!</p>
-            <p><a href="/collections#car-tracks" class="index-gallery-cta">גלו את האוסף</a>
-          </p></div>
-        </article><article class="index-gallery-card" data-grid-item-index="2">
-          <div class="index-gallery-image-wrapper">
-            <img data-placeholder="index-gallery-image-3" data-context="Creative building blocks and construction toys, LEGO-style bricks, colorful modular building sets, kids constructing creative structures, fun toys for children, educational play" width="600" height="400" src="/assets/site-index-gallery-image-3.webp" alt="משחקי בנייה יצירתיים" data-element-type="image" data-element-id="img-1772469630264-2arns8569" class="zappy-editable-image" style="position: relative;" data-original-position="static" data-resize-handler-attached="true">
+            <img data-placeholder="index-gallery-image-3" data-context="Creative building blocks and construction toys, LEGO-style bricks, colorful modular building sets, kids constructing creative structures, fun toys for children, educational play" width="600" height="400" src="/assets/site-index-gallery-image-3.webp" alt="משחקי בנייה יצירתיים" data-element-type="image" data-element-id="img-1775138791653-244orq1sg" class="zappy-editable-image" data-resize-handler-attached="true" data-original-position="static" style="position: relative;">
             <div class="index-gallery-overlay"></div>
           </div>
           <div class="index-gallery-card-content">
             <h3>בנייה יצירתית</h3>
             <p>קוביות, מודולים וערכות בנייה שמעודדות דמיון, תכנון ויצירתיות ללא גבולות</p>
-            <p><a href="/collections#building" class="index-gallery-cta">גלו את האוסף</a>
+            <p class="zappy-editable"><a href="/collections#building" class="index-gallery-cta">גלו את האוסף</a>
           </p></div>
-        </article><article class="index-gallery-card" data-grid-item-index="3">
+        </article>
+
+        <article class="index-gallery-card" data-grid-item-index="3">
           <div class="index-gallery-image-wrapper">
-            <img data-placeholder="index-gallery-image-4" data-context="Children playing dress-up and role-play, toy kitchen set, doctor kit, pretend play costumes, imaginative play for kids, fun toys for 3 year olds, colorful and engaging" width="600" height="400" src="/assets/site-index-gallery-image-4.webp" alt="משחקי דמיון ותפקידים" data-element-type="image" data-element-id="img-1772469630264-8ku54zl41" class="zappy-editable-image" style="position: relative;" data-original-position="static" data-resize-handler-attached="true">
+            <img data-placeholder="index-gallery-image-4" data-context="Children playing dress-up and role-play, toy kitchen set, doctor kit, pretend play costumes, imaginative play for kids, fun toys for 3 year olds, colorful and engaging" width="600" height="400" src="/assets/site-index-gallery-image-4.webp" alt="משחקי דמיון ותפקידים" data-element-type="image" data-element-id="img-1775138791653-8wd6jbw8x" class="zappy-editable-image" data-resize-handler-attached="true" data-original-position="static" style="position: relative;">
             <div class="index-gallery-overlay"></div>
           </div>
           <div class="index-gallery-card-content">
             <h3>דמיון ותפקידים</h3>
             <p>תחפושות, מטבחים, ערכות רופא ועוד - כל מה שצריך כדי לחיות סיפורים מדהימים</p>
-            <p><a href="/collections#role-play" class="index-gallery-cta">גלו את האוסף</a>
+            <p class="zappy-editable"><a href="/collections#role-play" class="index-gallery-cta">גלו את האוסף</a>
           </p></div>
-        </article><article class="index-gallery-card" data-grid-item-index="4">
+        </article>
+
+        <article class="index-gallery-card" data-grid-item-index="4">
           <div class="index-gallery-image-wrapper">
-            <img data-placeholder="index-gallery-image-5" data-context="STEM science toys for kids, microscope, chemistry set, robot building kit, educational science experiments, discovery toys, fun learning for children" width="600" height="400" src="/assets/site-index-gallery-image-5.webp" alt="מדע וגילויים מרתקים" data-element-type="image" data-element-id="img-1772469630264-t04aspjc7" class="zappy-editable-image" style="position: relative;" data-original-position="static" data-resize-handler-attached="true">
+            <img data-placeholder="index-gallery-image-5" data-context="STEM science toys for kids, microscope, chemistry set, robot building kit, educational science experiments, discovery toys, fun learning for children" width="600" height="400" src="/assets/site-index-gallery-image-5.webp" alt="מדע וגילויים מרתקים" data-element-type="image" data-element-id="img-1775138791653-1aikmilnx" class="zappy-editable-image" data-resize-handler-attached="true" data-original-position="static" style="position: relative;">
             <div class="index-gallery-overlay"></div>
           </div>
           <div class="index-gallery-card-content">
             <h3>מדע וגילויים</h3>
             <p>ניסויים מדעיים, רובוטיקה וערכות STEM שהופכים למידה להרפתקה מרתקת</p>
-            <p><a href="/collections#stem" class="index-gallery-cta">גלו את האוסף</a>
+            <p class="zappy-editable"><a href="/collections#stem" class="index-gallery-cta">גלו את האוסף</a>
           </p></div>
-        </article><article class="index-gallery-card" data-grid-item-index="5">
+        </article>
+
+        <article class="index-gallery-card" data-grid-item-index="5">
           <div class="index-gallery-image-wrapper">
-            <img data-placeholder="index-gallery-image-6" data-context="Board games and party games for kids, colorful game pieces, family game night, fun challenges, competitive play, toys for teenagers, engaging group activities" width="600" height="400" src="/assets/site-index-gallery-image-6.webp" alt="משחקי מסיבה ואתגרים" data-element-type="image" data-element-id="img-1772469630264-x8pd8ld4u" class="zappy-editable-image" style="position: relative;" data-original-position="static" data-resize-handler-attached="true">
+            <img data-placeholder="index-gallery-image-6" data-context="Board games and party games for kids, colorful game pieces, family game night, fun challenges, competitive play, toys for teenagers, engaging group activities" width="600" height="400" src="/assets/site-index-gallery-image-6.webp" alt="משחקי מסיבה ואתגרים" data-element-type="image" data-element-id="img-1775138791653-zwnqgnd56" class="zappy-editable-image" data-resize-handler-attached="true" data-original-position="static" style="position: relative;">
             <div class="index-gallery-overlay"></div>
           </div>
           <div class="index-gallery-card-content">
             <h3>משחקי מסיבה ואתגרים</h3>
             <p>משחקי קופסה, אתגרים קבוצתיים ופעילויות שמביאות את כל המשפחה לשולחן</p>
-            <p><a href="/collections#party-games" class="index-gallery-cta">גלו את האוסף</a>
+            <p class="zappy-editable"><a href="/collections#party-games" class="index-gallery-cta">גלו את האוסף</a>
           </p></div>
-        </article><article class="index-gallery-card" style="background-color: rgb(255, 255, 255) !important; overflow: hidden !important;" data-grid-item-index="6">
-          <div class="index-gallery-image-wrapper">
-            <div data-zappy-zoom-wrapper="true" data-element-id="new-grid-img-1774645786363-0-ijhdgw9af" data-element-type="image" data-zappy-zoom-wrapper-width="347px" data-zappy-zoom-wrapper-height="220px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 347px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 220px !important; display: block !important;"><img data-placeholder="image-placeholder" data-context="Board games and party games for kids, colorful game pieces, family game night, fun challenges, competitive play, toys for teenagers, engaging group activities" width="600" height="400" src="/assets/business-general-service-upload-1774645810688.webp" alt="Image placeholder" data-element-type="image" data-element-id="new-grid-img-1774645786363-0-ijhdgw9af" class="zappy-editable-image" style="object-position: 52% 55%; display: block !important; width: 180.518% !important; height: 160% !important; object-fit: cover !important; max-width: none !important; margin: 0px !important; left: -41.8695% !important; top: -33% !important; max-height: none !important; position: absolute !important;" id="new-grid-img-1774645786363-0-ijhdgw9af" data-ai-slot="grid-item-image" data-zappy-original-width="346.65625" data-zappy-original-height="220" data-zappy-zoom="1.6" data-resize-handler-attached="true"></div>
-            <div class="index-gallery-overlay"></div>
-          </div>
-          <div class="index-gallery-card-content">
-            <h3 style="text-align: center;">כבש הכבשים</h3>
-            <p style="text-align: center;">כבשים טיפשים</p><div class="zappy-inserted-element" id="zappy-element-1774646385884-wrzo2d72e" data-element-id="zappy-element-1774646385884-wrzo2d72e" data-element-type="button" style="margin: 20px auto; text-align: right !important; display: flex !important; justify-content: flex-start !important; align-items: flex-start !important; max-width: 307px !important; width: 100% !important; align-self: start !important; height: auto !important;"><a href="/about" class="btn btn-primary" style="text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; border-style: solid; border-width: 2px; border-image: initial; outline: none; border-color: rgb(0, 179, 0) !important; color: rgb(255, 255, 255) !important; flex: 0 0 auto !important; background-color: rgb(0, 179, 0) !important; background-image: none !important;" data-element-type="button" data-text-color="auto" data-element-id="btn-1774646515998-kmtzym1mu" id="btn-1774646515998-kmtzym1mu">לחץ כאן</a></div>
-            </div>
-        </article></div>
+        </article>
+      </div>
 
-      <svg class="index-gallery-track-line" aria-hidden="true" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+      <svg class="index-gallery-track-line" data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
         <path d="M 1100 50 Q 1050 80 1000 90 T 900 100 Q 850 95 800 110 T 700 130 Q 650 140 600 135 T 500 140 Q 450 145 400 155 T 300 180 Q 250 190 200 200 T 100 230" stroke="rgba(124,58,237,0.25)" stroke-width="3" fill="none" stroke-dasharray="8 6"></path>
       </svg>
     </div>
   </div>
 
   <div class="index-gallery-divider-wrapper">
-    <svg aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,60 L0,30 
                L40,30 Q50,30 50,20 Q50,10 60,10 L80,10 Q90,10 90,20 Q90,30 100,30 
                L140,30 Q150,30 150,20 Q150,10 160,10 L180,10 Q190,10 190,20 Q190,30 200,30 
@@ -973,67 +529,87 @@
                L940,30 Q950,30 950,20 Q950,10 960,10 L980,10 Q990,10 990,20 Q990,30 1000,30 
                L1040,30 Q1050,30 1050,20 Q1050,10 1060,10 L1080,10 Q1090,10 1090,20 Q1090,30 1100,30 
                L1140,30 Q1150,30 1150,20 Q1150,10 1160,10 L1180,10 Q1190,10 1190,20 Q1190,30 1200,30 
-               L1200,60 Z" fill="var(--bg-light)"></path>
+               L1200,60 Z" fill="#F6F3EE"></path>
     </svg>
   </div>
 </section>
 
-
-<section id="layout-1774689725368" class="layout-section" data-zappy-component="true" style="width: 100%; padding: 60px 0; direction: rtl;" data-component-id="card-accent-top">
-  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
-  <div class="accent-top-card-grid zappy-preserve-css-grid" style="display: grid; gap: 30px; --zappy-grid-cols: repeat(3, minmax(0px, 1fr)); grid-template-columns: repeat(3, minmax(0px, 1fr));" id="zappy-auto-grid-1774689765386-vs8cz7" data-zappy-auto-grid="true" data-original-item-width="364" data-original-gap="30px" data-zappy-explicit-columns="true"><div style="padding: 30px; background: white; border-top: 4px solid rgb(255, 165, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; border-radius: 8px; display: flex !important; flex-direction: column !important; align-items: stretch !important; justify-content: flex-start !important;" data-grid-item-index="0">
-      <h3 style="font-size: 22px; font-weight: 600; color: rgb(74, 74, 74); margin-bottom: 15px; font-family: Fraunces, &quot;Playfair Display&quot;, serif;">משהו טסט 1</h3>
-      <p style="font-size: 16px; line-height: 1.6; color: rgb(74, 74, 74); opacity: 0.8; font-family: Fraunces, &quot;Playfair Display&quot;, serif;">תיאור כלשהו</p><div class="zappy-inserted-element" id="zappy-element-1774689962561-dyqkjtjco" data-element-id="zappy-element-1774689962561-dyqkjtjco" data-element-type="image" data-zappy-newly-inserted="true" data-zappy-media-cell="true" data-zappy-original-height="211" style="max-width: 100% !important; margin: 20px 0px !important; width: 100% !important; height: 211px !important; overflow: hidden !important;"><input type="checkbox" id="zappy-lightbox-toggle-zappy-element-1774689962561-dyqkjtjco" class="zappy-lightbox-toggle" data-zappy-image-lightbox="true"><label class="zappy-lightbox-trigger" for="zappy-lightbox-toggle-zappy-element-1774689962561-dyqkjtjco" data-zappy-image-lightbox="true"><div data-zappy-zoom-wrapper="true" data-element-id="zappy-element-1774689962561-dyqkjtjco" data-element-type="image" data-zappy-zoom-wrapper-width="304px" data-zappy-zoom-wrapper-height="211px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 304px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 211px !important; display: block !important;" data-zappy-click-action="expand"><img src="/assets/business-general-service-upload-1774690003876.webp" alt="Image" style="border-radius: 8px; object-position: 75% 97%; display: block !important; width: 100% !important; height: 144.076% !important; max-width: none !important; object-fit: cover !important; margin: 0px !important; flex-shrink: 0 !important; position: absolute !important; left: 0% !important; top: -42.7536% !important; max-height: none !important;" data-element-type="image" data-element-id="zappy-element-1774689962561-dyqkjtjco" id="zappy-element-1774689962561-dyqkjtjco" class="zappy-editable-image" data-original-position="static" data-zappy-zoom="1" data-zappy-original-width="304" data-zappy-original-height="211" data-zappy-click-action="expand" data-resize-handler-attached="true"></div></label></div><div class="zappy-inserted-element" id="zappy-element-1774691381759-f3oquzoly" data-element-id="zappy-element-1774691381759-f3oquzoly" data-element-type="button" data-zappy-newly-inserted="true" style="margin: 20px auto; text-align: right !important; display: flex !important; justify-content: flex-start !important; align-items: flex-start !important; max-width: 1152px !important; width: 100% !important; height: auto !important;"><a href="/about" class="btn btn-outline btn-secondary" style="text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; border-style: solid; border-width: 2px; border-image: initial; border-color: rgb(0, 179, 0) !important; color: rgb(0, 179, 0) !important; flex: 0 0 auto !important; outline: none; background-color: transparent !important; background-image: none !important;" data-element-type="button" data-text-color="auto" data-element-id="btn-1774694564796-6h7yvytcr" id="btn-1774694564796-6h7yvytcr">לחץ כאן</a></div><div class="zappy-inserted-element" id="zappy-element-1774689833612-2ymd9r4in" data-element-id="zappy-element-1774689833612-2ymd9r4in" data-element-type="icon" data-zappy-newly-inserted="true" data-zappy-media-cell="true" style="margin-left: auto; margin-right: auto; text-align: center; color: rgb(255, 165, 0); max-width: 100% !important; margin-top: 20px !important; margin-bottom: 20px !important; display: flex !important; justify-content: center !important; width: 100% !important;"><a href="/products" data-zappy-click-action="link" style="text-decoration: none; color: inherit; display: contents;"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="103" height="103" viewBox="0 0 512 512" data-icon="ion:people" data-iconify="ion:people" data-element-type="icon" data-icon-type="iconify" data-size-adjusted="true" style="display: inline-block; vertical-align: -0.125em; color: rgb(255, 165, 0); width: 103px; height: 103px; pointer-events: auto; cursor: pointer;" class="iconify iconify--ion" data-zappy-click-action="link" data-element-id="icon-1774689945195-lhuf7ne0o"><path fill="currentColor" d="M336 256c-20.56 0-40.44-9.18-56-25.84c-15.13-16.25-24.37-37.92-26-61c-1.74-24.62 5.77-47.26 21.14-63.76S312 80 336 80c23.83 0 45.38 9.06 60.7 25.52c15.47 16.62 23 39.22 21.26 63.63c-1.67 23.11-10.9 44.77-26 61C376.44 246.82 356.57 256 336 256m131.83 176H204.18a27.71 27.71 0 0 1-22-10.67a30.22 30.22 0 0 1-5.26-25.79c8.42-33.81 29.28-61.85 60.32-81.08C264.79 297.4 299.86 288 336 288c36.85 0 71 9 98.71 26.05c31.11 19.13 52 47.33 60.38 81.55a30.27 30.27 0 0 1-5.32 25.78A27.68 27.68 0 0 1 467.83 432M147 260c-35.19 0-66.13-32.72-69-72.93c-1.42-20.6 5-39.65 18-53.62c12.86-13.83 31-21.45 51-21.45s38 7.66 50.93 21.57c13.1 14.08 19.5 33.09 18 53.52c-2.87 40.2-33.8 72.91-68.93 72.91m65.66 31.45c-17.59-8.6-40.42-12.9-65.65-12.9c-29.46 0-58.07 7.68-80.57 21.62c-25.51 15.83-42.67 38.88-49.6 66.71a27.39 27.39 0 0 0 4.79 23.36A25.32 25.32 0 0 0 41.72 400h111a8 8 0 0 0 7.87-6.57c.11-.63.25-1.26.41-1.88c8.48-34.06 28.35-62.84 57.71-83.82a8 8 0 0 0-.63-13.39c-1.57-.92-3.37-1.89-5.42-2.89"></path></svg></a></div>
-    </div><div style="padding: 30px; background: white; border-top: 4px solid rgb(255, 165, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; border-radius: 8px; display: flex !important; flex-direction: column !important; align-items: stretch !important; justify-content: flex-start !important;" data-grid-item-index="1">
-      <h3 style="font-size: 22px; font-weight: 600; color: rgb(74, 74, 74); margin-bottom: 15px; font-family: Fraunces, &quot;Playfair Display&quot;, serif; ">משהו טסט 1</h3>
-      <p style="font-size: 16px; line-height: 1.6; color: rgb(74, 74, 74); opacity: 0.8; font-family: Fraunces, &quot;Playfair Display&quot;, serif; ">תיאור כלשהו</p><div class="zappy-inserted-element" id="zappy-element-1774689962561-dyqkjtjco-dup-1774697784717-85kes5" data-element-id="zappy-element-1774689962561-dyqkjtjco-dup-1774697784717-85kes5" data-element-type="image" data-zappy-media-cell="true" data-zappy-original-height="211" style="max-width: 100% !important; margin: 20px 0px !important; width: 100% !important; height: 211px !important; overflow: hidden !important;"><input type="checkbox" id="zappy-lightbox-toggle-zappy-element-1774689962561-dyqkjtjco-dup-1774697784717-85kes5" class="zappy-lightbox-toggle" data-zappy-image-lightbox="true"><label class="zappy-lightbox-trigger" for="zappy-lightbox-toggle-zappy-element-1774689962561-dyqkjtjco-dup-1774697784717-85kes5" data-zappy-image-lightbox="true"><div data-zappy-zoom-wrapper="true" data-element-id="zappy-element-1774689962561-dyqkjtjco-dup-1774697784717-85kes5" data-element-type="image" data-zappy-zoom-wrapper-width="304px" data-zappy-zoom-wrapper-height="211px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 304px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 211px !important; display: block !important; cursor: pointer;" data-zappy-click-action="expand"><img src="/assets/business-general-service-upload-1774697818134.webp" alt="Image" style="border-radius: 8px; object-position: 75% 97%; cursor: pointer; display: block !important; width: 123.392% !important; height: 100% !important; max-width: none !important; object-fit: cover !important; margin: 0px !important; flex-shrink: 0 !important; position: absolute !important; left: -17.5439% !important; top: 0% !important; max-height: none !important;" data-element-type="image" data-element-id="zappy-element-1774689962561-dyqkjtjco-dup-1774697784717-85kes5" id="zappy-element-1774689962561-dyqkjtjco-dup-1774697784717-85kes5" class="zappy-editable-image" data-original-position="static" data-zappy-zoom="1" data-zappy-original-width="304" data-zappy-original-height="211" data-zappy-click-action="expand" data-resize-handler-attached="true"></div></label></div><div class="zappy-inserted-element" id="zappy-element-1774691381759-f3oquzoly-dup-1774697784717-85kes5" data-element-id="zappy-element-1774691381759-f3oquzoly-dup-1774697784717-85kes5" data-element-type="button" style="display: flex !important; align-items: flex-start !important; max-width: 1152px; width: 100% !important; height: auto; margin-top: 20px; margin-bottom: 20px; justify-content: center !important; text-align: center !important;"><a href="/about" class="btn btn-primary" style="text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; border-style: solid; border-width: 2px; border-image: initial; outline: none; border-color: rgb(126, 7, 7) !important; color: rgb(255, 255, 255) !important; flex: 0 0 auto !important; background-color: rgb(126, 7, 7) !important; background-image: none !important;" data-element-type="button" data-text-color="auto" data-element-id="btn-1774694564796-6h7yvytcr-dup-1774697784717-85kes5" id="btn-1774694564796-6h7yvytcr-dup-1774697784717-85kes5">לחץ כאן</a></div><div class="zappy-inserted-element" id="zappy-element-1774689833612-2ymd9r4in-dup-1774697784717-85kes5" data-element-id="zappy-element-1774689833612-2ymd9r4in-dup-1774697784717-85kes5" data-element-type="icon" data-zappy-media-cell="true" style="margin-left: auto; margin-right: 0px; text-align: right; color: rgb(255, 165, 0); max-width: 100% !important; margin-top: 20px !important; margin-bottom: 20px !important; display: flex !important; justify-content: flex-start !important; width: 100% !important;"><a href="/products" data-zappy-click-action="link" style="text-decoration: none; color: inherit; display: contents;"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="103" height="103" viewBox="0 0 512 512" data-icon="ion:people" data-iconify="ion:people" data-element-type="icon" data-icon-type="iconify" data-size-adjusted="true" style="display: inline-block; vertical-align: -0.125em; color: rgb(255, 165, 0); width: 103px !important; height: 103px !important; pointer-events: auto; cursor: pointer;" class="iconify iconify--ion" data-zappy-click-action="link" data-element-id="icon-1774689945195-lhuf7ne0o-dup-1774697784717-85kes5"><path fill="currentColor" d="M336 256c-20.56 0-40.44-9.18-56-25.84c-15.13-16.25-24.37-37.92-26-61c-1.74-24.62 5.77-47.26 21.14-63.76S312 80 336 80c23.83 0 45.38 9.06 60.7 25.52c15.47 16.62 23 39.22 21.26 63.63c-1.67 23.11-10.9 44.77-26 61C376.44 246.82 356.57 256 336 256m131.83 176H204.18a27.71 27.71 0 0 1-22-10.67a30.22 30.22 0 0 1-5.26-25.79c8.42-33.81 29.28-61.85 60.32-81.08C264.79 297.4 299.86 288 336 288c36.85 0 71 9 98.71 26.05c31.11 19.13 52 47.33 60.38 81.55a30.27 30.27 0 0 1-5.32 25.78A27.68 27.68 0 0 1 467.83 432M147 260c-35.19 0-66.13-32.72-69-72.93c-1.42-20.6 5-39.65 18-53.62c12.86-13.83 31-21.45 51-21.45s38 7.66 50.93 21.57c13.1 14.08 19.5 33.09 18 53.52c-2.87 40.2-33.8 72.91-68.93 72.91m65.66 31.45c-17.59-8.6-40.42-12.9-65.65-12.9c-29.46 0-58.07 7.68-80.57 21.62c-25.51 15.83-42.67 38.88-49.6 66.71a27.39 27.39 0 0 0 4.79 23.36A25.32 25.32 0 0 0 41.72 400h111a8 8 0 0 0 7.87-6.57c.11-.63.25-1.26.41-1.88c8.48-34.06 28.35-62.84 57.71-83.82a8 8 0 0 0-.63-13.39c-1.57-.92-3.37-1.89-5.42-2.89"></path></svg></a></div>
-    </div><div style="padding: 30px; background: white; border-top: 4px solid rgb(255, 248, 153); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; border-radius: 8px; display: flex !important; flex-direction: column !important; align-items: stretch !important; justify-content: flex-start !important; min-height: 0px !important;" data-grid-item-index="2">
-      <h3 style="font-size: 22px; font-weight: 600; color: rgb(74, 74, 74); margin-bottom: 15px; font-family: Fraunces, &quot;Playfair Display&quot;, serif;">משהו טסט 2</h3>
-      <p style="font-size: 16px; line-height: 1.6; color: #4A4A4A; opacity: 0.8; font-family: Fraunces, Playfair Display, serif;">טקסט תיאור כרטיס נמצא כאן</p><div class="zappy-inserted-element" id="zappy-element-1774690095267-a9lvuijnc" data-element-id="zappy-element-1774690095267-a9lvuijnc" data-element-type="paragraph" data-zappy-newly-inserted="true" style="width: 100%; max-width: 100%; display: flex; justify-content: center !important"><p style="font-size: 1rem; max-width: none" data-element-type="paragraph" data-element-id="zappy-element-1774690095267-a9lvuijnc" id="zappy-element-1774690095267-a9lvuijnc" data-zappy-newly-inserted="true">פה יש עוד טקסט לבחון - ניסיון חדש<br>ירידת שורה<br><br>שלום שלום</p></div><div class="zappy-inserted-element" id="zappy-element-1774963344533-wghfob9m0" data-element-id="zappy-element-1774963344533-wghfob9m0" data-element-type="video" data-zappy-newly-inserted="true" data-zappy-media-cell="true" style="position: relative; max-width: 100% !important; margin: 20px 0px !important; width: 100% !important; min-height: 150px !important; text-align: center; justify-content: center;"><div style="width: 100%; max-width: 600px; display: block; margin-left: auto; margin-right: auto;">
-        <div style="width: 100%; max-width: 600px;">
-          <div style="position: relative; width: 100%; max-width: 800px; height: 0px; padding-bottom: 100%; background: rgb(0, 0, 0); border-radius: 8px; overflow: hidden;" data-element-type="video" data-element-id="video-1774965205031-95dicfumd">
-          <iframe src="https://www.youtube.com/embed/BZ-bIRQro_U" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-          </iframe>
-          </div>
+<section class="index-features-section" data-layout-spec="בית-features">
+  <div class="index-features-container">
+    <div class="index-features-content-column">
+      <h2 class="index-features-heading">למה משפחות חוזרות אלינו שוב ושוב</h2>
+      <p class="index-features-intro">ב-Fun Toys אנחנו מאמינים שכל ילד ייחודי ומגיע לו צעצוע מושלם. הקולקציה שלנו נבחרה בקפידה כדי להתאים לכל גיל, תחומי עניין והתפתחות – מגיל הרך ועד גיל ההתבגרות.</p>
+      
+      <div class="index-features-list">
+        <div class="index-features-item">
+          <h3 class="index-features-item-title">מיון לפי גיל ותחומי עניין</h3>
+          <p class="index-features-item-text">כל צעצוע בחנות מסווג לפי קבוצת גיל ותחומי עניין ספציפיים, כך שתמצאו בקלות את fun toys for 3 year olds המושלמים או fun toys for 8 year olds המאתגרים – בלי לבזבז זמן.</p>
         </div>
-      </div></div>
-    </div><div style="padding: 30px; background: white; border-top: 4px solid rgb(0, 179, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; border-radius: 8px;" data-grid-item-index="3">
-      <h3 style="font-size: 22px; font-weight: 600; color: #4A4A4A; margin-bottom: 15px; font-family: Fraunces, Playfair Display, serif;">כותרת כרטיס 3</h3>
-      <p style="font-size: 16px; line-height: 1.6; color: rgb(74, 74, 74); opacity: 0.8; font-family: Fraunces, &quot;Playfair Display&quot;, serif;">נכתוב פה משהו</p>
-    </div></div><div class="zappy-inserted-element" id="zappy-element-1774963693922-8qi6dcnf4" data-element-id="zappy-element-1774963693922-8qi6dcnf4" data-element-type="video" data-zappy-newly-inserted="true" style="max-width: 1440px; margin: 20px auto; display: flex; justify-content: center; flex-direction: column; align-items: center; position: relative;"><div style="width: 100%; max-width: 600px; display: block; margin-left: auto; margin-right: auto;"><div class="zappy-inserted-element" style="margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center; text-align: center;" data-element-id="element-saved-1774963750908-rt1udrt7s">
-        <div style="width: 100%; max-width: 600px;">
-          <div style="position: relative; width: 100%; max-width: 800px; height: 0px; padding-bottom: 56.25%; background: rgb(0, 0, 0); border-radius: 8px; overflow: hidden;" data-element-type="video" data-element-id="video-1774963982397-qtajiw0an">
-          <iframe src="https://www.youtube.com/embed/BZ-bIRQro_U" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-          </iframe>
-          </div>
+        
+        <div class="index-features-item">
+          <h3 class="index-features-item-title">המלצות אישיות ומקצועיות</h3>
+          <p class="index-features-item-text">הצוות שלנו מכיר כל מוצר לעומק ויכול להמליץ על fun toys for 10 year olds שיתאימו בדיוק להעדפות ולרמת המיומנות של הילד שלכם.</p>
         </div>
-      </div></div></div>
+        
+        <div class="index-features-item">
+          <h3 class="index-features-item-title">מותגים איכותיים בלבד</h3>
+          <p class="index-features-item-text">אנחנו עובדים רק עם יצרנים מובילים המתמחים בפאזלים, מסלולי מכוניות וצעצועים מפתחים – איכות ובטיחות הם תמיד בראש סדר העדיפויות.</p>
+        </div>
+        
+        <div class="index-features-item">
+          <h3 class="index-features-item-title">רעיונות למתנות מוכנות</h3>
+          <p class="index-features-item-text">מחפשים מתנה מושלמת? יש לנו פינת רעיונות עם הצעות ארוזות ומוכנות לכל אירוע – מיום הולדת ועד חגים.</p>
+        </div>
+      </div>
+      
+      <a href="/about" class="index-features-cta btn-ghost">איך אנחנו בוחרים</a>
+    </div>
+    
+    <div class="index-features-image-column">
+      <div class="index-features-image-wrapper">
+        <div class="index-features-backplate"></div>
+        <img data-placeholder="index-features-hero-image" data-context="Close-up editorial photograph of a child aged 8-10 building a colorful car track or solving a wooden puzzle, hands in focus arranging pieces with concentration, warm natural lighting, shallow depth of field, editorial color grade with gentle film grain, toys should look high-quality and engaging, background softly blurred showing more toys on shelves, authentic moment capturing joy of play and learning" width="600" height="800" src="/assets/site-index-features-hero-image.webp" alt="ילד בונה מסלול מכוניות או פותר פאזל ב-Fun Toys" class="index-features-main-image">
+      </div>
+    </div>
+  </div>
+  
+  <div class="index-features-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="index-features-gradient" x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%" style="stop-color:rgba(37,188,228,0.35);stop-opacity:1"></stop>
+          <stop offset="100%" style="stop-color:rgba(37,188,228,0.08);stop-opacity:1"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M1200,100 L1200,0 L0,45 L0,100 Z" fill="var(--bg-dark)"></path>
+      <path d="M1200,25 Q1050,30 900,22 T600,28 Q450,22 300,30 T0,25" stroke="#25BCE4" stroke-width="2" fill="var(--bg-dark)" opacity="0.6"></path>
+    </svg>
   </div>
 </section>
 
-<section class="index-testimonials-section" data-layout-spec="בית-testimonials" id="zappy-section-3">
+<section class="index-testimonials-section" data-layout-spec="בית-testimonials">
   <div class="index-testimonials-section__container">
-    <div class="index-testimonials-section__header" style="text-align: right">
-      <div class="zappy-inserted-element" id="zappy-element-1774646672323-roreq3utf" data-element-id="zappy-element-1774646672323-roreq3utf" data-element-type="paragraph" data-zappy-newly-inserted="true" style="width: 100%;">זה ניסיון<br>שלום</div>
-      <ol style="--zappy-grid-cols: repeat(3, minmax(0, 1fr)); ; grid-template-columns: repeat(3, minmax(0, 1fr));" data-zappy-explicit-columns="true" id="zappy-auto-grid-1774650899323-4moho7" data-zappy-auto-grid="true"><li data-grid-item-index="0">הצעצועים שלנו לא רק משעשעים – הם מעודדים למידה, יצירתיוּת וזיכרונות משפחתיים בלתי נשכחים</li><li data-grid-item-index="1">שמונה צעדים יש פה</li><li data-grid-item-index="2">&nbsp;איזה יופי</li></ol><h2 style="outline: none; text-align: center;" data-element-id="move-1774646879235-708jpuld">ההורים רואים את ההבדל<br>בהחלט</h2>
+    <div class="index-testimonials-section__header">
+      <h2>ההורים רואים את ההבדל</h2>
+      <p>הצעצועים שלנו לא רק משעשעים – הם מעודדים למידה, יצירתיוּת וזיכרונות משפחתיים בלתי נשכחים</p>
     </div>
     
-    <div class="index-testimonials-section__grid zappy-preserve-css-grid" id="zappy-auto-grid-1773834615034-jfj1hc" data-zappy-auto-grid="true" data-original-item-width="325" data-original-gap="32px" style="display: grid; --zappy-grid-cols: 325.328px 325.328px 325.344px; grid-template-columns: 325.328px 325.328px 325.344px;" data-zappy-explicit-columns="true">
-      <div class="index-testimonials-section__card" data-grid-item-index="0">
+    <div class="index-testimonials-section__grid">
+      <div class="index-testimonials-section__card">
         <div class="index-testimonials-section__quote">
-          <p >"חיפשנו פאזלים מאתגרים לגיל 8 ומצאנו כאן מגוון מדהים. הצוות עזר לנו לבחור בדיוק את מה שמתאים לרמת הילדה שלנו. היא כבר סיימה שלושה פאזלים ומתחננת למשחק הבא!" עוד בדיקה</p>
+          <p>"חיפשנו פאזלים מאתגרים לגיל 8 ומצאנו כאן מגוון מדהים. הצוות עזר לנו לבחור בדיוק את מה שמתאים לרמת הילדה שלנו. היא כבר סיימה שלושה פאזלים ומתחננת למשחק הבא!"</p>
         </div>
         <h3 class="index-testimonials-section__author">הורה לילדה בת 8, תל אביב</h3>
       </div>
       
-      <div class="index-testimonials-section__card" data-grid-item-index="1">
+      <div class="index-testimonials-section__card">
         <div class="index-testimonials-section__quote">
           <p>"קניתי מסלול מכוניות לבן שלי בן ה-5 והוא לא מפסיק לשחק! המסלול מספיק מורכב כדי לשמור על העניין שלו, אבל לא מתסכל. הוא בונה מסלולים חדשים כל יום וזה ממש מפתח את הדמיון שלו."</p>
         </div>
         <h3 class="index-testimonials-section__author">אמא לשני ילדים, גילאי 5 ו-10</h3>
       </div>
       
-      <div class="index-testimonials-section__card" data-grid-item-index="2">
+      <div class="index-testimonials-section__card">
         <div class="index-testimonials-section__quote">
           <p>"הייעוץ שקיבלנו בחנות היה מעולה. הצוות ממש הקשיב למה שחיפשנו והמליץ על צעצועים שמתאימים בדיוק לגילאי הילדים שלנו. כל פעם שאנחנו מגיעים, אנחנו יוצאים עם משהו שמשמח את כולם."</p>
         </div>
@@ -1043,69 +619,20 @@
   </div>
   
   <div class="index-testimonials-section__divider-wrapper">
-    <svg aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,100 L0,55 Q100,48 200,52 T400,58 Q500,52 600,58 T800,52 Q900,58 1000,52 T1200,55 L1200,100 Z" fill="#F6F3EE"></path>
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,100 L0,55 Q100,48 200,52 T400,58 Q500,52 600,58 T800,52 Q900,58 1000,52 T1200,55 L1200,100 Z" fill="rgba(255, 255, 255, 0.85)"></path>
     </svg>
   </div>
-</section><section class="index-features-section" data-layout-spec="בית-features" id="zappy-section-2">
-  <div class="index-features-container">
-    <div class="index-features-content-column">
-      <h2 class="index-features-heading">למה משפחות חוזרות אלינו שוב ושוב</h2>
-      <p class="index-features-intro">ב-Fun Toys אנחנו מאמינים שכל ילד ייחודי ומגיע לו צעצוע מושלם. הקולקציה שלנו נבחרה בקפידה כדי להתאים לכל גיל, תחומי עניין והתפתחות – מגיל הרך ועד גיל ההתבגרות.</p>
-      
-      <div class="index-features-list">
-        <div class="index-features-item" data-grid-item-index="0">
-          <h3 class="index-features-item-title">מיון לפי גיל ותחומי עניין</h3>
-          <p class="index-features-item-text">כל צעצוע בחנות מסווג לפי קבוצת גיל ותחומי עניין ספציפיים, כך שתמצאו בקלות את fun toys for 3 year olds המושלמים או fun toys for 8 year olds המאתגרים – בלי לבזבז זמן.</p>
-        </div>
-        
-        <div class="index-features-item" data-grid-item-index="1">
-          <h3 class="index-features-item-title">המלצות אישיות ומקצועיות</h3>
-          <p class="index-features-item-text">הצוות שלנו מכיר כל מוצר לעומק ויכול להמליץ על fun toys for 10 year olds שיתאימו בדיוק להעדפות ולרמת המיומנות של הילד שלכם.</p>
-        </div>
-        
-        <div class="index-features-item" data-grid-item-index="2">
-          <h3 class="index-features-item-title">מותגים איכותיים בלבד</h3>
-          <p class="index-features-item-text">אנחנו עובדים רק עם יצרנים מובילים המתמחים בפאזלים, מסלולי מכוניות וצעצועים מפתחים – איכות ובטיחות הם תמיד בראש סדר העדיפויות.</p>
-        </div>
-        
-        <div class="index-features-item" data-grid-item-index="3">
-          <h3 class="index-features-item-title">רעיונות למתנות מוכנות</h3>
-          <p class="index-features-item-text">מחפשים מתנה מושלמת? יש לנו פינת רעיונות עם הצעות ארוזות ומוכנות לכל אירוע – מיום הולדת ועד חגים.</p>
-        </div>
-      </div>
-      
-      <p><a href="/about" class="index-features-cta btn-ghost" data-element-type="button" data-element-id="btn-1774650899313-i2d75hcty" data-native-element="true">איך אנחנו בוחרים</a>
-    </p></div>
-    
-    <div class="index-features-image-column">
-      <div class="index-features-image-wrapper">
-        <div class="index-features-backplate"></div>
-        <div data-zappy-zoom-wrapper="true" data-element-id="img-1774650899314-t8c91l7gv" data-element-type="image" data-zappy-zoom-wrapper-width="480px" data-zappy-zoom-wrapper-height="643px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 480px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 643px !important; display: block !important;"><img data-placeholder="index-features-hero-image" data-context="Close-up editorial photograph of a child aged 8-10 building a colorful car track or solving a wooden puzzle, hands in focus arranging pieces with concentration, warm natural lighting, shallow depth of field, editorial color grade with gentle film grain, toys should look high-quality and engaging, background softly blurred showing more toys on shelves, authentic moment capturing joy of play and learning" width="600" height="800" src="/assets/site-index-features-hero-image.webp" alt="ילד בונה מסלול מכוניות או פותר פאזל ב-Fun Toys" class="index-features-main-image zappy-editable-image" data-element-type="image" data-element-id="img-1774650899314-t8c91l7gv" data-zappy-zoom="1" style="object-position: 98% 63%; display: block; margin: 0px !important; position: absolute !important; left: -0.0217777% !important; top: 0% !important; width: 100.022% !important; height: 100% !important; max-width: none !important; max-height: none !important; object-fit: cover !important;" data-resize-handler-attached="true"></div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="index-features-divider-wrapper">
-    <svg aria-hidden="true" viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="index-features-gradient" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" style="stop-color:rgba(37,188,228,0.35);stop-opacity:1"></stop>
-          <stop offset="100%" style="stop-color:rgba(37,188,228,0.08);stop-opacity:1"></stop>
-        </linearGradient>
-      </defs>
-      <path d="M1200,100 L1200,0 L0,45 L0,100 Z" fill="rgba(255, 255, 255, 0.85)"></path>
-      <path d="M1200,25 Q1050,30 900,22 T600,28 Q450,22 300,30 T0,25" stroke="#25BCE4" stroke-width="2" fill="rgba(255, 255, 255, 0.85)" opacity="0.6"></path>
-    </svg>
-  </div>
-</section><section class="index-cta-section" data-layout-spec="בית-cta" id="zappy-section-4">
+</section>
+
+<section class="index-cta-section" data-layout-spec="בית-cta">
   <div class="index-cta-container">
     <div class="index-cta-panel">
       <h2>מחפשים את הצעצוע המושלם לגיל שלהם?</h2>
-      <p class="index-cta-intro">הצוות שלנו ב-Fun Toys ישמח לעזור לכם למצוא את<br>המתנה האידיאלית – מפאזלים מאתגרים למסלולי מכוניות מרהיבים,<br>&nbsp;לכל גיל ותחום עניין.</p>
-      <p><a href="/contact" class="btn-primary btn-pill index-cta-button" data-element-type="button" data-element-id="btn-1773331794744-gdo8111wq" data-native-element="true">צרו קשר עם Fun Toys</a>
-      </p><p class="index-cta-support">שתפו אותנו בגיל הילד/ה, תחומי העניין שלהם ותקציב משוער – נמליץ על צעצועים מתאימים שיעניקו שעות של הנאה ויצירתיות.</p><div class="zappy-inserted-element" id="zappy-element-1773331824706-1uwxvwb5i" data-element-id="zappy-element-1773331824706-1uwxvwb5i" data-element-type="paragraph" data-zappy-newly-inserted="true" style="width: 100%;">הזן את טקסט הפסקה שלך...</div>
-      <svg class="index-cta-route-map" aria-hidden="true" width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" data-element-type="icon" data-element-id="icon-1773331794744-j5cuwtwjw" data-icon-type="svg">
+      <p class="index-cta-intro">הצוות שלנו ב-Fun Toys ישמח לעזור לכם למצוא את המתנה האידיאלית – מפאזלים מאתגרים למסלולי מכוניות מרהיבים, לכל גיל ותחום עניין.</p>
+      <a href="/contact" class="btn-primary btn-pill index-cta-button">צרו קשר עם Fun Toys</a>
+      <p class="index-cta-support">שתפו אותנו בגיל הילד/ה, תחומי העניין שלהם ותקציב משוער – נמליץ על צעצועים מתאימים שיעניקו שעות של הנאה ויצירתיות.</p>
+      <svg class="index-cta-route-map" data-no-icon-edit="true" aria-hidden="true" width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
         <g stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="15" cy="15" r="4" fill="currentColor"></circle>
           <path d="M15,15 Q25,15 30,25"></path>
@@ -1122,14 +649,15 @@
       </svg>
     </div>
   </div>
-</section></main>
+</section>
+  </main>
   
-  <footer class="site-footer" dir="rtl"><div class="footer-container"><div class="footer-top"><div class="footer-column footer-about"><img src="/assets/business-logo.webp" alt="Fun Toys" class="logo"><p class="footer-description">חנות הצעצועים המובילה בישראל - מגוון רחב של צעצועים איכוtiים לכל הגילאים</p></div><div class="footer-column footer-links"><h3 class="footer-heading">קישורים מהירים</h3><ul class="footer-nav"><li><a href="/about">אודותינו</a></li><li><a href="/collections">אוספים</a></li><li><a href="/contact">צור קשר</a></li></ul></div><div class="footer-column footer-contact"><h3 class="footer-heading">יצירת קשר</h3><ul class="contact-list"><li><a href="/"><i class="fas fa-envelope"></i><span>barrysela@gmail.com</span></a></li><li><a href="/"><i class="fas fa-phone"></i><span>0522972222</span></a></li><li><a href="/"><i class="fas fa-map-marker-alt"></i><span>צופית 10, ראש העין, 4521735, ישראל</span></a></li></ul></div><div class="footer-column footer-social"><h3 class="footer-heading">עקבו אחרינו</h3><div class="social-links"><a href="https://facebook.com/beerisela" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://instagram.com/beerisela" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://wa.me/972522972222" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div></div><div class="footer-bottom"><div class="footer-bottom-content"><p class="copyright">© 2026 Fun Toys. כל הזכויות שמורות.</p><div class="footer-legal"><a href="/privacy">מדיניות פרטיות</a><span class="separator">|</span><a href="/terms">תנאים והגבלות</a><span class="separator">|</span>
+  <footer class="site-footer" dir="rtl"><div class="footer-container"><div class="footer-top"><div class="footer-column footer-about"><img src="/assets/business-logo.webp" alt="Fun Toys" class="logo"><p class="footer-description">חנות הצעצועים המובילה בישראל - מגוון רחב של צעצועים איכוtiים לכל הגילאים</p></div><div class="footer-column footer-links"><h3 class="footer-heading">קישורים מהירים</h3><ul class="footer-nav"><li><a href="/about">אודות</a></li><li><a href="/collections">אוספים</a></li><li><a href="/contact">צור קשר</a></li></ul></div><div class="footer-column footer-contact"><h3 class="footer-heading">יצירת קשר</h3><ul class="contact-list"><li><a href="/"><i class="fas fa-envelope"></i><span>[business_email]</span></a></li><li><a href="/"><i class="fas fa-phone"></i><span>[business_phone]</span></a></li><li><a href="/"><i class="fas fa-map-marker-alt"></i><span>[business_address]</span></a></li></ul></div><div class="footer-column footer-social"><h3 class="footer-heading">עקבו אחרינו</h3><div class="social-links"><a href="[facebook_handle]" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="[instagram_handle]" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="[whatsapp_handle]" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div></div><div class="footer-bottom"><div class="footer-bottom-content"><p class="copyright">© 2026 Fun Toys. כל הזכויות שמורות.</p><div class="footer-legal"><a href="/privacy">מדיניות פרטיות</a><span class="separator">|</span><a href="/terms">תנאים והגבלות</a><span class="separator">|</span>
             <a href="/return-policy" aria-label="מדיניות החזרות">
               מדיניות החזרות
             </a><span class="separator">|</span><a href="/accessibility">הצהרת נגישות</a><span class="separator">|</span><a href="https://zappy5.com" target="_blank" class="zappy-attribution">Generated by Zappy</a></div></div></div></div></footer>
   
-  <a href="https://wa.me/972522972222" class="whatsapp-float" aria-label="WhatsApp">
+  <a href="https://wa.me/[whatsapp_handle]" class="whatsapp-float" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
   
@@ -1193,7 +721,7 @@
       var nb=document.querySelector('nav.navbar,.navbar:not(.zappy-catalog-menu)');
       var cm=document.querySelector('.zappy-catalog-menu,#zappy-catalog-menu');
       if(!nb)return;
-      var fb='rgba(255,255,255,0.85)';
+      var fb='rgba(247,244,255,0.85)';
       var th=60;
       var rs=getComputedStyle(document.documentElement);
       var td=rs.getPropertyValue('--text-dark').trim()||'#1a1a1a';
@@ -1245,16 +773,59 @@
 
     <script>
     (function(){
-      if(window.innerWidth>768)return;
-      function fixZW(){
+      var _applied=false;
+      function fixDesktopWrappers(){
+        if(window.innerWidth<=768)return;
+        document.querySelectorAll('[data-zappy-zoom-wrapper="true"]').forEach(function(w){
+          var mode=w.getAttribute('data-zappy-zoom-wrapper-width-mode');
+          if(mode==='full'||mode==='grid-responsive')return;
+          var storedW=parseFloat(w.getAttribute('data-zappy-zoom-wrapper-width'));
+          if(!storedW||!isFinite(storedW))return;
+          var parent=w.parentElement;
+          if(!parent)return;
+          var parentW=parent.getBoundingClientRect().width;
+          if(parentW>0&&storedW<parentW*0.6&&storedW<=400){
+            var ratio=storedW/parseFloat(w.getAttribute('data-zappy-zoom-wrapper-height')||'1');
+            var newW=Math.round(Math.min(parentW,800));
+            var newH=Math.round(newW/ratio);
+            w.style.setProperty('width',newW+'px','important');
+            w.style.setProperty('height',newH+'px','important');
+          }
+        });
+      }
+      function applyMobile(){
+        if(_applied)return;_applied=true;
         document.querySelectorAll('[data-zappy-zoom-wrapper="true"]').forEach(function(w){
           var cw=w.style.getPropertyValue('width');
           if(!cw||cw==='100%')return;
+          if(!w._zappyDesktop)w._zappyDesktop={wStyle:w.getAttribute('style')};
+          var img=w.querySelector('img');
+          if(!img)return;
+          if(!img._zappyDesktop)img._zappyDesktop={src:img.getAttribute('src'),style:img.getAttribute('style')};
+          var mobileZoom=parseFloat(img.getAttribute('data-zappy-mobile-zoom'));
+          var mobileSrc=img.getAttribute('data-zappy-mobile-src');
+          var mobilePos=img.getAttribute('data-zappy-mobile-object-position');
           w.style.setProperty('width','100%','important');
           w.style.setProperty('max-width','100%','important');
-          w.style.setProperty('height','auto','important');
-          var img=w.querySelector('img');
-          if(img){
+          if(mobileSrc)img.src=mobileSrc;
+          var pos=mobilePos||img.style.getPropertyValue('object-position')||'50% 50%';
+          if(mobileZoom>1){
+            var wH=w.getAttribute('data-zappy-zoom-wrapper-height');
+            w.style.setProperty('height',wH||'200px','important');
+            img.style.setProperty('position','relative','important');
+            img.style.setProperty('width','100%','important');
+            img.style.setProperty('height','auto','important');
+            img.style.setProperty('min-height','100%','important');
+            img.style.setProperty('max-width','none','important');
+            img.style.setProperty('max-height','none','important');
+            img.style.setProperty('object-fit','cover','important');
+            img.style.setProperty('left','0','important');
+            img.style.setProperty('top','0','important');
+            img.style.setProperty('object-position',pos,'important');
+            img.style.setProperty('transform','scale('+mobileZoom+')','important');
+            img.style.setProperty('transform-origin',pos,'important');
+          }else{
+            w.style.setProperty('height','auto','important');
             img.style.setProperty('position','relative','important');
             img.style.setProperty('width','100%','important');
             img.style.setProperty('height','auto','important');
@@ -1263,11 +834,56 @@
             img.style.setProperty('object-fit','cover','important');
             img.style.setProperty('left','0','important');
             img.style.setProperty('top','0','important');
+            img.style.setProperty('transform','none','important');
+            if(mobilePos)img.style.setProperty('object-position',pos,'important');
+          }
+        });
+        document.querySelectorAll('img[data-zappy-mobile-src],img[data-zappy-mobile-object-position],img[data-zappy-mobile-zoom]').forEach(function(img){
+          if(img.closest('[data-zappy-zoom-wrapper="true"]'))return;
+          if(!img._zappyDesktop)img._zappyDesktop={src:img.getAttribute('src'),style:img.getAttribute('style')};
+          var mobileSrc=img.getAttribute('data-zappy-mobile-src');
+          var mobilePos=img.getAttribute('data-zappy-mobile-object-position');
+          var mobileZoom=parseFloat(img.getAttribute('data-zappy-mobile-zoom'));
+          if(mobileSrc)img.src=mobileSrc;
+          if(mobilePos)img.style.setProperty('object-position',mobilePos,'important');
+          if(mobileZoom>1){
+            img.style.setProperty('transform','scale('+mobileZoom+')','important');
+            img.style.setProperty('transform-origin',mobilePos||'50% 50%','important');
+            var p=img.parentElement;
+            if(p)p.style.setProperty('overflow','hidden','important');
           }
         });
       }
-      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fixZW);
-      else setTimeout(fixZW,50);
+      function revertDesktop(){
+        if(!_applied)return;_applied=false;
+        document.querySelectorAll('[data-zappy-zoom-wrapper="true"]').forEach(function(w){
+          if(w._zappyDesktop&&w._zappyDesktop.wStyle!=null){w.setAttribute('style',w._zappyDesktop.wStyle);}
+          var img=w.querySelector('img');
+          if(img&&img._zappyDesktop){
+            if(img._zappyDesktop.src!=null)img.setAttribute('src',img._zappyDesktop.src);
+            if(img._zappyDesktop.style!=null)img.setAttribute('style',img._zappyDesktop.style);
+            else img.removeAttribute('style');
+          }
+        });
+        document.querySelectorAll('img[data-zappy-mobile-src],img[data-zappy-mobile-object-position],img[data-zappy-mobile-zoom]').forEach(function(img){
+          if(img.closest('[data-zappy-zoom-wrapper="true"]'))return;
+          if(img._zappyDesktop){
+            if(img._zappyDesktop.src!=null)img.setAttribute('src',img._zappyDesktop.src);
+            if(img._zappyDesktop.style!=null)img.setAttribute('style',img._zappyDesktop.style);
+            else img.removeAttribute('style');
+          }
+        });
+        fixDesktopWrappers();
+      }
+      function init(){
+        var mq=window.matchMedia('(max-width:768px)');
+        function onChange(e){if(e.matches)applyMobile();else revertDesktop();}
+        if(mq.matches)applyMobile();
+        else fixDesktopWrappers();
+        try{mq.addEventListener('change',onChange);}catch(e){mq.addListener(onChange);}
+      }
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+      else setTimeout(init,50);
     })();
     </script>
 </body>
