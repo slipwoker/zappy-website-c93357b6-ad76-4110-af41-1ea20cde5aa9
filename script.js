@@ -6844,6 +6844,16 @@ window.onload = function() {
         img.style.removeProperty('left');
         img.style.removeProperty('top');
         img.style.setProperty('margin', '0', 'important');
+        var mSrc = img.getAttribute('data-zappy-mobile-src');
+        var mPos = img.getAttribute('data-zappy-mobile-object-position');
+        var mZoom = parseFloat(img.getAttribute('data-zappy-mobile-zoom'));
+        if (mSrc) img.src = mSrc;
+        if (mPos) img.style.setProperty('object-position', mPos, 'important');
+        if (mZoom > 1) {
+          img.style.setProperty('transform', 'scale(' + mZoom + ')', 'important');
+          img.style.setProperty('transform-origin', mPos || '50% 50%', 'important');
+          wrapper.style.setProperty('overflow', 'hidden', 'important');
+        }
         return;
       }
 
@@ -6965,6 +6975,17 @@ window.onload = function() {
         img.style.setProperty('max-width', 'none', 'important');
         img.style.setProperty('max-height', 'none', 'important');
         img.style.setProperty('display', 'block', 'important');
+        if (window.innerWidth <= 768) {
+          var mSrc = img.getAttribute('data-zappy-mobile-src');
+          var mPos = img.getAttribute('data-zappy-mobile-object-position');
+          var mZoom = parseFloat(img.getAttribute('data-zappy-mobile-zoom'));
+          if (mSrc) img.src = mSrc;
+          if (mPos) img.style.setProperty('object-position', mPos, 'important');
+          if (mZoom > 1) {
+            img.style.setProperty('transform', 'scale(' + mZoom + ')', 'important');
+            img.style.setProperty('transform-origin', mPos || '50% 50%', 'important');
+          }
+        }
       }
     }
 
