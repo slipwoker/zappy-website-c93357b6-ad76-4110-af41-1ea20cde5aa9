@@ -8601,6 +8601,215 @@ body.accessibility-widget-visible ._access-menu {
   }
 }
 
+/* Added Component Styles */
+/* =============================================
+   Fun Toys — Trusted By / Our Clients Section
+   ============================================= */
+
+.funtoys-trusted-by {
+  background-color: #f7f5ff;
+  padding: 72px 20px 80px;
+  font-family: 'Fraunces', 'Playfair Display', serif;
+  direction: rtl;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative top border */
+.funtoys-trusted-by::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary, linear-gradient(90deg, #25BCE4 0%, #48D7F2 55%, #25BCE4 100%));
+}
+
+/* Container */
+.funtoys-trusted-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Section Title */
+.funtoys-trusted-title {
+  font-family: 'Fraunces', 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1040;
+  margin: 0 0 10px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* Subtitle */
+.funtoys-trusted-subtitle {
+  font-family: 'Fraunces', 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #5a5272;
+  margin: 0 0 52px;
+  line-height: 1.6;
+}
+
+/* Logos Grid — 6 columns */
+.funtoys-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px 16px;
+  align-items: start;
+  justify-items: center;
+}
+
+/* Individual Logo Item */
+.funtoys-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.25s ease;
+}
+
+.funtoys-logo-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Circular Logo Container */
+.funtoys-logo-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid rgba(124, 58, 237, 0.18);
+  box-shadow:
+    0 2px 10px rgba(124, 58, 237, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow: hidden;
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.funtoys-logo-item:hover .funtoys-logo-circle {
+  box-shadow:
+    0 6px 22px rgba(124, 58, 237, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: rgba(124, 58, 237, 0.38);
+  background-color: #fdfcff;
+}
+
+/* Logo Image — always contain, never crop */
+.funtoys-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 0;
+  transition: opacity 0.2s ease;
+}
+
+.funtoys-logo-item:hover .funtoys-logo-img {
+  opacity: 0.9;
+}
+
+/* Logo Name Label */
+.funtoys-logo-name {
+  font-family: 'Fraunces', 'Playfair Display', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4a3f6b;
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =============================================
+   Responsive — 4 columns on tablet
+   ============================================= */
+@media (max-width: 1024px) {
+  .funtoys-logos-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px 14px;
+  }
+
+  .funtoys-logo-circle {
+    width: 100px;
+    height: 100px;
+    padding: 16px;
+  }
+}
+
+/* =============================================
+   Responsive — 3 columns on small tablet
+   ============================================= */
+@media (max-width: 700px) {
+  .funtoys-trusted-by {
+    padding: 56px 16px 64px;
+  }
+
+  .funtoys-trusted-title {
+    font-size: 1.6rem;
+  }
+
+  .funtoys-trusted-subtitle {
+    font-size: 0.92rem;
+    margin-bottom: 36px;
+  }
+
+  .funtoys-logos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 10px;
+  }
+
+  .funtoys-logo-circle {
+    width: 88px;
+    height: 88px;
+    padding: 14px;
+  }
+
+  .funtoys-logo-name {
+    font-size: 0.72rem;
+    max-width: 82px;
+  }
+}
+
+/* =============================================
+   Responsive — 2 columns on mobile
+   ============================================= */
+@media (max-width: 420px) {
+  .funtoys-trusted-title {
+    font-size: 1.35rem;
+  }
+
+  .funtoys-logos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
+  }
+
+  .funtoys-logo-circle {
+    width: 90px;
+    height: 90px;
+    padding: 15px;
+  }
+
+  .funtoys-logo-name {
+    font-size: 0.74rem;
+    max-width: 86px;
+  }
+}
+
 /* ========== RTL MOBILE NAVBAR FIX (zappy-rtl-mobile-fix) ========== */
 /* High-specificity rules to ensure RTL positioning wins over any [lang="en"] conflicts */
 /* For RTL sites: hamburger on RIGHT, phone on LEFT (mirror of LTR layout) */
