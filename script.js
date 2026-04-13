@@ -8582,3 +8582,35 @@ async function loadRelatedProducts(currentProduct, t) {
   if (document.body) bodyObs.observe(document.body, { childList: true, subtree: true });
   else document.addEventListener('DOMContentLoaded', function() { bodyObs.observe(document.body, { childList: true, subtree: true }); });
 })();
+
+
+/* ZAPPY_SECTION_ID_FROM_CLASS */
+(function(){
+  function assignIds(){
+    document.querySelectorAll('section').forEach(function(s){
+      if(s.id)return;
+      var cls=(s.className||'').split(/\s+/)[0];
+      if(cls && !document.getElementById(cls)){s.id=cls;}
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',assignIds,{once:true});}
+  else{assignIds();}
+})();
+/* END ZAPPY_SECTION_ID_FROM_CLASS */
+
+
+/* ZAPPY_EMPTY_SUBMENU_HIDDEN */
+(function(){
+  function markEmpty(){
+    document.querySelectorAll('.sub-menu, .dropdown-menu').forEach(function(ul){
+      var hasVisible=false;
+      for(var i=0;i<ul.children.length;i++){
+        if(window.getComputedStyle(ul.children[i]).display!=='none'){hasVisible=true;break;}
+      }
+      ul.classList.toggle('zappy-empty-submenu',!hasVisible);
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',markEmpty,{once:true});}
+  else{markEmpty();}
+})();
+/* END ZAPPY_EMPTY_SUBMENU_HIDDEN */
