@@ -2031,9 +2031,9 @@ main { margin-top: 0 !important; padding-top: 0 !important; }
 
 .index-gallery-section .index-gallery-card {
   background: #FFFFFF;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 18px rgba(22, 18, 48, 0.16);
+  box-shadow: rgba(22, 18, 48, 0.25) 0px 14px 28px;
   border: 1px solid rgba(43, 37, 83, 0.10);
   transition: transform 220ms ease, box-shadow 220ms ease;
   display: flex;
@@ -2050,6 +2050,7 @@ main { margin-top: 0 !important; padding-top: 0 !important; }
   width: 100%;
   height: 220px;
   overflow: hidden;
+  border-radius: 16px 16px 0 0;
 }
 
 .index-gallery-section .index-gallery-image-wrapper img {
@@ -2057,6 +2058,7 @@ main { margin-top: 0 !important; padding-top: 0 !important; }
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 16px 16px 0 0;
 }
 
 .index-gallery-section .index-gallery-overlay {
@@ -13081,6 +13083,56 @@ main,
 }
 
 /* ==END ZAPPY V2 E-COMMERCE THEME CSS== */
+
+.index-gallery-section .index-gallery-card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: rgba(22, 18, 48, 0.2) 0px 12px 24px !important;
+}
+
+.index-gallery-section .index-gallery-image-wrapper {
+  border-radius: 16px 16px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.index-gallery-section .index-gallery-image-wrapper img {
+  border-radius: 16px 16px 0 0 !important;
+}
+
+.index-gallery-section .index-gallery-card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: rgba(22, 18, 48, 0.3) 0px 16px 32px, rgba(22, 18, 48, 0.15) 0px 4px 8px !important;
+}
+
+.index-gallery-section .index-gallery-card .index-gallery-image-wrapper {
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+.index-gallery-section .index-gallery-card .index-gallery-image-wrapper img,
+.index-gallery-section .index-gallery-card .index-gallery-image-wrapper > div {
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+.index-gallery-section .index-gallery-card article,
+.index-gallery-section .index-gallery-card > * {
+  border-radius: 0 !important;
+}
+
+.index-gallery-section .index-gallery-card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.index-gallery-section .index-gallery-card .index-gallery-image-wrapper,
+.index-gallery-section .index-gallery-card .index-gallery-image-wrapper > div[data-zappy-zoom-wrapper],
+.index-gallery-section .index-gallery-card .index-gallery-image-wrapper img {
+  border-top-left-radius: 16px !important;
+  border-top-right-radius: 16px !important;
+  overflow: hidden !important;
+}
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
   .navbar .sub-menu.mobile-expanded,
