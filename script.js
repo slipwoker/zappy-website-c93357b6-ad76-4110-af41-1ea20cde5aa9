@@ -7573,6 +7573,7 @@ async function loadRelatedProducts(currentProduct, t) {
       return false;
     }
 
+    // SYNC: These helpers must match sharedZoomCropMath.js
     function parseObjPos(op) {
       var x = 50, y = 50;
       try {
@@ -7602,6 +7603,68 @@ async function loadRelatedProducts(currentProduct, t) {
 
       var isMobile = window.innerWidth <= 768;
       if (isMobile) {
+        var mSrc = img.getAttribute('data-zappy-mobile-src');
+        var mPos = img.getAttribute('data-zappy-mobile-object-position');
+        var mZoomStr = img.getAttribute('data-zappy-mobile-zoom');
+        var mZoom = parseFloat(mZoomStr);
+        var hasMobileOverrides = mPos || mZoomStr;
+        if (mSrc) img.src = mSrc;
+
+        if (hasMobileOverrides) {
+          // User configured mobile zoom/position — apply zoom/crop math
+          // to match what the editor mobile preview shows.
+          wrapper.style.setProperty('width', '100%', 'important');
+          wrapper.style.setProperty('max-width', '100%', 'important');
+          wrapper.style.setProperty('overflow', 'hidden', 'important');
+          wrapper.style.setProperty('position', 'relative', 'important');
+          var _sW = parseFloat(wrapper.getAttribute('data-zappy-zoom-wrapper-width')) || 0;
+          var _sH = parseFloat(wrapper.getAttribute('data-zappy-zoom-wrapper-height')) || 0;
+          if (_sW > 0 && _sH > 0) {
+            wrapper.style.setProperty('aspect-ratio', _sW + '/' + _sH, 'important');
+            wrapper.style.setProperty('height', 'auto', 'important');
+          }
+          var effZoom = (isFinite(mZoom) && mZoom > 0) ? mZoom : zoom;
+          var effPos = mPos || '50% 50%';
+
+          function applyMobileZoomCrop(_img, _wrapper, _effPos, _effZoom) {
+            var rect = _wrapper.getBoundingClientRect();
+            if (!rect || !rect.width || !rect.height) return;
+            var nW = _img.naturalWidth || 0, nH = _img.naturalHeight || 0;
+            if (!(nW > 0 && nH > 0)) return;
+            var imgA = nW / nH;
+            var contA = rect.width / rect.height;
+            var cover = coverPercents(imgA, contA);
+            var wP = 100, hP = 100;
+            if (_effZoom >= 1) { wP = cover.w * _effZoom; hP = cover.h * _effZoom; }
+            else { var t2 = (_effZoom - 0.5) / 0.5; if (!isFinite(t2)) t2 = 0; t2 = Math.max(0, Math.min(1, t2)); wP = 100 + t2 * (cover.w - 100); hP = 100 + t2 * (cover.h - 100); }
+            var p2 = parseObjPos(_effPos);
+            var lP = (100 - wP) * (p2.x / 100);
+            var tP = (100 - hP) * (p2.y / 100);
+            _img.style.setProperty('position', 'absolute', 'important');
+            _img.style.setProperty('left', lP + '%', 'important');
+            _img.style.setProperty('top', tP + '%', 'important');
+            _img.style.setProperty('width', wP + '%', 'important');
+            _img.style.setProperty('height', hP + '%', 'important');
+            _img.style.setProperty('max-width', 'none', 'important');
+            _img.style.setProperty('max-height', 'none', 'important');
+            _img.style.setProperty('display', 'block', 'important');
+            _img.style.setProperty('object-fit', _effZoom < 1 ? 'fill' : 'cover', 'important');
+            _img.style.setProperty('margin', '0', 'important');
+          }
+
+          applyMobileZoomCrop(img, wrapper, effPos, effZoom);
+
+          // If src changed, the image may not be loaded yet (naturalWidth=0).
+          // Re-apply after it loads so the zoom math uses correct dimensions.
+          if (mSrc && !(img.complete && img.naturalWidth > 0)) {
+            img.addEventListener('load', function _onLoad() {
+              img.removeEventListener('load', _onLoad);
+              try { applyMobileZoomCrop(img, wrapper, effPos, effZoom); } catch(e) {}
+            });
+          }
+          return;
+        }
+
         img.style.setProperty('position', 'relative', 'important');
         img.style.setProperty('width', '100%', 'important');
         img.style.setProperty('height', 'auto', 'important');
@@ -7611,28 +7674,36 @@ async function loadRelatedProducts(currentProduct, t) {
         img.style.removeProperty('left');
         img.style.removeProperty('top');
         img.style.setProperty('margin', '0', 'important');
-        var mSrc = img.getAttribute('data-zappy-mobile-src');
-        var mPos = img.getAttribute('data-zappy-mobile-object-position');
-        var mZoom = parseFloat(img.getAttribute('data-zappy-mobile-zoom'));
-        if (mSrc) img.src = mSrc;
-        if (mPos) img.style.setProperty('object-position', mPos, 'important');
-        if (mZoom > 1) {
-          img.style.setProperty('transform', 'scale(' + mZoom + ')', 'important');
-          img.style.setProperty('transform-origin', mPos || '50% 50%', 'important');
-          wrapper.style.setProperty('overflow', 'hidden', 'important');
-        }
         return;
       }
 
-      // Desktop: if the image already has zoom styles saved from the editor
-      // (position:absolute + percentage-based width), trust them.
-      // The saved percentages are proportional and correct for any container size,
-      // since zoom/crop math is based purely on aspect ratios.
-      // Recalculating here can produce different values when the container
-      // dimensions differ between preview and deployed site.
+      // Desktop zoom === 1: image fills the wrapper exactly — no crop math
+      // needed. Always set 100%/100% to override any stale inline styles
+      // that may have been baked in with incorrect values.
+      if (zoom === 1) {
+        wrapper.style.setProperty('overflow', 'hidden', 'important');
+        wrapper.style.setProperty('position', 'relative', 'important');
+        img.style.setProperty('position', 'absolute', 'important');
+        img.style.setProperty('width', '100%', 'important');
+        img.style.setProperty('height', '100%', 'important');
+        img.style.setProperty('left', '0%', 'important');
+        img.style.setProperty('top', '0%', 'important');
+        img.style.setProperty('max-width', 'none', 'important');
+        img.style.setProperty('max-height', 'none', 'important');
+        img.style.setProperty('object-fit', 'cover', 'important');
+        img.style.setProperty('display', 'block', 'important');
+        img.style.setProperty('margin', '0', 'important');
+        return;
+      }
+
+      // Desktop zoom > 1: if the image already has zoom styles saved from
+      // the editor (position:absolute + percentage-based width), trust
+      // them.  Sites published before the zoom-out fix had wrong values
+      // baked in for zoom < 1 (used cover*zoom instead of the
+      // interpolation formula), so those must always be recalculated.
       var existingPos = (img.style.position || '').replace(/s*!importants*/g, '').trim();
       var existingW = (img.style.width || '').replace(/s*!importants*/g, '').trim();
-      if (existingPos === 'absolute' && existingW.indexOf('%') !== -1) {
+      if (existingPos === 'absolute' && existingW.indexOf('%') !== -1 && zoom > 1) {
         wrapper.style.setProperty('overflow', 'hidden', 'important');
         wrapper.style.setProperty('position', 'relative', 'important');
         return;
@@ -7661,7 +7732,7 @@ async function loadRelatedProducts(currentProduct, t) {
         hPct = 100 + t * (cover.h - 100);
       }
 
-      var op = img.style.objectPosition || window.getComputedStyle(img).objectPosition || '50% 50%';
+      var op = img.getAttribute('data-zappy-object-position') || img.style.objectPosition || window.getComputedStyle(img).objectPosition || '50% 50%';
       var pos = parseObjPos(op);
       var leftPct = (100 - wPct) * (pos.x / 100);
       var topPct = (100 - hPct) * (pos.y / 100);
@@ -8216,8 +8287,19 @@ async function loadRelatedProducts(currentProduct, t) {
       for (var g = 0; g < grids.length; g++) {
         try {
           var container = grids[g];
-          // Skip if already processed
-          if (container.getAttribute('data-zappy-grid-centered') === 'true') continue;
+
+          // Clear previous centering so we can recalculate (e.g. after i18n direction change)
+          if (container.getAttribute('data-zappy-grid-centered') === 'true') {
+            var prevItems = Array.from(container.children);
+            for (var p = 0; p < prevItems.length; p++) {
+              if (prevItems[p].getAttribute && prevItems[p].getAttribute('data-zappy-gc') === '1') {
+                prevItems[p].style.transform = prevItems[p].getAttribute('data-zappy-gc-orig') || '';
+                prevItems[p].removeAttribute('data-zappy-gc');
+                prevItems[p].removeAttribute('data-zappy-gc-orig');
+              }
+            }
+            container.removeAttribute('data-zappy-grid-centered');
+          }
 
           var items = [];
           for (var c = 0; c < container.children.length; c++) {
@@ -8254,19 +8336,13 @@ async function loadRelatedProducts(currentProduct, t) {
           var missingCols = colCount - itemsInLastRow;
           var offset = missingCols * (colWidth + gap) / 2;
 
-          // Detect RTL
+          // Detect RTL — use the computed direction which already accounts for
+          // CSS cascade, html[dir], and inheritance. Do NOT walk up checking inline
+          // styles because multi-language sites may have stale direction:rtl on
+          // parent elements from the primary language while serving an LTR page.
           var dir = cs.direction || 'ltr';
-          var el = container;
-          while (el && dir === 'ltr') {
-            if (el.getAttribute && el.getAttribute('dir')) { dir = el.getAttribute('dir'); break; }
-            if (el.style && el.style.direction) { dir = el.style.direction; break; }
-            el = el.parentElement;
-          }
           var translateValue = dir === 'rtl' ? -offset : offset;
 
-          // Apply transform to last-row items
-          // Temporarily disable CSS transitions to prevent visible animation
-          // Preserve any existing transforms (e.g., scale, rotate) by composing
           var startIndex = totalItems - itemsInLastRow;
           var savedTransitions = [];
           for (var i = startIndex; i < totalItems; i++) {
@@ -8274,32 +8350,36 @@ async function loadRelatedProducts(currentProduct, t) {
             savedTransitions.push(item.style.transition);
             item.style.transition = 'none';
             var existingTransform = item.style.transform || '';
+            item.setAttribute('data-zappy-gc-orig', existingTransform);
             var newTransform = existingTransform
               ? existingTransform + ' translateX(' + translateValue + 'px)'
               : 'translateX(' + translateValue + 'px)';
             item.style.transform = newTransform;
+            item.setAttribute('data-zappy-gc', '1');
           }
 
-          // Force synchronous reflow so the transform is applied instantly
           void container.offsetHeight;
 
-          // Restore original transitions
           for (var j = startIndex; j < totalItems; j++) {
             items[j].style.transition = savedTransitions[j - startIndex];
           }
 
-          // Mark grid as processed so we don't double-apply
           container.setAttribute('data-zappy-grid-centered', 'true');
         } catch(e) {}
       }
     }
 
-    // Run once after DOM is fully loaded (fonts, images, layout complete)
     if (document.readyState === 'complete') {
       centerPartialGridRows();
     } else {
       window.addEventListener('load', centerPartialGridRows);
     }
+
+    // Re-center when i18n script changes the page direction
+    try {
+      var dirObs = new MutationObserver(function() { centerPartialGridRows(); });
+      dirObs.observe(document.documentElement, { attributes: true, attributeFilter: ['dir'] });
+    } catch(e) {}
   } catch(e) {}
 })();
 
@@ -8454,23 +8534,34 @@ async function loadRelatedProducts(currentProduct, t) {
       });
     }
 
+    function _updImg(v) {
+      var mi=document.getElementById('product-main-image');if(!mi)return;
+      if(!window._originalMainImageSrc)window._originalMainImageSrc=mi.src;
+      if(v&&v.image){var s=v.image;if(typeof window.resolveProductImageUrl==='function')s=window.resolveProductImageUrl(v.image);mi.src=s}
+      else if(window._originalMainImageSrc){mi.src=window._originalMainImageSrc}
+    }
+
     function _upd() {
       var t=_vT,product=_vProduct;if(!product)return;
       var keys=_gak(),allSel=keys.every(function(k){return selectedAttributes.hasOwnProperty(k)});
       var sd=document.getElementById('product-stock-display'),ab=document.getElementById('add-to-cart-btn');
-      keys.forEach(function(k){var sp=document.querySelector('.variant-group[data-group="'+k+'"] .variant-selected-value');if(sp)sp.textContent=selectedAttributes[k]||''});
+      keys.forEach(function(k){var sp=document.querySelector('.variant-group[data-group="'+k+'"] .variant-selected-value');if(sp){var sb=document.querySelector('.variant-option[data-attr="'+k+'"].selected');sp.textContent=(sb&&sb.getAttribute('data-display-value'))||selectedAttributes[k]||''}});
       if(allSel){
         var m=_fm(selectedAttributes);if(m.length>0){var v=m[0];window.selectedVariant=v;
           if(_oos(v)){if(sd){sd.className='product-stock out-of-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'+(t.outOfStock||'Out of Stock')}if(ab){ab.disabled=true;ab.style.opacity='0.5';ab.style.cursor='not-allowed'}}
           else{if(sd){sd.className='product-stock in-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'+(t.inStock||'In Stock')}if(ab){ab.disabled=false;ab.style.opacity='';ab.style.cursor=''}}
+          var skd=document.getElementById('product-sku-display');if(skd&&v.sku){skd.textContent=(t.sku||'SKU')+': '+v.sku}else if(skd&&product.sku){skd.textContent=(t.sku||'SKU')+': '+product.sku}
           var pd=document.getElementById('product-price-display');if(pd){var c=product.currency||t.currency||String.fromCharCode(8362),bP=window.productBasePrice||parseFloat(product.price)||0,oP=window.productOriginalPrice||parseFloat(product.compare_at_price||product.original_price||0),hS=window.productHasSalePrice,fP=(v.price!=null)?parseFloat(v.price):bP,h=c+fP.toFixed(2);if(v.price!=null){if(oP&&oP>fP)h+=' <span class="original-price">'+c+oP.toFixed(2)+'</span>'}else if(hS&&oP>fP){h+=' <span class="original-price">'+c+oP.toFixed(2)+'</span>'}pd.innerHTML=h}if(typeof updatePricePerUnitDisplay==='function'){var eP=(v.price!=null)?parseFloat(v.price):(window.productBasePrice||parseFloat(product.price)||0);updatePricePerUnitDisplay(eP,product,t)}
+          _updImg(v);
         }
       } else {
         window.selectedVariant=null;
         if(sd){sd.className='product-stock in-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'+(t.inStock||'In Stock')}
         if(ab){ab.disabled=false;ab.style.opacity='';ab.style.cursor=''}
+        var skd2=document.getElementById('product-sku-display');if(skd2&&product.sku){skd2.textContent=(t.sku||'SKU')+': '+product.sku}
         var pd=document.getElementById('product-price-display');if(pd){var c=product.currency||t.currency||String.fromCharCode(8362),bP=window.productBasePrice||parseFloat(product.price)||0,oP=window.productOriginalPrice||parseFloat(product.compare_at_price||product.original_price||0),hS=window.productHasSalePrice,hR=window.productHasVariantPriceRange,mP=window.productVariantMinPrice;if(hR&&mP!=null&&isFinite(mP)){var sL=(typeof getEcomText==='function')?getEcomText('startingAt',t.startingAt||'Starting at'):(t.startingAt||'Starting at');pd.textContent=sL+' '+c+mP.toFixed(2)}else if(hS&&oP>bP){pd.innerHTML=c+bP.toFixed(2)+' <span class="original-price">'+c+oP.toFixed(2)+'</span>'}else{pd.textContent=c+bP.toFixed(2)}}
         if(typeof updatePricePerUnitDisplay==='function'){var hR2=window.productHasVariantPriceRange,mP2=window.productVariantMinPrice,bP2=window.productBasePrice||parseFloat(product.price)||0,rP=(hR2&&mP2!=null&&isFinite(mP2))?mP2:bP2;updatePricePerUnitDisplay(rP,product,t)}
+        _updImg(null);
       }
     }
 
@@ -8614,3 +8705,23 @@ async function loadRelatedProducts(currentProduct, t) {
   else{markEmpty();}
 })();
 /* END ZAPPY_EMPTY_SUBMENU_HIDDEN */
+
+
+/* ZAPPY_INTERNAL_LINKS_NO_NEW_TAB */
+(function(){
+  try {
+    function fixLinks(){
+      var docRe=/\.(pdf|doc|docx|xls|xlsx|ppt|pptx|txt|csv|rtf|odt|ods|odp)(\?|$)/i;
+      document.querySelectorAll('a[target="_blank"]').forEach(function(a){
+        var h=a.getAttribute('href');
+        if(!h)return;
+        if(h.indexOf('://')!==-1||h.indexOf('mailto:')===0||h.indexOf('tel:')===0)return;
+        if(docRe.test(h))return;
+        a.removeAttribute('target');
+        a.removeAttribute('rel');
+      });
+    }
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fixLinks)}
+    else{fixLinks()}
+  }catch(e){}
+})();
