@@ -13090,10 +13090,6 @@ main,
 #layout-1775505560130 .client-logo-wrapper {
   border-radius: 20px !important;
 }
-
-#layout-1775505560130 .client-logo {
-  border-radius: 10px !important;
-}
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
   .navbar .sub-menu.mobile-expanded,
