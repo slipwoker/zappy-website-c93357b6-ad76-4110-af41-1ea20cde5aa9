@@ -3502,6 +3502,7 @@ main { margin-top: 0 !important; padding-top: 0 !important; }
   height: 220px;
   overflow: hidden;
   position: relative;
+  border-radius: 10px 10px 0 0;
 }
 
 .collections-portfolio-section .collections-portfolio-tile-featured .collections-portfolio-tile-image {
