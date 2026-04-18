@@ -3500,7 +3500,6 @@ main { margin-top: 0 !important; padding-top: 0 !important; }
   height: 220px;
   overflow: hidden;
   position: relative;
-  border-radius: 10px 10px 0 0;
 }
 
 .collections-portfolio-section .collections-portfolio-tile-featured .collections-portfolio-tile-image {
@@ -13085,21 +13084,6 @@ main,
 
 .collections-portfolio-section .collections-portfolio-tile-image {
   border-radius: 10px 10px 0 0;
-  overflow: hidden;
-}
-
-.collections-portfolio-section .collections-portfolio-tile-image {
-  border-radius: 10px 10px 0 0 !important;
-  overflow: hidden !important;
-}
-
-.collections-portfolio-section .collections-portfolio-tile .collections-portfolio-tile-image {
-  overflow: hidden !important;
-  border-radius: 10px 10px 0 0 !important;
-}
-
-.collections-portfolio-section .collections-portfolio-tile .collections-portfolio-tile-image img {
-  border-radius: 10px 10px 0 0 !important;
 }
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
