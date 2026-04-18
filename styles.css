@@ -13086,6 +13086,10 @@ main,
   border-radius: 12px 12px 0 0;
   overflow: hidden;
 }
+
+#layout-1775505560130 .client-logo-wrapper {
+  border-radius: 20px !important;
+}
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
   .navbar .sub-menu.mobile-expanded,
