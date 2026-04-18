@@ -13090,6 +13090,15 @@ main,
 #layout-1775505560130 .client-logo-wrapper {
   border-radius: 20px !important;
 }
+
+#layout-1775505560130 .client-logo {
+  border-radius: 10px !important;
+}
+
+#layout-1775505560130 .client-logo-wrapper > div[data-zappy-zoom-wrapper] {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
   .navbar .sub-menu.mobile-expanded,
