@@ -13081,6 +13081,11 @@ main,
 }
 
 /* ==END ZAPPY V2 E-COMMERCE THEME CSS== */
+
+.index-gallery-section .index-gallery-image-wrapper {
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
   .navbar .sub-menu.mobile-expanded,
