@@ -13081,10 +13081,6 @@ main,
 }
 
 /* ==END ZAPPY V2 E-COMMERCE THEME CSS== */
-
-.collections-portfolio-section .collections-portfolio-tile-image {
-  border-radius: 10px 10px 0 0;
-}
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
   .navbar .sub-menu.mobile-expanded,
